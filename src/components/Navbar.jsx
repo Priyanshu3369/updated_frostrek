@@ -49,23 +49,34 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled
-          ? "border-b border-white/10 bg-[#0B0B0E]/95 backdrop-blur"
-          : "bg-[#0B0B0E]/75"
-        } ${performanceMode ? "shadow-sm" : "shadow-[0_10px_30px_rgba(0,0,0,0.25)]"}`}
+      className={`fixed inset-x-0 top-0 z-50 transition-all backdrop-blur-md ${scrolled
+        ? "border-b border-teal-400/20 bg-teal-900/10"
+        : "bg-teal-900/5"
+        } ${performanceMode ? "shadow-sm" : "shadow-[0_10px_30px_rgba(0,128,128,0.15)]"}`}
     >
       <div className="flex max-w-full items-center justify-between px-6 md:px-12 py-4">
         {/* Logo on the LEFT */}
         <Link
           to="/"
-          className="flex items-center gap-2 text-sm font-semibold tracking-tight text-slate-100 transition-colors hover:text-cyan-300 flex-shrink-0"
+          className="flex items-center gap-3 text-sm font-semibold tracking-tight text-slate-100 transition-colors hover:text-cyan-300 flex-shrink-0"
           onClick={closeMenu}
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-cyan-500/10 text-cyan-300">
-            <Sparkles size={18} />
+          <span className="inline-flex items-center justify-center">
+            <img
+              src="/src/assets/frostrekf.png"
+              alt="Frostrek AI"
+              className="h-12 w-12 md:h-14 md:w-14 object-contain brightness-125 drop-shadow-md"
+            />
           </span>
-          <span className="text-base md:text-3xl">Frostrek</span>
+          <span
+  className="text-xl md:text-3xl font-bold leading-tight tracking-wide drop-shadow-[0_0_10px_rgba(0,255,255,0.4)]"
+  style={{ fontFamily: "Raleway, sans-serif" }}
+>
+  Frostrek
+</span>
+
         </Link>
+
 
         {/* Navigation and CTA on the RIGHT */}
         <div className="flex items-center gap-6 ml-auto">
@@ -75,11 +86,10 @@ const Navbar = () => {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`rounded-full px-3 py-1 transition-colors ${
-                    isActive(link.href)
+                  className={`rounded-full px-3 py-1 transition-colors ${isActive(link.href)
                       ? "bg-cyan-500/20 text-cyan-200"
                       : "hover:bg-cyan-500/10 hover:text-cyan-200"
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -115,7 +125,7 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-        <div className="border-t border-white/10 bg-[#0B0B0E]/98 shadow-lg md:hidden">
+        <div className="border-t border-teal-400/20 bg-teal-900/10 backdrop-blur-md shadow-lg md:hidden">
           <nav className="flex flex-col gap-1 px-5 py-4 text-sm font-medium text-slate-200">
             {links.map((link) =>
               link.type === "route" ? (
@@ -123,11 +133,10 @@ const Navbar = () => {
                   key={link.href}
                   to={link.href}
                   onClick={closeMenu}
-                  className={`rounded-lg px-3 py-2 transition-colors ${
-                    isActive(link.href)
+                  className={`rounded-lg px-3 py-2 transition-colors ${isActive(link.href)
                       ? "bg-cyan-500/20 text-cyan-200"
                       : "hover:bg-cyan-500/10 hover:text-cyan-200"
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </Link>

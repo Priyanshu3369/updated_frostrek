@@ -113,10 +113,10 @@ const Footer = () => {
   const y = useTransform(scrollYProgress, [0, 0.3], [30, 0]);
 
   const quickLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Features", href: "#features" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Features", href: "/features" },
   ];
 
   const legalLinks = [

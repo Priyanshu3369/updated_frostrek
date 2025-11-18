@@ -467,28 +467,7 @@ const HeroAboutPage = () => {
           </motion.div>
         </div>
 
-        <motion.div
-          className="relative z-10 mx-auto mt-24 max-w-6xl px-6 md:px-10"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="grid gap-6 rounded-[28px] border border-white/5 bg-white/[0.04] p-6 backdrop-blur-xl md:grid-cols-3 md:p-10">
-            {highlights.map(({ icon: Icon, title, description }) => (
-              <div
-                key={title}
-                className="group relative flex flex-col gap-4 rounded-2xl border border-transparent p-5 transition duration-200 hover:border-cyan-300/30 hover:bg-cyan-500/5"
-              >
-                <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400/10 text-cyan-200 shadow-[0_0_24px_rgba(34,211,238,0.35)] transition group-hover:bg-cyan-400/20">
-                  <Icon className="h-5 w-5" />
-                  <span className="absolute inset-0 rounded-full border border-cyan-400/30 opacity-0 transition group-hover:opacity-100" />
-                </div>
-                <h3 className="text-lg font-semibold text-slate-50">{title}</h3>
-                <p className="text-sm font-normal leading-relaxed text-slate-300/80">{description}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+        
 
         <div className="absolute right-12 top-24 hidden h-28 w-28 rounded-full border border-cyan-400/40 bg-cyan-400/10 blur-3xl lg:block" />
         <div className="absolute left-10 bottom-10 hidden h-24 w-24 rounded-full border border-indigo-500/40 bg-indigo-400/10 blur-3xl lg:block" />
