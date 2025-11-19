@@ -73,7 +73,6 @@ const Navbar = () => {
         } ${performanceMode ? "shadow-sm" : "shadow-[0_10px_30px_rgba(0,128,128,0.15)]"}`}
     >
       <div className="flex max-w-full items-center justify-between px-6 md:px-12 py-4">
-        {/* Logo on the LEFT */}
         <Link
           to="/"
           className="flex items-center gap-3 text-sm font-semibold tracking-tight text-slate-100 transition-colors hover:text-cyan-300 flex-shrink-0"
@@ -81,7 +80,7 @@ const Navbar = () => {
         >
           <span className="inline-flex items-center justify-center">
             <img
-              src="/frostrekf.png"
+              src="/logo.png"
               alt="Frostrek AI"
               className="h-12 w-12 md:h-14 md:w-14 object-contain brightness-125 drop-shadow-md"
             />
