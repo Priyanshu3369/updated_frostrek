@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, Sparkles, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import usePerformanceMode from "../hooks/usePerformanceMode";
 
 const links = [
@@ -13,15 +13,31 @@ const links = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const performanceMode = usePerformanceMode();
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 32);
-    handleScroll();
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Show navbar when scrolling up
+      if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      }
+      // Hide navbar when scrolling down (but show when near top)
+      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      }
+      
+      setScrolled(currentScrollY > 32);
+      setLastScrollY(currentScrollY);
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -49,7 +65,9 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all backdrop-blur-md ${scrolled
+      className={`fixed inset-x-0 top-0 z-50 transition-all backdrop-blur-md duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      } ${scrolled
         ? "border-b border-teal-400/20 bg-teal-900/10"
         : "bg-teal-900/5"
         } ${performanceMode ? "shadow-sm" : "shadow-[0_10px_30px_rgba(0,128,128,0.15)]"}`}
@@ -69,14 +87,12 @@ const Navbar = () => {
             />
           </span>
           <span
-  className="text-xl md:text-3xl font-bold leading-tight tracking-wide drop-shadow-[0_0_10px_rgba(0,255,255,0.4)]"
-  style={{ fontFamily: "Raleway, sans-serif" }}
->
-  Frostrek
-</span>
-
+            className="text-xl md:text-3xl font-bold leading-tight tracking-wide drop-shadow-[0_0_10px_rgba(0,255,255,0.4)]"
+            style={{ fontFamily: "Raleway, sans-serif" }}
+          >
+            Frostrek
+          </span>
         </Link>
-
 
         {/* Navigation and CTA on the RIGHT */}
         <div className="flex items-center gap-6 ml-auto">
@@ -103,14 +119,14 @@ const Navbar = () => {
                 </a>
               )
             )}
+            <Link
+              to="/get-in-touch"
+              className="group relative overflow-hidden rounded-full bg-gradient-to-r from-teal-700 to-teal-600 px-5 py-2.5 font-semibold text-white shadow-lg shadow-teal-900/30 transition-all hover:shadow-xl hover:shadow-teal-800/50 hover:scale-105"
+            >
+              <span className="relative z-10">Get in Touch</span>
+              <span className="absolute inset-0 -z-0 bg-gradient-to-r from-teal-600 to-teal-500 opacity-0 transition-opacity group-hover:opacity-100"></span>
+            </Link>
           </nav>
-          <Link
-            to="/get-in-touch"
-            className="group relative hidden overflow-hidden rounded-full bg-gradient-to-r from-teal-700 to-teal-600 px-5 py-2.5 font-semibold text-white shadow-lg shadow-teal-900/30 transition-all hover:shadow-xl hover:shadow-teal-800/50 hover:scale-105 md:block"
-          >
-            <span className="relative z-10">Get in Touch</span>
-            <span className="absolute inset-0 -z-0 bg-gradient-to-r from-teal-600 to-teal-500 opacity-0 transition-opacity group-hover:opacity-100"></span>
-          </Link>
 
           <button
             type="button"
@@ -151,6 +167,14 @@ const Navbar = () => {
                 </a>
               )
             )}
+            <Link
+              to="/get-in-touch"
+              onClick={closeMenu}
+              className="group relative overflow-hidden rounded-full bg-gradient-to-r from-teal-700 to-teal-600 px-5 py-2.5 font-semibold text-white shadow-lg shadow-teal-900/30 transition-all hover:shadow-xl hover:shadow-teal-800/50 hover:scale-105 mt-3 text-center block"
+            >
+              <span className="relative z-10">Get in Touch</span>
+              <span className="absolute inset-0 -z-0 bg-gradient-to-r from-teal-600 to-teal-500 opacity-0 transition-opacity group-hover:opacity-100"></span>
+            </Link>
           </nav>
         </div>
       )}

@@ -295,7 +295,7 @@ const HeroAboutPage = () => {
   const words2 = paragraph2.split(" ");
 
   return (
-    <>
+    <div className="w-full overflow-x-hidden">
       {/* ===== HERO SECTION ===== */}
       <section
         id="home"
@@ -343,7 +343,7 @@ const HeroAboutPage = () => {
             className="flex flex-1 flex-col justify-center"
           >
             <motion.div
-              className="inline-flex items-center gap-3 self-start rounded-full border border-cyan-500/40 bg-white/5 px-5 py-2 text-xs font-medium uppercase tracking-[0.3em] text-cyan-200 backdrop-blur-lg"
+              className="inline-flex items-center gap-3 self-start rounded-full border border-cyan-500/40 bg-white/5 px-5 py-2 text-xs font-medium uppercase tracking-[0.3em] text-cyan-200 backdrop-blur-lg w-fit"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.7 }}
@@ -466,8 +466,6 @@ const HeroAboutPage = () => {
             </div>
           </motion.div>
         </div>
-
-        
 
         <div className="absolute right-12 top-24 hidden h-28 w-28 rounded-full border border-cyan-400/40 bg-cyan-400/10 blur-3xl lg:block" />
         <div className="absolute left-10 bottom-10 hidden h-24 w-24 rounded-full border border-indigo-500/40 bg-indigo-400/10 blur-3xl lg:block" />
@@ -672,9 +670,9 @@ const HeroAboutPage = () => {
                   performanceMode
                     ? undefined
                     : {
-                      rotateY: mousePosition.x * 0.3,
-                      rotateX: -mousePosition.y * 0.3,
-                    }
+                        rotateY: mousePosition.x * 0.3,
+                        rotateX: -mousePosition.y * 0.3,
+                      }
                 }
                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
               >
@@ -691,8 +689,8 @@ const HeroAboutPage = () => {
                       performanceMode
                         ? undefined
                         : {
-                          rotate: i % 2 === 0 ? 360 : -360,
-                        }
+                            rotate: i % 2 === 0 ? 360 : -360,
+                          }
                     }
                     transition={{
                       duration: performanceMode ? 0 : 30 - i * 5,
@@ -737,9 +735,9 @@ const HeroAboutPage = () => {
                         performanceMode
                           ? undefined
                           : {
-                            scale: [1, 1.5, 1],
-                            opacity: [0.5, 0, 0.5],
-                          }
+                              scale: [1, 1.5, 1],
+                              opacity: [0.5, 0, 0.5],
+                            }
                       }
                       transition={{
                         duration: performanceMode ? 0 : 3,
@@ -762,10 +760,10 @@ const HeroAboutPage = () => {
                         performanceMode
                           ? { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius }
                           : {
-                            x: Math.cos(angle) * radius,
-                            y: Math.sin(angle) * radius,
-                            scale: [1, 1.3, 1],
-                          }
+                              x: Math.cos(angle) * radius,
+                              y: Math.sin(angle) * radius,
+                              scale: [1, 1.3, 1],
+                            }
                       }
                       transition={{
                         x: { duration: 0 },
@@ -786,9 +784,9 @@ const HeroAboutPage = () => {
                             performanceMode
                               ? undefined
                               : {
-                                scale: [1, 2, 1],
-                                opacity: [0.8, 0, 0.8],
-                              }
+                                  scale: [1, 2, 1],
+                                  opacity: [0.8, 0, 0.8],
+                                }
                           }
                           transition={{
                             duration: performanceMode ? 0 : 2,
@@ -821,7 +819,7 @@ const HeroAboutPage = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
