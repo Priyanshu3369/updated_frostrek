@@ -81,7 +81,7 @@ const Navbar = () => {
         >
           <span className="inline-flex items-center justify-center">
             <img
-              src="/src/assets/frostrekf.png"
+              src="/frostrekf.png"
               alt="Frostrek AI"
               className="h-12 w-12 md:h-14 md:w-14 object-contain brightness-125 drop-shadow-md"
             />
