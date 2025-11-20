@@ -38,7 +38,33 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+  useEffect(() => {
+    if (!isOpen) {
+      return undefined;
+    }
 
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
   useEffect(() => {
     if (!isOpen) {
       return undefined;

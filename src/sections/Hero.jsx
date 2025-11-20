@@ -478,7 +478,7 @@ const HeroAboutPage = () => {
         />
       </section>
       {/* ===== ABOUT SECTION ===== */}
-      <section id="about" className="relative w-full py-28 bg-[#0B0B0E] font-sans">
+      <section id="about" className="relative w-full py-12 sm:py-16 md:py-20 lg:py-28 bg-[#0B0B0E] font-sans overflow-hidden">
         {!performanceMode && (
           <canvas
             ref={canvasRef}
@@ -487,36 +487,36 @@ const HeroAboutPage = () => {
           />
         )}
 
-        <div className="relative mx-auto flex w-full flex-col gap-16 px-6 md:px-12 xl:px-20 max-w-7xl">
+        <div className="relative mx-auto flex w-full flex-col gap-8 sm:gap-12 md:gap-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 max-w-7xl">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: -30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mb-16"
+            className="mb-4 sm:mb-8 md:mb-16"
           >
             <motion.div
-              className="inline-flex items-center gap-3 mb-6"
+              className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
               <motion.div
-                className="w-12 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-purple-600"
+                className="w-8 sm:w-10 md:w-12 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-purple-600"
                 initial={{ width: 0 }}
-                whileInView={{ width: 48 }}
+                whileInView={{ width: "3rem" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               />
-              <span className="text-[#D1D5DB] text-xs font-semibold tracking-wider uppercase">
+              <span className="text-[#D1D5DB] text-[10px] sm:text-xs font-semibold tracking-wider uppercase">
                 About Us
               </span>
             </motion.div>
 
             <motion.h2
-              className="text-4xl md:text-6xl font-bold mb-3 tracking-tight text-[#FFFFFF]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 tracking-tight text-[#FFFFFF]"
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -525,7 +525,7 @@ const HeroAboutPage = () => {
               Frostrek LLP
             </motion.h2>
 
-            <p className="text-lg md:text-xl font-normal text-[#D1D5DB] max-w-2xl">
+            <p className="text-base sm:text-lg md:text-xl font-normal text-[#D1D5DB] max-w-2xl">
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -537,17 +537,17 @@ const HeroAboutPage = () => {
             </p>
           </motion.div>
 
-          <div className="grid items-center gap-16 md:grid-cols-2 xl:gap-20">
+          <div className="grid items-center gap-8 sm:gap-12 md:gap-16 lg:grid-cols-2 xl:gap-20">
             {/* Left side - text */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8 order-2 lg:order-1"
             >
-              <div ref={textRef} className="space-y-6 max-w-3xl">
-                <p className="text-[#D1D5DB] text-base md:text-lg font-normal leading-relaxed">
+              <div ref={textRef} className="space-y-4 sm:space-y-6 max-w-3xl">
+                <p className="text-[#D1D5DB] text-sm sm:text-base md:text-lg font-normal leading-relaxed">
                   {words1.map((word, index) => (
                     <motion.span
                       key={index}
@@ -565,7 +565,7 @@ const HeroAboutPage = () => {
                   ))}
                 </p>
 
-                <p className="text-[#9CA3AF] text-base md:text-lg font-normal leading-relaxed">
+                <p className="text-[#9CA3AF] text-sm sm:text-base md:text-lg font-normal leading-relaxed">
                   {words2.map((word, index) => (
                     <motion.span
                       key={index}
@@ -586,7 +586,7 @@ const HeroAboutPage = () => {
 
               {/* Stats */}
               <motion.div
-                className="grid grid-cols-3 gap-6 pt-8 border-t border-cyan-500/20"
+                className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 pt-6 sm:pt-8 border-t border-cyan-500/20"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -602,17 +602,17 @@ const HeroAboutPage = () => {
                     transition={{ duration: 0.6, delay: 0.5 + idx * 0.1 }}
                   >
                     <motion.div
-                      className="text-3xl font-bold text-[#FFFFFF] mb-1 bg-gradient-to-r from-[#00FFFF] to-[#6D28D9] bg-clip-text text-transparent"
+                      className="text-2xl sm:text-3xl font-bold text-[#FFFFFF] mb-1 bg-gradient-to-r from-[#00FFFF] to-[#6D28D9] bg-clip-text text-transparent"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2 }}
                     >
                       {stat.value}
                     </motion.div>
-                    <div className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-wide">
+                    <div className="text-[10px] sm:text-xs font-semibold text-[#9CA3AF] uppercase tracking-wide">
                       {stat.label}
                     </div>
                     <motion.div
-                      className="h-[1px] bg-gradient-to-r from-cyan-500 via-purple-600 to-transparent mt-2"
+                      className="h-[1px] bg-gradient-to-r from-cyan-500 via-purple-600 to-transparent mt-1 sm:mt-2"
                       initial={{ width: 0 }}
                       whileInView={{ width: "100%" }}
                       viewport={{ once: true }}
@@ -624,7 +624,7 @@ const HeroAboutPage = () => {
 
               {/* Key features */}
               <motion.div
-                className="space-y-4 pt-6"
+                className="space-y-3 sm:space-y-4 pt-4 sm:pt-6"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -637,7 +637,7 @@ const HeroAboutPage = () => {
                 ].map((feature, idx) => (
                   <motion.div
                     key={feature}
-                    className="flex items-center gap-3 group"
+                    className="flex items-center gap-2 sm:gap-3 group"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -648,7 +648,7 @@ const HeroAboutPage = () => {
                       whileHover={{ scale: 1.5 }}
                       transition={{ duration: 0.2 }}
                     />
-                    <span className="text-sm font-normal text-[#9CA3AF] group-hover:text-cyan-400 transition-colors duration-300">
+                    <span className="text-xs sm:text-sm font-normal text-[#9CA3AF] group-hover:text-cyan-400 transition-colors duration-300">
                       {feature}
                     </span>
                   </motion.div>
@@ -662,17 +662,17 @@ const HeroAboutPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative flex h-[460px] w-full items-center justify-center md:h-[500px]"
+              className="relative flex h-[300px] sm:h-[380px] md:h-[460px] lg:h-[500px] w-full items-center justify-center order-1 lg:order-2"
             >
               <motion.div
-                className="relative z-10"
+                className="relative z-10 scale-75 sm:scale-90 md:scale-100"
                 style={
                   performanceMode
                     ? undefined
                     : {
-                        rotateY: mousePosition.x * 0.3,
-                        rotateX: -mousePosition.y * 0.3,
-                      }
+                      rotateY: mousePosition.x * 0.3,
+                      rotateX: -mousePosition.y * 0.3,
+                    }
                 }
                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
               >
@@ -689,8 +689,8 @@ const HeroAboutPage = () => {
                       performanceMode
                         ? undefined
                         : {
-                            rotate: i % 2 === 0 ? 360 : -360,
-                          }
+                          rotate: i % 2 === 0 ? 360 : -360,
+                        }
                     }
                     transition={{
                       duration: performanceMode ? 0 : 30 - i * 5,
@@ -735,9 +735,9 @@ const HeroAboutPage = () => {
                         performanceMode
                           ? undefined
                           : {
-                              scale: [1, 1.5, 1],
-                              opacity: [0.5, 0, 0.5],
-                            }
+                            scale: [1, 1.5, 1],
+                            opacity: [0.5, 0, 0.5],
+                          }
                       }
                       transition={{
                         duration: performanceMode ? 0 : 3,
@@ -760,10 +760,10 @@ const HeroAboutPage = () => {
                         performanceMode
                           ? { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius }
                           : {
-                              x: Math.cos(angle) * radius,
-                              y: Math.sin(angle) * radius,
-                              scale: [1, 1.3, 1],
-                            }
+                            x: Math.cos(angle) * radius,
+                            y: Math.sin(angle) * radius,
+                            scale: [1, 1.3, 1],
+                          }
                       }
                       transition={{
                         x: { duration: 0 },
@@ -784,9 +784,9 @@ const HeroAboutPage = () => {
                             performanceMode
                               ? undefined
                               : {
-                                  scale: [1, 2, 1],
-                                  opacity: [0.8, 0, 0.8],
-                                }
+                                scale: [1, 2, 1],
+                                opacity: [0.8, 0, 0.8],
+                              }
                           }
                           transition={{
                             duration: performanceMode ? 0 : 2,
@@ -800,16 +800,16 @@ const HeroAboutPage = () => {
                 })}
               </motion.div>
 
-              {/* Enhanced corner elements */}
+              {/* Enhanced corner elements - Hidden on mobile for cleaner look */}
               <motion.div
-                className="absolute top-8 right-8 w-16 h-16 border-t-2 border-r-2 border-cyan-500/40"
+                className="hidden sm:block absolute top-4 sm:top-8 right-4 sm:right-8 w-12 sm:w-16 h-12 sm:h-16 border-t-2 border-r-2 border-cyan-500/40"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               />
               <motion.div
-                className="absolute bottom-8 left-8 w-16 h-16 border-b-2 border-l-2 border-purple-500/40"
+                className="hidden sm:block absolute bottom-4 sm:bottom-8 left-4 sm:left-8 w-12 sm:w-16 h-12 sm:h-16 border-b-2 border-l-2 border-purple-500/40"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
