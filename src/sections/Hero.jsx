@@ -1086,7 +1086,6 @@ const HeroAboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              {/* Primary Button */}
               <motion.button 
                 className="group relative flex items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-500 px-8 py-4 text-base font-semibold text-slate-900 shadow-[0_20px_40px_rgba(6,182,212,0.3)] transition-all duration-300"
                 whileHover={{ 
