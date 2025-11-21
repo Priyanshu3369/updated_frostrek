@@ -162,7 +162,7 @@ const Services = () => {
                   {/* Title with index */}
                   <div className="flex items-start gap-4 mb-4">
                     <motion.span
-                      className="text-4xl font-bold text-white/10 group-hover:text-white/20 transition-colors"
+                      className="text-4xl font-bold text-white group-hover:text-white/20 transition-colors"
                       animate={{ rotate: [0, 5, 0] }}
                       transition={{ duration: 4, repeat: Infinity }}
                     >
@@ -175,18 +175,6 @@ const Services = () => {
                   <p className="text-base font-normal leading-relaxed text-slate-300/90 mb-6">
                     {service.description}
                   </p>
-
-                  {/* Tech details line */}
-                  <motion.div className="flex items-center gap-2 text-sm text-cyan-300/70 group-hover:text-cyan-300 transition-colors">
-                    <div className={`h-px w-8 bg-gradient-to-r ${service.color}`} />
-                    <span>Advanced AI</span>
-                    <motion.span
-                      animate={{ x: [0, 4, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      <ArrowRight size={14} />
-                    </motion.span>
-                  </motion.div>
                 </div>
 
                 {/* Corner accent */}

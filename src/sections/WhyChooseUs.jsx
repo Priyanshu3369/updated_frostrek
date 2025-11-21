@@ -170,7 +170,7 @@ const ReasonCard = ({ item, index, isActive, isHovered, onHover, onHoverLeave })
             </motion.div>
 
             <motion.div
-              className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent opacity-20"
+              className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent opacity-80"
               animate={{ rotate: isActive ? 360 : 0 }}
               transition={{ duration: 0.5 }}
             >

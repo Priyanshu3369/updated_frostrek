@@ -51,7 +51,7 @@ const HexGrid = () => {
       <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="hexagons" width="50" height="43.4" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
-            <polygon points="24.8,22 37.3,29.2 37.3,43.7 24.8,50.9 12.3,43.7 12.3,29.2" fill="none" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="0.5"/>
+            <polygon points="24.8,22 37.3,29.2 37.3,43.7 24.8,50.9 12.3,43.7 12.3,29.2" fill="none" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#hexagons)" />
@@ -119,7 +119,7 @@ const StatsCard = ({ stat, index }) => {
           background: "linear-gradient(135deg, #00FFFF, #6D28D9)",
         }}
       />
-      
+
       <div className="relative bg-gradient-to-br from-slate-950/80 to-slate-900/40 p-6 rounded-xl border border-cyan-500/20 backdrop-blur-xl">
         <motion.div
           className="flex items-center justify-between mb-4"
@@ -132,7 +132,7 @@ const StatsCard = ({ stat, index }) => {
             className="w-2 h-2 rounded-full bg-cyan-400"
           />
         </motion.div>
-        
+
         <motion.h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-1">
           {stat.value}
         </motion.h3>
@@ -143,10 +143,11 @@ const StatsCard = ({ stat, index }) => {
 };
 
 const TestimonialCard = ({ testimonial, index }) => {
+  const [isMobile, setIsMobile] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  
+
   const rotateX = useTransform(y, [-100, 100], [10, -10]);
   const rotateY = useTransform(x, [-100, 100], [-10, 10]);
 
@@ -163,21 +164,29 @@ const TestimonialCard = ({ testimonial, index }) => {
     y.set(0);
     setIsHovered(false);
   };
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8, rotateX: -45 }}
       whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
       viewport={{ once: true }}
-      transition={{ 
-        duration: 0.8, 
+      transition={{
+        duration: 0.8,
         delay: index * 0.15,
         type: "spring",
         stiffness: 100
       }}
       style={{
-        rotateX,
-        rotateY,
+        rotateX: isMobile ? 0 : rotateX,
+        rotateY: isMobile ? 0 : rotateY,
         transformStyle: "preserve-3d",
       }}
       onMouseMove={handleMouseMove}
@@ -199,7 +208,7 @@ const TestimonialCard = ({ testimonial, index }) => {
       />
 
       {/* Main Card */}
-      <div 
+      <div
         className="relative bg-gradient-to-br from-[#0D0D10] via-[#0B0B0E] to-[#0B0B0E] p-8 rounded-3xl border border-cyan-500/20 overflow-hidden backdrop-blur-sm shadow-lg shadow-cyan-500/10 font-sans"
         style={{ transform: "translateZ(50px)" }}
       >
@@ -250,7 +259,7 @@ const TestimonialCard = ({ testimonial, index }) => {
                   animate={{ rotate: -360 }}
                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                 />
-                
+
                 {/* Pulse Effect */}
                 <motion.div
                   className="absolute -inset-1 rounded-full bg-cyan-400"
@@ -326,7 +335,7 @@ const TestimonialCard = ({ testimonial, index }) => {
           >
             "
           </motion.div>
-          
+
           <p className="text-[#D1D5DB] text-sm font-normal leading-relaxed pl-4 pr-2 relative">
             {testimonial.feedback}
           </p>
@@ -369,7 +378,7 @@ const TestimonialCard = ({ testimonial, index }) => {
       </div>
 
       {/* 3D Shadow */}
-      <div 
+      <div
         className="absolute inset-0 bg-cyan-500/5 rounded-3xl blur-2xl -z-10 group-hover:bg-cyan-500/15 transition-all duration-500"
         style={{ transform: "translateZ(-50px)" }}
       />
@@ -386,8 +395,8 @@ const Testimonials = () => {
   }, []);
 
   const categories = ["all", ...new Set(testimonials.map(t => t.category))];
-  const filteredTestimonials = selectedCategory === "all" 
-    ? testimonials 
+  const filteredTestimonials = selectedCategory === "all"
+    ? testimonials
     : testimonials.filter(t => t.category === selectedCategory);
 
   return (
@@ -398,7 +407,7 @@ const Testimonials = () => {
           <DataStream key={i} delay={i * 0.5} duration={3 + Math.random() * 2} />
         ))}
       <CircuitLine />
-      
+
       <motion.div
         className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full"
         style={{
@@ -437,7 +446,7 @@ const Testimonials = () => {
             >
               Client Feedback
             </motion.span>
-            
+
             {/* Glitch Effect */}
             <motion.span
               className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-600 to-teal-400 bg-clip-text text-transparent"
@@ -487,11 +496,10 @@ const Testimonials = () => {
             <motion.button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2 rounded-full text-sm font-semibold uppercase tracking-wider transition-all duration-300 ${
-                selectedCategory === category
-                  ? "bg-cyan-400/20 border border-cyan-400 text-cyan-300"
-                  : "bg-white/5 border border-white/10 text-slate-400 hover:border-cyan-400/30"
-              }`}
+              className={`px-6 py-2 rounded-full text-sm font-semibold uppercase tracking-wider transition-all duration-300 ${selectedCategory === category
+                ? "bg-cyan-400/20 border border-cyan-400 text-cyan-300"
+                : "bg-white/5 border border-white/10 text-slate-400 hover:border-cyan-400/30"
+                }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
