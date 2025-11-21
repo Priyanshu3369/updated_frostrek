@@ -1057,7 +1057,7 @@ const HeroAboutPage = () => {
             </motion.div>
 
             <motion.h1
-              className="mt-8 text-4xl font-bold leading-tight text-[#F8FAFC] sm:text-5xl lg:text-6xl xl:text-6xl"
+              className="mt-8 text-4xl font-bold leading-tight text-[#F8FAFC] sm:text-5xl lg:text-6xl xl:text-5xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
