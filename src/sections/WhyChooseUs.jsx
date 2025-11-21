@@ -50,7 +50,6 @@ const comparisonData = [
   { feature: "Innovation Labs", frostrek: true, competitor1: false, competitor2: false },
 ];
 
-// Animated particle background
 const AnimatedParticles = () => {
   const particles = Array.from({ length: 40 }, (_, i) => ({
     id: i,
@@ -87,7 +86,6 @@ const AnimatedParticles = () => {
   );
 };
 
-// Reason Card Component
 const ReasonCard = ({ item, index, isActive, isHovered, onHover, onHoverLeave }) => {
   const Icon = item.icon;
 
@@ -238,7 +236,6 @@ const ReasonCard = ({ item, index, isActive, isHovered, onHover, onHoverLeave })
   );
 };
 
-// Comparison Table Component
 const ComparisonTable = () => {
   return (
     <motion.div

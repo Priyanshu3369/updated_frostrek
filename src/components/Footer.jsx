@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Facebook, Twitter, Linkedin, Mail } from "lucide-react";
 
-// Subtle Particles Background
 const ParticlesCanvas = () => {
   const canvasRef = useRef(null);
   
@@ -62,7 +61,6 @@ const ParticlesCanvas = () => {
   return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none opacity-50" />;
 };
 
-// Subtle 3D Icon
 const SocialIcon = ({ Icon, href, delay = 0 }) => {
   return (
     <motion.a
@@ -83,7 +81,6 @@ const SocialIcon = ({ Icon, href, delay = 0 }) => {
   );
 };
 
-// Subtle Link Animation
 const FooterLink = ({ children, href, index }) => {
   return (
     <motion.a

@@ -103,7 +103,6 @@ const CircuitLine = () => {
   );
 };
 
-// Stats Card Component
 const StatsCard = ({ stat, index }) => {
   const Icon = stat.icon;
   return (

@@ -22,11 +22,9 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Show navbar when scrolling up
       if (currentScrollY < lastScrollY) {
         setIsVisible(true);
       }
-      // Hide navbar when scrolling down (but show when near top)
       else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
       }
@@ -53,7 +51,6 @@ const Navbar = () => {
     return () => window.removeEventListener("keydown", handleEscape);
   }, [isOpen]);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";

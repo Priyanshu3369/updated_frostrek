@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion, useInView, useSpring } from 'framer-motion';
 import { ArrowRight, User, Mail, Phone, Building, MessageSquare, Briefcase, Globe, Send, Sparkles, CheckCircle } from 'lucide-react';
 
-// 3D Floating Grid Background
 const FloatingGrid = () => {
   const canvasRef = useRef(null);
   
@@ -93,7 +92,6 @@ const FloatingGrid = () => {
   return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none opacity-40" style={{ mixBlendMode: 'screen' }} />;
 };
 
-// Floating Particles
 const FloatingParticles = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -120,7 +118,6 @@ const FloatingParticles = () => {
   );
 };
 
-// Form Input Component
 const FormInput = ({ icon: Icon, label, type = "text", name, value, onChange, required = true, error }) => {
   const [isFocused, setIsFocused] = useState(false);
   
@@ -172,7 +169,6 @@ const FormInput = ({ icon: Icon, label, type = "text", name, value, onChange, re
   );
 };
 
-// Textarea Component
 const FormTextarea = ({ icon: Icon, label, name, value, onChange, required = true, error }) => {
   const [isFocused, setIsFocused] = useState(false);
   
@@ -224,7 +220,6 @@ const FormTextarea = ({ icon: Icon, label, name, value, onChange, required = tru
   );
 };
 
-// Select Component
 const FormSelect = ({ icon: Icon, label, name, value, onChange, options, required = true, error }) => {
   const [isFocused, setIsFocused] = useState(false);
   
@@ -334,7 +329,6 @@ const ContactForm = () => {
     
     setIsSubmitting(true);
     
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);

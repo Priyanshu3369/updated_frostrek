@@ -53,7 +53,6 @@ const faqs = [
   },
 ];
 
-// Animated Grid Background
 const AnimatedGridBackground = () => {
   return (
     <div className="absolute inset-0 overflow-hidden opacity-[0.08] pointer-events-none">
@@ -62,7 +61,6 @@ const AnimatedGridBackground = () => {
   );
 };
 
-// Particle Field
 const ParticleField = () => {
   return (
     <>
@@ -91,7 +89,6 @@ const ParticleField = () => {
   );
 };
 
-// FAQ Item Component
 const FAQItem = ({ faq, index, isOpen, onToggle, onHelpful }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isHelpful, setIsHelpful] = useState(false);
@@ -328,7 +325,6 @@ const FAQItem = ({ faq, index, isOpen, onToggle, onHelpful }) => {
   );
 };
 
-// Search and Filter Component
 const SearchAndFilter = ({ searchTerm, setSearchTerm, activeCategory, setActiveCategory, categories }) => {
   return (
     <motion.div
@@ -397,7 +393,6 @@ const FAQs = () => {
     );
   };
 
-  // Filter FAQs
   const filteredFaqs = faqItems.filter((faq) => {
     const matchesSearch =
       faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||

@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-mo
 import { ArrowRight, Users, Zap, Wrench, Database, Tag, Code, Eye, Brain, CheckCircle, Sparkles } from 'lucide-react';
 import { Link } from "react-router-dom";
 
-// 3D Floating Grid Background
 const FloatingGrid = () => {
   const canvasRef = useRef(null);
 
@@ -94,7 +93,6 @@ const FloatingGrid = () => {
   return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none opacity-40" style={{ mixBlendMode: 'screen' }} />;
 };
 
-// Parallax Container
 const ParallaxSection = ({ children, speed = 0.5 }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -111,7 +109,6 @@ const ParallaxSection = ({ children, speed = 0.5 }) => {
   );
 };
 
-// Side Slide In Animation
 const SlideIn = ({ children, direction = "left", delay = 0 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -132,7 +129,6 @@ const SlideIn = ({ children, direction = "left", delay = 0 }) => {
   );
 };
 
-// 3D Rotating Icon
 const RotatingIcon = ({ Icon, className, speed = 10 }) => {
   return (
     <motion.div

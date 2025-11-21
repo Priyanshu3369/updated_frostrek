@@ -32,7 +32,6 @@ const contactMethods = [
   },
 ];
 
-// Animated Grid Background
 const AnimatedGridBackground = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -66,7 +65,6 @@ const AnimatedGridBackground = () => {
   );
 };
 
-// Form Field with advanced validation
 const FormField = ({ label, name, type = "text", placeholder, required, rows, error, value, onChange }) => {
   const [focused, setFocused] = useState(false);
   const [filled, setFilled] = useState(false);
@@ -150,7 +148,6 @@ const FormField = ({ label, name, type = "text", placeholder, required, rows, er
   );
 };
 
-// Floating contact card
 const FloatingContactCard = ({ method, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   const Icon = method.icon;
@@ -213,7 +210,6 @@ const FloatingContactCard = ({ method, index }) => {
   );
 };
 
-// Highlight item with icon
 const HighlightItem = ({ item, index }) => {
   const ItemIcon = item.icon;
   const [isHovered, setIsHovered] = useState(false);
@@ -280,14 +276,12 @@ const Collaborate = () => {
     setLoading(true);
     setFormErrors({});
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     setStatus("submitted");
     setFormData({ name: "", email: "", company: "", message: "" });
     setLoading(false);
 
-    // Reset after 5 seconds
     setTimeout(() => setStatus("idle"), 5000);
   };
 

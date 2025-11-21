@@ -18,27 +18,6 @@ const stats = [
   { label: "Automation Savings", value: "3.4M hrs", trend: "+56%" },
 ];
 
-const highlights = [
-  {
-    icon: Shield,
-    title: "Trusted AI Governance",
-    description:
-      "Enterprise-grade controls embedded at every layer to keep your models human-aligned and production ready.",
-  },
-  {
-    icon: Cpu,
-    title: "Adaptive Intelligence Core",
-    description:
-      "Modular inference pipelines that learn continuously from real-time signals without sacrificing reliability.",
-  },
-  {
-    icon: LineChart,
-    title: "Observable Performance",
-    description:
-      "Unified telemetry with drift detection, guided remediation, and precision reporting for stakeholders.",
-  },
-];
-
 const floatingBeacons = [
   {
     title: "Neural Mesh",
@@ -106,14 +85,15 @@ const HeroAboutPage = () => {
 
     const handleMouseMove = (e) => {
       setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
+        x: e.clientX,
+        y: e.clientY,
       });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [performanceMode]);
+
 
   const ambientParticles = useMemo(() => {
     const count = performanceMode ? 8 : isSmallScreen ? 12 : 18;
@@ -343,7 +323,7 @@ const HeroAboutPage = () => {
             className="flex flex-1 flex-col justify-center"
           >
             <motion.div
-              className="inline-flex items-center gap-3 self-start rounded-full border border-cyan-500/40 bg-white/5 px-5 py-2 text-xs font-medium uppercase tracking-[0.3em] text-cyan-200 backdrop-blur-lg w-fit"
+              className="inline-flex items-center gap-3 mt-5 self-start rounded-full border border-cyan-500/40 bg-white/5 px-5 py-2 text-xs font-medium uppercase tracking-[0.3em] text-cyan-200 backdrop-blur-lg w-fit"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.7 }}
@@ -353,7 +333,7 @@ const HeroAboutPage = () => {
             </motion.div>
 
             <motion.h1
-              className="mt-8 text-4xl font-bold leading-tight text-[#F8FAFC] sm:text-5xl lg:text-6xl xl:text-7xl"
+              className="mt-8 text-4xl font-bold leading-tight text-[#F8FAFC] sm:text-5xl lg:text-6xl xl:text-6xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
@@ -377,28 +357,93 @@ const HeroAboutPage = () => {
             </motion.p>
 
             <motion.div
-              className="mt-12 flex flex-col items-start gap-4 sm:flex-row"
+              className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              <button className="group relative flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-500 px-8 py-4 text-base font-semibold text-[#06111F] shadow-[0_12px_30px_rgba(13,148,136,0.25)] transition-transform duration-200 hover:-translate-y-1">
+              {/* Primary Button */}
+              <motion.button 
+                className="group relative flex items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-500 px-8 py-4 text-base font-semibold text-slate-900 shadow-[0_20px_40px_rgba(6,182,212,0.3)] transition-all duration-300"
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -5,
+                  boxShadow: "0 25px 50px rgba(6,182,212,0.4)"
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {/* Animated shine effect */}
+                <motion.span
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12"
+                  animate={{ x: ['-200%', '200%'] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                />
+                
+                {/* Rotating border glow */}
+                <motion.span
+                  className="absolute inset-0 rounded-full"
+                  animate={{
+                    boxShadow: [
+                      '0 0 20px rgba(255,255,255,0.3) inset',
+                      '0 0 40px rgba(255,255,255,0.5) inset',
+                      '0 0 20px rgba(255,255,255,0.3) inset',
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                
                 <span className="relative z-10 flex items-center gap-2">
                   Launch Your AI Program
-                  <ArrowUpRight className="h-4 w-4" />
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <ArrowUpRight className="h-5 w-5" />
+                  </motion.div>
                 </span>
-                <span className="absolute inset-0 bg-white/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
-              </button>
+              </motion.button>
 
-              <button className="group flex items-center gap-3 rounded-full border border-white/10 px-6 py-4 text-base font-medium text-slate-200/80 transition duration-200 hover:border-cyan-400/40 hover:text-cyan-200">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-cyan-300 shadow-[0_0_12px_rgba(56,189,248,0.35)] transition group-hover:bg-cyan-400/20">
-                  <Play className="h-4 w-4" />
-                </span>
-                See platform in action
-              </button>
+              {/* Secondary Button */}
+              <motion.button 
+                className="group relative flex items-center justify-center gap-3 rounded-full border-2 border-white/10 bg-white/5 px-6 py-4 text-base font-medium text-slate-200 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/50 hover:bg-cyan-500/10"
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -2,
+                  boxShadow: "0 10px 30px rgba(6,182,212,0.2)"
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {/* Glow effect on hover */}
+                <motion.span
+                  className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background: 'radial-gradient(circle at center, rgba(6,182,212,0.1), transparent 70%)'
+                  }}
+                />
+                
+                {/* Play icon with animation */}
+                <motion.span 
+                  className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 border border-cyan-400/30 text-cyan-300 transition-all duration-300 group-hover:border-cyan-400/60 group-hover:bg-cyan-400/30"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  {/* Pulse effect */}
+                  <motion.span
+                    className="absolute inset-0 rounded-full bg-cyan-400/20"
+                    animate={{
+                      scale: [1, 1.4, 1],
+                      opacity: [0.5, 0, 0.5],
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <Play className="h-4 w-4 relative z-10" />
+                </motion.span>
+                
+                <span className="relative z-10">See platform in action</span>
+              </motion.button>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               className="mt-12 grid w-full gap-6 rounded-3xl border border-white/5 bg-white/5 p-6 backdrop-blur-xl md:grid-cols-3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -415,7 +460,7 @@ const HeroAboutPage = () => {
                   <span className="text-sm font-medium text-emerald-300">{stat.trend} YoY</span>
                 </div>
               ))}
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           <motion.div
@@ -477,6 +522,7 @@ const HeroAboutPage = () => {
           transition={{ duration: 0.8 }}
         />
       </section>
+
       {/* ===== ABOUT SECTION ===== */}
       <section id="about" className="relative w-full py-12 sm:py-16 md:py-20 lg:py-28 bg-[#0B0B0E] font-sans overflow-hidden">
         {!performanceMode && (
@@ -586,7 +632,7 @@ const HeroAboutPage = () => {
 
               {/* Stats */}
               <motion.div
-                className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 pt-6 sm:pt-8 border-t border-cyan-500/20"
+                className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 pt-6 sm:pt-8border-t border-cyan-500/20"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -637,7 +683,7 @@ const HeroAboutPage = () => {
                 ].map((feature, idx) => (
                   <motion.div
                     key={feature}
-                    className="flex items-center gap-2 sm:gap-3 group"
+                    className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -670,8 +716,8 @@ const HeroAboutPage = () => {
                   performanceMode
                     ? undefined
                     : {
-                      rotateY: mousePosition.x * 0.3,
-                      rotateX: -mousePosition.y * 0.3,
+                      rotateY: (mousePosition.x / window.innerWidth - 0.5) * 20,
+                      rotateX: -(mousePosition.y / window.innerHeight - 0.5) * 20,
                     }
                 }
                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -800,13 +846,16 @@ const HeroAboutPage = () => {
                 })}
               </motion.div>
 
-              {/* Enhanced corner elements - Hidden on mobile for cleaner look */}
+              {/* Enhanced corner elements */}
               <motion.div
                 className="hidden sm:block absolute top-4 sm:top-8 right-4 sm:right-8 w-12 sm:w-16 h-12 sm:h-16 border-t-2 border-r-2 border-cyan-500/40"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
+                animate={{
+                  borderColor: ["rgba(6, 182, 212, 0.4)", "rgba(168, 85, 247, 0.4)", "rgba(6, 182, 212, 0.4)"],
+                }}
               />
               <motion.div
                 className="hidden sm:block absolute bottom-4 sm:bottom-8 left-4 sm:left-8 w-12 sm:w-16 h-12 sm:h-16 border-b-2 border-l-2 border-purple-500/40"
@@ -814,6 +863,9 @@ const HeroAboutPage = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.7 }}
+                animate={{
+                  borderColor: ["rgba(168, 85, 247, 0.4)", "rgba(6, 182, 212, 0.4)", "rgba(168, 85, 247, 0.4)"],
+                }}
               />
             </motion.div>
           </div>

@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import { ArrowRight, Zap, Users, Target, Eye, CheckCircle, Sparkles, Activity } from 'lucide-react';
 
-// Floating particles background with enhanced movement
 const FloatingParticles = () => {
   const particles = Array.from({ length: 40 }, (_, i) => ({
     id: i,
@@ -43,7 +42,6 @@ const FloatingParticles = () => {
   );
 };
 
-// Enhanced card with glow effect
 const LiquidCard = ({ children, className = "" }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const cardRef = useRef(null);
@@ -143,7 +141,6 @@ const LiquidCard = ({ children, className = "" }) => {
   );
 };
 
-// Enhanced parallax with spring physics
 const ParallaxLayer = ({ children, speed = 0.5, direction = "vertical" }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -168,7 +165,6 @@ const ParallaxLayer = ({ children, speed = 0.5, direction = "vertical" }) => {
   );
 };
 
-// Reveal section with slide and fade
 const RevealSection = ({ children, delay = 0, direction = "up" }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });

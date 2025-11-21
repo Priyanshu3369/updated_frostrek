@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion';
 import { ArrowRight, ChevronDown, Brain, Users, Sparkles, Zap, Target, Award, TrendingUp, Shield, CheckCircle } from 'lucide-react';
 
-// 3D Floating Grid Background
 const FloatingGrid = () => {
   const canvasRef = useRef(null);
 
@@ -90,7 +89,6 @@ const FloatingGrid = () => {
   return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none opacity-40" style={{ mixBlendMode: 'screen' }} />;
 };
 
-// Enhanced 3D Card with glow
 const Card3D = ({ children, className = "", delay = 0 }) => {
   const ref = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -151,7 +149,6 @@ const Card3D = ({ children, className = "", delay = 0 }) => {
   );
 };
 
-// Enhanced FAQ Card with modern design
 const FAQCard = ({ faq, index, isOpen, toggle, color = "cyan" }) => {
   const colors = {
     cyan: {
