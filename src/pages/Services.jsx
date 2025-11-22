@@ -1,8 +1,27 @@
-import React, { useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
-import { ArrowRight, Users, Zap, Wrench, Database, Tag, Code, Eye, Brain, CheckCircle, Sparkles } from 'lucide-react';
+import React, { useRef, useEffect } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useInView,
+} from "framer-motion";
+import {
+  ArrowRight,
+  Users,
+  Zap,
+  Wrench,
+  Database,
+  Tag,
+  Code,
+  Eye,
+  Brain,
+  CheckCircle,
+  Sparkles,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
+// 3D Floating Grid Background
 const FloatingGrid = () => {
   const canvasRef = useRef(null);
 
@@ -10,7 +29,7 @@ const FloatingGrid = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
@@ -57,7 +76,8 @@ const FloatingGrid = () => {
             const nextX3d = (x + 1) * gridSize;
             const nextX1 = nextX3d * cosY - z3d * sinY;
             const nextZ1 = nextX3d * sinY + z3d * cosY;
-            const nextY3d = Math.sin((x + 1) * 0.3 + z * 0.3 + rotationY * 2) * 20;
+            const nextY3d =
+              Math.sin((x + 1) * 0.3 + z * 0.3 + rotationY * 2) * 20;
             const nextY1 = nextY3d * cosX - nextZ1 * sinX;
             const nextZ2 = nextY3d * sinX + nextZ1 * cosX;
             const nextScale = perspective / (perspective + nextZ2);
@@ -83,21 +103,28 @@ const FloatingGrid = () => {
       canvas.height = window.innerHeight;
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none opacity-40" style={{ mixBlendMode: 'screen' }} />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 pointer-events-none opacity-40"
+      style={{ mixBlendMode: "screen" }}
+    />
+  );
 };
 
+// Parallax Container
 const ParallaxSection = ({ children, speed = 0.5 }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [100 * speed, -100 * speed]);
@@ -109,6 +136,7 @@ const ParallaxSection = ({ children, speed = 0.5 }) => {
   );
 };
 
+// Side Slide In Animation
 const SlideIn = ({ children, direction = "left", delay = 0 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -119,7 +147,7 @@ const SlideIn = ({ children, direction = "left", delay = 0 }) => {
       initial={{
         opacity: 0,
         x: direction === "left" ? -100 : direction === "right" ? 100 : 0,
-        y: direction === "up" ? 100 : direction === "down" ? -100 : 0
+        y: direction === "up" ? 100 : direction === "down" ? -100 : 0,
       }}
       animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
       transition={{ duration: 0.8, delay, ease: "easeOut" }}
@@ -129,6 +157,7 @@ const SlideIn = ({ children, direction = "left", delay = 0 }) => {
   );
 };
 
+// 3D Rotating Icon
 const RotatingIcon = ({ Icon, className, speed = 10 }) => {
   return (
     <motion.div
@@ -145,30 +174,36 @@ const RotatingIcon = ({ Icon, className, speed = 10 }) => {
 
 const Services = () => {
   const { scrollYProgress } = useScroll();
-  const scaleProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const scaleProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+  });
 
   const coreValues = [
     { title: "Trust", icon: <CheckCircle className="w-8 h-8" /> },
     { title: "Innovation", icon: <Zap className="w-8 h-8" /> },
-    { title: "Collaboration", icon: <Users className="w-8 h-8" /> }
+    { title: "Collaboration", icon: <Users className="w-8 h-8" /> },
   ];
 
   const mainServices = [
     {
       number: "01",
       title: "AI Talent Sourcing and Deployment",
-      description: "Source and deploy the best AI professionals, aligning expertise with your project's specific requirements, needs, and goals."
+      description:
+        "Source and deploy the best AI professionals, aligning expertise with your project's specific requirements, needs, and goals.",
     },
     {
       number: "02",
       title: "AI Model Training and Optimization",
-      description: "Enhance your AI model's performance through expert training, optimization, and real-world impact, ensuring accurate and efficient results."
+      description:
+        "Enhance your AI model's performance through expert training, optimization, and real-world impact, ensuring accurate and efficient results.",
     },
     {
       number: "03",
       title: "Customized AI Development Solutions",
-      description: "Tailor AI systems to your business needs, providing scalable, reliable, and efficient solutions for your most complex challenges."
-    }
+      description:
+        "Tailor AI systems to your business needs, providing scalable, reliable, and efficient solutions for your most complex challenges.",
+    },
   ];
 
   const customServices = [
@@ -177,7 +212,7 @@ const Services = () => {
     { name: "Model Evals", icon: <CheckCircle className="w-6 h-6" /> },
     { name: "Code Gen Models", icon: <Code className="w-6 h-6" /> },
     { name: "Vision Modeling", icon: <Eye className="w-6 h-6" /> },
-    { name: "LLM Assess", icon: <Brain className="w-6 h-6" /> }
+    { name: "LLM Assess", icon: <Brain className="w-6 h-6" /> },
   ];
 
   return (
@@ -232,10 +267,24 @@ const Services = () => {
           <SlideIn direction="up" delay={0.5}>
             <div className="max-w-5xl mx-auto space-y-6">
               <p className="text-lg text-slate-300/80 leading-relaxed text-center">
-                At Frostrek AI, we believe that every organization has unique needs when it comes to building and optimizing AI systems. That's why we specialize in delivering customized solutions designed to align seamlessly with your goals. Whether you're at the beginning of your AI journey or looking to refine existing systems, we're here to help. Our services range from sourcing top AI talent to conducting over 5000+ training sessions, ensuring that your models are not only innovative but also tailored to real-world demands.
+                At Frostrek AI, we believe that every organization has unique
+                needs when it comes to building and optimizing AI systems.
+                That's why we specialize in delivering customized solutions
+                designed to align seamlessly with your goals. Whether you're at
+                the beginning of your AI journey or looking to refine existing
+                systems, we're here to help. Our services range from sourcing
+                top AI talent to conducting over 5000+ training sessions,
+                ensuring that your models are not only innovative but also
+                tailored to real-world demands.
               </p>
               <p className="text-lg text-slate-300/80 leading-relaxed text-center">
-                With a focus on Reinforcement Learning from Human Feedback (RLHF), we bring human expertise into AI training, empowering your systems to perform efficiently while staying adaptable in a rapidly changing landscape. Let us help you harness the power of AI to drive measurable success and bring your vision to life. Explore our services to see how we can transform your ideas into exceptional outcomes.
+                With a focus on Reinforcement Learning from Human Feedback
+                (RLHF), we bring human expertise into AI training, empowering
+                your systems to perform efficiently while staying adaptable in a
+                rapidly changing landscape. Let us help you harness the power of
+                AI to drive measurable success and bring your vision to life.
+                Explore our services to see how we can transform your ideas into
+                exceptional outcomes.
               </p>
             </div>
           </SlideIn>
@@ -252,18 +301,26 @@ const Services = () => {
               <ParallaxSection speed={0.3}>
                 <div className="grid grid-cols-2 gap-4">
                   <motion.div
-                    className="aspect-square rounded-2xl bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 flex items-center justify-center border border-cyan-400/30 backdrop-blur-xl"
+                    className="aspect-square rounded-2xl bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 flex items-center justify-center border border-cyan-400/30 backdrop-blur-xl overflow-hidden"
                     whileHover={{ scale: 1.05, rotateY: 10, rotateX: 10 }}
                     style={{ transformStyle: "preserve-3d" }}
                   >
-                    <RotatingIcon Icon={() => <Users className="w-20 h-20 text-cyan-400" />} speed={15} />
+                    <img
+                      src="/User research-rafiki.png"
+                      alt="User Research"
+                      className="w-full h-full object-contain p-4"
+                    />
                   </motion.div>
                   <motion.div
-                    className="aspect-square rounded-2xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center border border-indigo-400/30 backdrop-blur-xl"
+                    className="aspect-square rounded-2xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center border border-indigo-400/30 backdrop-blur-xl overflow-hidden"
                     whileHover={{ scale: 1.05, rotateY: -10, rotateX: 10 }}
                     style={{ transformStyle: "preserve-3d" }}
                   >
-                    <RotatingIcon Icon={() => <Zap className="w-20 h-20 text-indigo-400" />} speed={12} />
+                    <img
+                      src="/people using robots-amico.png"
+                      alt="Chat Bot"
+                      className="w-full h-full object-contain p-4"
+                    />
                   </motion.div>
                 </div>
               </ParallaxSection>
@@ -273,7 +330,9 @@ const Services = () => {
               <h2 className="text-3xl md:text-5xl font-semibold mb-6 text-slate-50">
                 We work as a family and you are part of it
               </h2>
-              <p className="text-slate-300/80 mb-6 text-lg">We are committed to:</p>
+              <p className="text-slate-300/80 mb-6 text-lg">
+                We are committed to:
+              </p>
               <div className="space-y-4 mb-8">
                 {coreValues.map((value, index) => (
                   <motion.div
@@ -297,7 +356,9 @@ const Services = () => {
                     >
                       {value.icon}
                     </motion.div>
-                    <span className="text-xl font-semibold text-slate-50">{value.title}</span>
+                    <span className="text-xl font-semibold text-slate-50">
+                      {value.title}
+                    </span>
                   </motion.div>
                 ))}
               </div>
@@ -335,8 +396,12 @@ const Services = () => {
                         {service.number}
                       </motion.div>
                       <div className="flex-1">
-                        <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-slate-50">{service.title}</h3>
-                        <p className="text-slate-300/80 text-lg leading-relaxed mb-6">{service.description}</p>
+                        <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-slate-50">
+                          {service.title}
+                        </h3>
+                        <p className="text-slate-300/80 text-lg leading-relaxed mb-6">
+                          {service.description}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -375,7 +440,9 @@ const Services = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.8 }}
             >
-              Frostrek AI offers tailored AI services designed to meet your specific business needs. From model creation to optimization, we ensure your AI solutions align with your goals.
+              Frostrek AI offers tailored AI services designed to meet your
+              specific business needs. From model creation to optimization, we
+              ensure your AI solutions align with your goals.
             </motion.p>
           </SlideIn>
 
@@ -393,7 +460,7 @@ const Services = () => {
                   y: -5,
                   borderColor: "rgba(109, 40, 217, 0.3)",
                   backgroundColor: "rgba(109, 40, 217, 0.05)",
-                  rotateY: 5
+                  rotateY: 5,
                 }}
                 style={{ transformStyle: "preserve-3d" }}
               >
@@ -404,7 +471,9 @@ const Services = () => {
                 >
                   {service.icon}
                 </motion.div>
-                <h3 className="font-semibold text-sm text-slate-50">{service.name}</h3>
+                <h3 className="font-semibold text-sm text-slate-50">
+                  {service.name}
+                </h3>
               </motion.div>
             ))}
           </div>
@@ -416,7 +485,9 @@ const Services = () => {
         <div className="flex animate-scroll whitespace-nowrap">
           {[...Array(10)].map((_, i) => (
             <div key={i} className="flex items-center">
-              <span className="text-2xl font-bold text-slate-400/60 mx-8">SERVICES</span>
+              <span className="text-2xl font-bold text-slate-400/60 mx-8">
+                SERVICES
+              </span>
               <motion.span
                 className="text-2xl text-cyan-400 mx-2"
                 animate={{ rotate: 360, scale: [1, 1.2, 1] }}
@@ -441,7 +512,13 @@ const Services = () => {
                     AI Talent Sourcing and Deployment
                   </h3>
                   <p className="text-slate-300/80 text-lg leading-relaxed">
-                    Finding the right talent is critical to the success of your AI initiatives. At Frostrek AI, we specialize in sourcing top-tier AI experts, including engineers, data scientists, and RLHF specialists, who are ready to integrate seamlessly into your team. Whether you need short-term support or long-term partnerships, we ensure that every professional we provide aligns with your project's needs and culture.
+                    Finding the right talent is critical to the success of your
+                    AI initiatives. At Frostrek AI, we specialize in sourcing
+                    top-tier AI experts, including engineers, data scientists,
+                    and RLHF specialists, who are ready to integrate seamlessly
+                    into your team. Whether you need short-term support or
+                    long-term partnerships, we ensure that every professional we
+                    provide aligns with your project's needs and culture.
                   </p>
                 </div>
               </ParallaxSection>
@@ -449,11 +526,15 @@ const Services = () => {
             <SlideIn direction="right" delay={0.2}>
               <ParallaxSection speed={-0.3}>
                 <motion.div
-                  className="aspect-video rounded-[28px] bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 flex items-center justify-center border border-cyan-400/30 backdrop-blur-xl"
+                  className="aspect-video rounded-[28px] bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 flex items-center justify-center border border-cyan-400/30 backdrop-blur-xl overflow-hidden"
                   whileHover={{ scale: 1.05, rotateY: 10 }}
                   style={{ transformStyle: "preserve-3d" }}
                 >
-                  <RotatingIcon Icon={() => <Users className="w-32 h-32 text-cyan-400" />} speed={20} />
+                  <img
+                    src="/Instant information-pana.png"
+                    alt="AI Talent Sourcing"
+                    className="w-full h-full object-contain p-8"
+                  />
                 </motion.div>
               </ParallaxSection>
             </SlideIn>
@@ -464,11 +545,15 @@ const Services = () => {
             <SlideIn direction="left" delay={0.2}>
               <ParallaxSection speed={0.3}>
                 <motion.div
-                  className="aspect-video rounded-[28px] bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center border border-indigo-400/30 backdrop-blur-xl"
+                  className="aspect-video rounded-[28px] bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center border border-indigo-400/30 backdrop-blur-xl overflow-hidden"
                   whileHover={{ scale: 1.05, rotateY: -10 }}
                   style={{ transformStyle: "preserve-3d" }}
                 >
-                  <RotatingIcon Icon={() => <Zap className="w-32 h-32 text-indigo-400" />} speed={18} />
+                  <img
+                    src="/people creating robot-amico.png"
+                    alt="AI Model Training"
+                    className="w-full h-full object-contain p-8"
+                  />
                 </motion.div>
               </ParallaxSection>
             </SlideIn>
@@ -479,7 +564,13 @@ const Services = () => {
                     AI Model Training and Optimization
                   </h3>
                   <p className="text-slate-300/80 text-lg leading-relaxed">
-                    With over 5000+ training sessions conducted, our expertise in Reinforcement Learning from Human Feedback (RLHF) ensures your AI models are more accurate, efficient, and responsive. From training models to understand nuanced user behavior to optimizing existing systems for peak performance, we ensure your AI evolves effectively and stays ahead in a competitive market.
+                    With over 5000+ training sessions conducted, our expertise
+                    in Reinforcement Learning from Human Feedback (RLHF) ensures
+                    your AI models are more accurate, efficient, and responsive.
+                    From training models to understand nuanced user behavior to
+                    optimizing existing systems for peak performance, we ensure
+                    your AI evolves effectively and stays ahead in a competitive
+                    market.
                   </p>
                 </div>
               </ParallaxSection>
@@ -495,7 +586,13 @@ const Services = () => {
                     Customized AI Development Solutions
                   </h3>
                   <p className="text-slate-300/80 text-lg leading-relaxed">
-                    Every business has unique requirements, and we understand the importance of personalized solutions. Our team collaborates with you to design and develop AI systems tailored specifically to your objectives. From ideation to implementation, we focus on delivering solutions that are scalable, reliable, and capable of solving your most complex challenges.
+                    Every business has unique requirements, and we understand
+                    the importance of personalized solutions. Our team
+                    collaborates with you to design and develop AI systems
+                    tailored specifically to your objectives. From ideation to
+                    implementation, we focus on delivering solutions that are
+                    scalable, reliable, and capable of solving your most complex
+                    challenges.
                   </p>
                 </div>
               </ParallaxSection>
@@ -503,11 +600,15 @@ const Services = () => {
             <SlideIn direction="right" delay={0.2}>
               <ParallaxSection speed={-0.3}>
                 <motion.div
-                  className="aspect-video rounded-[28px] bg-gradient-to-br from-purple-500/20 to-cyan-500/20 flex items-center justify-center border border-purple-400/30 backdrop-blur-xl"
+                  className="aspect-video rounded-[28px] bg-gradient-to-br from-purple-500/20 to-cyan-500/20 flex items-center justify-center border border-purple-400/30 backdrop-blur-xl overflow-hidden"
                   whileHover={{ scale: 1.05, rotateY: 10 }}
                   style={{ transformStyle: "preserve-3d" }}
                 >
-                  <RotatingIcon Icon={() => <Wrench className="w-32 h-32 text-purple-400" />} speed={16} />
+                  <img
+                    src="/Advanced customization-amico.png"
+                    alt="Customized AI Solutions"
+                    className="w-full h-full object-contain p-8"
+                  />
                 </motion.div>
               </ParallaxSection>
             </SlideIn>
@@ -541,7 +642,9 @@ const Services = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.8 }}
             >
-              Whether you're looking to enhance your AI models or explore new opportunities, we're here to help. Let's discuss how we can collaborate and drive success together.
+              Whether you're looking to enhance your AI models or explore new
+              opportunities, we're here to help. Let's discuss how we can
+              collaborate and drive success together.
             </motion.p>
           </SlideIn>
 
@@ -557,7 +660,7 @@ const Services = () => {
                   scale: 1.05,
                   y: -5,
                   rotateX: 5,
-                  boxShadow: "0 20px 40px rgba(13,148,136,0.4)"
+                  boxShadow: "0 20px 40px rgba(13,148,136,0.4)",
                 }}
                 whileTap={{ scale: 0.95 }}
                 style={{ transformStyle: "preserve-3d" }}
@@ -574,7 +677,6 @@ const Services = () => {
                 <span className="absolute inset-0 bg-white/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
               </motion.button>
             </Link>
-
           </SlideIn>
         </div>
       </section>
