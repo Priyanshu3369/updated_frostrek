@@ -21,36 +21,35 @@ export default function RobotModel(props) {
     mouthParts.current = [];
     earParts.current = [];
 
-
-    const unwantedNames = [
-      "Cylinder",
-      "Cylinder_1",
-      "Cylinder.001",
-      "Cone",
-      "Cone_1",
-      "Tube",
-      "Circle",
-      "BezierCurve",
-      "Null",
-      "Empty",
-      "Cube_HeadAttachment",
-      "Object",
-      "Object_2",
-    ];
-
     scene.traverse((child) => {
       if (!child.isMesh) return;
 
-      if (
-        unwantedNames.includes(child.name) ||
-        child.name.toLowerCase().includes("cylinder") ||
-        child.name.toLowerCase().includes("cone") ||
-        child.name.toLowerCase().includes("cube.001") ||
-        child.name.toLowerCase().includes("tube")
-      ) {
-        child.visible = false;
-        return;
-      }
+const allowed = [
+  "Body",
+  "Leg",
+  "Arm",
+  "Head",
+  "Neck",
+  "Eyes",
+  "Eyes Move",
+  "Left Eye Move",
+  "Right Eye Move",
+  "Mouth",
+  "Mouth Move",
+  "Mouth Move 2",
+  "Ears",
+  "Torso",
+];
+
+const isAllowed = allowed.some((x) =>
+  child.name.toLowerCase().includes(x.toLowerCase())
+);
+
+if (!isAllowed) {
+  child.visible = false;
+  return;
+}
+
 
       child.material = child.material.clone();
       child.material.metalness = 1;
