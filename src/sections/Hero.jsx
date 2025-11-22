@@ -299,7 +299,7 @@ const HeroAboutPage = () => {
                 <div className="tech-globe-grid" />
               </div> */}
               <Hero3D />
-              {!performanceMode && (
+              {/* {!performanceMode && (
                 <motion.div
                   className="pointer-events-none absolute inset-0"
                   initial={{ opacity: 0 }}
@@ -327,7 +327,7 @@ const HeroAboutPage = () => {
                     </motion.div>
                   ))}
                 </motion.div>
-              )}
+              )} */}
             </div>
           </motion.div>
         </div>
