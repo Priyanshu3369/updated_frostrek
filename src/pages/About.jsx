@@ -505,9 +505,9 @@ const About = () => {
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
                     style={{
                       background: `radial-gradient(circle at 50% 50%, ${index === 0 ? 'rgba(6,182,212,0.1)' :
-                          index === 1 ? 'rgba(99,102,241,0.1)' :
-                            index === 2 ? 'rgba(168,85,247,0.1)' :
-                              'rgba(20,184,166,0.1)'
+                        index === 1 ? 'rgba(99,102,241,0.1)' :
+                          index === 2 ? 'rgba(168,85,247,0.1)' :
+                            'rgba(20,184,166,0.1)'
                         }, transparent 70%)`
                     }}
                     animate={{
@@ -521,9 +521,9 @@ const About = () => {
                     className="absolute inset-0 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100"
                     style={{
                       background: `linear-gradient(135deg, ${index === 0 ? 'rgba(6,182,212,0.3)' :
-                          index === 1 ? 'rgba(99,102,241,0.3)' :
-                            index === 2 ? 'rgba(168,85,247,0.3)' :
-                              'rgba(20,184,166,0.3)'
+                        index === 1 ? 'rgba(99,102,241,0.3)' :
+                          index === 2 ? 'rgba(168,85,247,0.3)' :
+                            'rgba(20,184,166,0.3)'
                         } 0%, transparent 50%)`,
                       padding: '2px',
                       WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
@@ -836,7 +836,7 @@ const About = () => {
                     transition={{ duration: 3, repeat: Infinity }}
                   >
                     <motion.div
-                      className="relative inline-block"
+                      className="relative inline-block p-3"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
                       <motion.div
@@ -847,9 +847,14 @@ const About = () => {
                       <item.icon className="w-10 h-10 sm:w-12 sm:h-12 text-cyan-400 mb-3 sm:mb-4 relative z-10" />
                     </motion.div>
                   </motion.div>
-                  <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-5 relative z-10">{item.title}</h3>
-                  <p className="text-sm sm:text-base text-slate-400 leading-relaxed relative z-10">{item.desc}</p>
-
+                  <div className="relative z-10 px-3 py-2">
+                    <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-5">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
                   {/* Pulse effect */}
                   <motion.div
                     className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"

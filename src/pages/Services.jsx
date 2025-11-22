@@ -480,26 +480,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Scrolling Services Banner */}
-      <section className="py-8 overflow-hidden bg-gradient-to-r from-cyan-500/10 via-indigo-500/10 to-purple-500/10">
-        <div className="flex animate-scroll whitespace-nowrap">
-          {[...Array(10)].map((_, i) => (
-            <div key={i} className="flex items-center">
-              <span className="text-2xl font-bold text-slate-400/60 mx-8">
-                SERVICES
-              </span>
-              <motion.span
-                className="text-2xl text-cyan-400 mx-2"
-                animate={{ rotate: 360, scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
-              >
-                ★
-              </motion.span>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Detailed Service Descriptions */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-24">
