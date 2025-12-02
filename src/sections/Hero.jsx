@@ -719,7 +719,6 @@ const HeroAboutPage = () => {
                 })}
               </div>
 
-              {/* Corner decorative elements */}
               <motion.div
                 className="hidden sm:block absolute top-4 sm:top-8 right-4 sm:right-8 w-12 sm:w-16 h-12 sm:h-16 border-t-2 border-r-2 border-cyan-500/40"
                 initial={{ opacity: 0, scale: 0.8 }}
