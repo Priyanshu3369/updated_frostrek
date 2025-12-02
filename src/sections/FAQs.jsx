@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
-    question: "What services does Frostrek LLP offer?",
+    question: "What services does frostrek offer?",
     answer:
-      "Frostrek LLP specializes in AI automation, data analytics, NLP, computer vision, and AI system integration across industries. We provide end-to-end solutions from consulting to implementation, ensuring your business stays at the forefront of AI innovation.",
+      "frostrek specializes in AI automation, data analytics, NLP, computer vision, and AI system integration across industries. We provide end-to-end solutions from consulting to implementation, ensuring your business stays at the forefront of AI innovation.",
     icon: "🤖",
     category: "Services",
     helpful: 0

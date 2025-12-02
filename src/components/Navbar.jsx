@@ -13,29 +13,18 @@ const links = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const performanceMode = usePerformanceMode();
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
-      if (currentScrollY < lastScrollY) {
-        setIsVisible(true);
-      }
-      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-      }
-      
       setScrolled(currentScrollY > 32);
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -85,14 +74,13 @@ const Navbar = () => {
       />
 
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all backdrop-blur-md duration-300 ${
-          isVisible ? "translate-y-0" : "-translate-y-full"
-        } ${scrolled
-          ? "border-b border-teal-400/20 bg-teal-900/10"
-          : "bg-teal-900/5"
-          } ${performanceMode ? "shadow-sm" : "shadow-[0_10px_30px_rgba(0,128,128,0.15)]"}`}
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-[#06060C] ${
+          scrolled
+            ? "border-b border-cyan-500/20 shadow-lg shadow-cyan-900/10"
+            : "border-b border-transparent"
+        }`}
       >
-        <div className="flex max-w-full items-center justify-between px-6 md:px-12 py-4">
+        <div className="flex max-w-full items-center justify-between px-6 md:px-12 py-3.5">
           <Link
             to="/"
             className="flex items-center gap-3 text-sm font-semibold tracking-tight text-slate-100 transition-colors hover:text-cyan-300 flex-shrink-0"
@@ -102,14 +90,14 @@ const Navbar = () => {
               <img
                 src="/logo.png"
                 alt="Frostrek AI"
-                className="h-12 w-12 md:h-14 md:w-14 object-contain brightness-125 drop-shadow-md"
+                className="h-10 w-10 md:h-12 md:w-12 object-contain brightness-125 drop-shadow-md"
               />
             </span>
             <span
-              className="text-xl md:text-3xl font-bold leading-tight tracking-wide drop-shadow-[0_0_10px_rgba(0,255,255,0.4)]"
+              className="text-lg md:text-2xl font-bold leading-tight tracking-wide drop-shadow-[0_0_10px_rgba(0,255,255,0.4)]"
               style={{ fontFamily: "Raleway, sans-serif" }}
             >
-              Frostrek
+              frostrek
             </span>
           </Link>
 
@@ -161,7 +149,7 @@ const Navbar = () => {
 
         {/* Mobile menu with enhanced slide-down animation */}
         <div
-          className={`border-t border-teal-400/20 bg-gradient-to-b from-teal-900/20 to-teal-900/10 backdrop-blur-md shadow-lg md:hidden overflow-hidden transition-all duration-500 ease-out ${
+          className={`border-t border-cyan-500/20 bg-[#06060C] shadow-lg md:hidden overflow-hidden transition-all duration-500 ease-out ${
             isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
