@@ -34,4 +34,8 @@ export default function Hero3D() {
       </Canvas>
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b1e05a7ccb2eb5d7e3d541973b278e03b5fff616
