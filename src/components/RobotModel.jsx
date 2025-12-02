@@ -144,8 +144,4 @@ export default function RobotModel(props) {
   );
 }
 
-<<<<<<< HEAD
 useGLTF.preload("/models/genkub_greeting_robot.glb");
-=======
-useGLTF.preload("/models/genkub_greeting_robot.glb");
->>>>>>> b1e05a7ccb2eb5d7e3d541973b278e03b5fff616

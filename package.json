@@ -11,11 +11,7 @@
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
-<<<<<<< HEAD
     "@react-three/fiber": "^9.4.2",
-=======
-    "@react-three/fiber": "^9.4.0",
->>>>>>> b1e05a7ccb2eb5d7e3d541973b278e03b5fff616
     "@react-three/postprocessing": "^3.0.4",
     "@tailwindcss/vite": "^4.1.17",
     "framer-motion": "^12.23.24",
