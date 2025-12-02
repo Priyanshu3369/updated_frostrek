@@ -10,26 +10,26 @@ import {
 } from "lucide-react";
 import usePerformanceMode from "../hooks/usePerformanceMode";
 
-const floatingBeacons = [
-  {
-    title: "Neural Mesh",
-    subtitle: "Self-healing data fabric",
-    position: "top-[10%] left-[8%]",
-    delay: 0.2,
-  },
-  {
-    title: "Latency < 32ms",
-    subtitle: "Realtime decisions",
-    position: "bottom-[16%] left-[18%]",
-    delay: 0.5,
-  },
-  {
-    title: "Autonomous Ops",
-    subtitle: "Smart escalation layer",
-    position: "top-[14%] right-[15%]",
-    delay: 0.8,
-  },
-];
+// const floatingBeacons = [
+//   {
+//     title: "Neural Mesh",
+//     subtitle: "Self-healing data fabric",
+//     position: "top-[10%] left-[8%]",
+//     delay: 0.2,
+//   },
+//   {
+//     title: "Latency < 32ms",
+//     subtitle: "Realtime decisions",
+//     position: "bottom-[16%] left-[18%]",
+//     delay: 0.5,
+//   },
+//   {
+//     title: "Autonomous Ops",
+//     subtitle: "Smart escalation layer",
+//     position: "top-[14%] right-[15%]",
+//     delay: 0.8,
+//   },
+// ];
 
 const aboutStats = [
   { label: "AI Models", value: "50+" },
@@ -210,7 +210,7 @@ const HeroAboutPage = () => {
               >
                 {/* Animated shine effect */}
                 <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 "
                   animate={{ x: ['-200%', '200%'] }}
                   transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
                 />
@@ -241,7 +241,7 @@ const HeroAboutPage = () => {
 
               {/* Secondary Button */}
               <motion.button 
-                className="group relative inline-flex items-center justify-center gap-3 rounded-full border-2 border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/50 hover:bg-cyan-500/10 whitespace-nowrap w-fit"
+                className="group relative inline-flex items-center justify-center gap-3 rounded-full border-2 border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/50 hover:bg-cyan-500/10 whitespace-nowrap w-fit cursor-pointer"
                 whileHover={{ 
                   scale: 1.05,
                   y: -2,

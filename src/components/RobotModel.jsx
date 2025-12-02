@@ -4,17 +4,24 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 export default function RobotModel(props) {
-  const group = useRef();
-
+  const group = useRef(); 
+  const headPivot = useRef(null);
+  const mouse = useRef({ x: 0, y: 0 });
 
   const eyeParts = useRef([]);
   const mouthParts = useRef([]);
   const earParts = useRef([]);
 
-
-  const headPivot = useRef(null);
-
   const { scene } = useGLTF("/models/genkub_greeting_robot.glb", true);
+
+  useEffect(() => {
+    const handle = (e) => {
+      mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.current.y = (e.clientY / window.innerHeight) * 2 - 1;
+    };
+    window.addEventListener("mousemove", handle);
+    return () => window.removeEventListener("mousemove", handle);
+  }, []);
 
   useEffect(() => {
     eyeParts.current = [];
@@ -24,87 +31,69 @@ export default function RobotModel(props) {
     scene.traverse((child) => {
       if (!child.isMesh) return;
 
-const allowed = [
-  "Body",
-  "Leg",
-  "Arm",
-  "Head",
-  "Neck",
-  "Eyes",
-  "Eyes Move",
-  "Left Eye Move",
-  "Right Eye Move",
-  "Mouth",
-  "Mouth Move",
-  "Mouth Move 2",
-  "Ears",
-  "Torso",
-];
+      const allowed = [
+        "Body", "Leg", "Arm", "Head", "Neck", "Eyes", "Eyes Move",
+        "Left Eye Move", "Right Eye Move", "Mouth", "Mouth Move",
+        "Mouth Move 2", "Ears", "Torso"
+      ];
 
-const isAllowed = allowed.some((x) =>
-  child.name.toLowerCase().includes(x.toLowerCase())
-);
+      const match = allowed.some((a) =>
+        child.name.toLowerCase().includes(a.toLowerCase())
+      );
 
-if (!isAllowed) {
-  child.visible = false;
-  return;
-}
-
+      if (!match) {
+        child.visible = false;
+        return;
+      }
 
       child.material = child.material.clone();
       child.material.metalness = 1;
       child.material.roughness = 0.35;
       child.material.color = new THREE.Color("#0d0f12");
 
-      if (
-        child.name === "Eyes" ||
-        child.name === "Eyes Move" ||
-        child.name === "Left Eye Move" ||
-        child.name === "Right Eye Move"
-      ) {
+      if (child.name.includes("Eye")) {
         const m = child.material.clone();
         m.color.set("#fff");
         m.emissive.set("#fff");
-        m.emissiveIntensity = 1.5;
+        m.emissiveIntensity = 1.4;
         child.material = m;
         eyeParts.current.push(child);
       }
 
-      if (
-        child.name === "Mouth" ||
-        child.name === "Mouth Move" ||
-        child.name === "Mouth Move 2"
-      ) {
+      if (child.name.includes("Mouth")) {
         const m = child.material.clone();
         m.color.set("#fff");
         m.emissive.set("#fff");
-        m.emissiveIntensity = 1.5;
+        m.emissiveIntensity = 1.3;
         child.material = m;
         mouthParts.current.push(child);
       }
 
-      if (child.name === "Ears") {
+      if (child.name.includes("Ears")) {
         const m = child.material.clone();
         m.color.set("#fff");
         m.emissive.set("#fff");
-        m.emissiveIntensity = 1.5;
+        m.emissiveIntensity = 1.3;
         child.material = m;
         earParts.current.push(child);
       }
     });
 
-    const neckNode =
+    scene.rotation.set(-0.2, -Math.PI / 3.5, 0.2);
+    scene.updateMatrixWorld(true);
+
+    const neck =
       scene.getObjectByName("Neck") ||
-      scene.getObjectByName("Head_1") ||
-      scene.getObjectByName("Head");
+      scene.getObjectByName("Head") ||
+      scene.getObjectByName("Head_1");
 
-    if (neckNode && neckNode.parent) {
+    if (neck && neck.parent) {
       const pivot = new THREE.Group();
-      pivot.position.copy(neckNode.position);
-      pivot.quaternion.copy(neckNode.quaternion);
+      pivot.position.copy(neck.position);
+      pivot.quaternion.copy(neck.quaternion);
 
-      neckNode.parent.add(pivot);
-      pivot.add(neckNode);
+      neck.parent.add(pivot);
+      pivot.add(neck);
 
       headPivot.current = pivot;
     }
@@ -114,46 +103,43 @@ if (!isAllowed) {
     const t = state.clock.getElapsedTime();
 
     if (group.current) {
-      group.current.position.y = Math.sin(t * 1.2) * 0.03 + 0.04;
-      group.current.rotation.x = Math.sin(t * 0.25) * 0.15;
-      group.current.rotation.y = Math.sin(t * 0.3) * 0.4;
-      group.current.rotation.z = Math.sin(t * 0.18) * 0.1;
+      group.current.position.y = Math.sin(t * 0.8) * 0.02;
+
+      const targetRotY = mouse.current.x * 0.35; 
+      const targetRotX = mouse.current.y * 0.15;
+
+      group.current.rotation.y = THREE.MathUtils.lerp(
+        group.current.rotation.y,
+        targetRotY,
+        0.08
+      );
+
+      group.current.rotation.x = THREE.MathUtils.lerp(
+        group.current.rotation.x,
+        targetRotX,
+        0.08
+      );
     }
 
     const pulse = (Math.sin(t * 2) + 1) / 2;
-    const cyan = { r: 103 / 255, g: 232 / 255, b: 249 / 255 };
+    const cyan = { r: 0.35, g: 0.9, b: 1.0 };
 
-    const applyGlow = (mesh) => {
-      if (!mesh) return;
-      const r = THREE.MathUtils.lerp(1, cyan.r, pulse);
-      const g = THREE.MathUtils.lerp(1, cyan.g, pulse);
-      const b = THREE.MathUtils.lerp(1, cyan.b, pulse);
-      mesh.material.emissive.setRGB(r, g, b);
-      mesh.material.color.setRGB(r, g, b);
+    const glow = (mesh) => {
+      mesh.material.emissive.setRGB(
+        THREE.MathUtils.lerp(1, cyan.r, pulse),
+        THREE.MathUtils.lerp(1, cyan.g, pulse),
+        THREE.MathUtils.lerp(1, cyan.b, pulse)
+      );
     };
 
-    eyeParts.current.forEach(applyGlow);
-    mouthParts.current.forEach(applyGlow);
-    earParts.current.forEach(applyGlow);
-
-    if (headPivot.current) {
-      const pivot = headPivot.current;
-      const target = state.camera.position.clone();
-
-      pivot.parent.worldToLocal(target);
-
-      const currentQ = pivot.quaternion.clone();
-      pivot.lookAt(target);
-      const targetQ = pivot.quaternion.clone();
-
-      pivot.quaternion.copy(currentQ);
-      pivot.quaternion.slerp(targetQ, 0.15);
-    }
+    eyeParts.current.forEach(glow);
+    mouthParts.current.forEach(glow);
+    earParts.current.forEach(glow);
   });
 
   return (
     <group ref={group} {...props}>
-      <primitive object={scene} scale={1.7} rotation={[0, Math.PI, 0]} />
+      <primitive object={scene} scale={1.7} />
     </group>
   );
 }
