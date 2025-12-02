@@ -104,7 +104,7 @@ const HeroAboutPage = () => {
   }, [isSmallScreen, performanceMode]);
 
   const paragraph1 =
-    "Frostrek LLP is a forward-thinking AI company dedicated to empowering businesses through advanced automation, data-driven strategies, and intelligent system design.";
+    "frostrek is a forward-thinking AI company dedicated to empowering businesses through advanced automation, data-driven strategies, and intelligent system design.";
   const paragraph2 =
     "We bridge innovation with practical impact to help industries thrive in the digital age. With a deep focus on research, machine learning, and scalable solutions, our mission is to redefine how organizations leverage AI to create value, efficiency, and sustainability.";
 
@@ -534,7 +534,7 @@ const HeroAboutPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              Frostrek LLP
+              frostrek
             </motion.h2>
 
             <p className="text-base sm:text-lg md:text-xl font-normal text-[#D1D5DB] max-w-2xl">
