@@ -83,7 +83,7 @@ const Navbar = () => {
         <div className="flex max-w-full items-center justify-between px-6 md:px-12 py-3.5">
           <Link
             to="/"
-            className="flex items-center gap-3 text-sm font-semibold tracking-tight text-slate-100 transition-colors hover:text-cyan-300 flex-shrink-0"
+            className="flex items-center gap-1.1 text-sm font-semibold tracking-tight text-slate-100 transition-colors hover:text-cyan-300 flex-shrink-0"
             onClick={closeMenu}
           >
             <span className="inline-flex items-center justify-center">
