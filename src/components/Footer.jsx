@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Facebook, Twitter, Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 const ParticlesCanvas = () => {
   const canvasRef = useRef(null);
@@ -65,6 +65,7 @@ const SocialIcon = ({ Icon, href, delay = 0 }) => {
   return (
     <motion.a
       href={href}
+      target="_blank"
       className="rounded-full border border-cyan-500/30 p-2 md:p-2.5 transition-all duration-300 hover:border-cyan-400 hover:text-cyan-400"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
@@ -116,18 +117,18 @@ const Footer = () => {
     { name: "FAQs", href: "/faqs" },
   ];
 
-  const legalLinks = [
-    { name: "Privacy Policy", href: "#privacy" },
-    { name: "Terms of Service", href: "#terms" },
-    { name: "Cookie Policy", href: "#cookies" },
-  ];
+const legalLinks = [
+  { name: "Privacy Policy", href: "/#about" },      // Hero / About section
+  { name: "Terms of Service", href: "/#services" }, // Services section
+  { name: "Cookie Policy", href: "/#about" },     // Client feedback section
+];
 
-  const socialLinks = [
-    { Icon: Facebook, href: "#facebook" },
-    { Icon: Twitter, href: "#twitter" },
-    { Icon: Linkedin, href: "#linkedin" },
-    { Icon: Mail, href: "#mail" }
-  ];
+
+ const socialLinks = [
+  { Icon: Linkedin, href: "https://www.linkedin.com/company/frostrek/about/" },
+  { Icon: Mail, href: "mailto:info@frostrek.com" }
+];
+
 
   return (
     <footer ref={footerRef} className="relative overflow-hidden bg-[#0B0B0E] border-t border-white/5">
@@ -261,10 +262,10 @@ const Footer = () => {
             }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
-            Frostrek Neural Network
+            Frostrek LLP
           </motion.span>
           
-          <p className="order-1 md:order-2">© {new Date().getFullYear()} frostrek. All Rights Reserved.</p>
+          <p className="order-1 md:order-2">© {new Date().getFullYear()} frostrek LLP. All Rights Reserved.</p>
         </motion.div>
       </motion.div>
 

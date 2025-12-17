@@ -641,7 +641,7 @@ const About = () => {
                 { title: "AI Strategy & Integration", desc: "Seamlessly integrate AI into your workflows." }
               ].map((offering, index) => (
                 <RevealSection key={index} delay={index * 0.1} direction={index % 2 === 0 ? "left" : "right"}>
-                  <LiquidCard className="p-6 sm:p-8 bg-white/[0.04] backdrop-blur-xl rounded-2xl border border-white/5">
+                  <div className="p-6 sm:p-8 bg-white/[0.04] backdrop-blur-xl rounded-2xl border border-white/5">
                     <motion.h3
                       className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3"
                       whileHover={{ x: 8 }}
@@ -660,7 +660,7 @@ const About = () => {
                       />
                     </motion.h3>
                     <p className="text-sm sm:text-base text-slate-400 leading-relaxed">{offering.desc}</p>
-                  </LiquidCard>
+                  </div>
                 </RevealSection>
               ))}
             </div>

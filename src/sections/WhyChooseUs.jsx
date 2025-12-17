@@ -245,14 +245,14 @@ const ComparisonTable = () => {
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
     >
-      <div className="mb-8 text-center">
+      {/* <div className="mb-8 text-center">
         <h3 className="text-3xl md:text-4xl font-bold text-slate-50 mb-2">
           Why We <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Stand Out</span>
         </h3>
         <p className="text-slate-400">Compare our comprehensive feature set with industry alternatives</p>
-      </div>
+      </div> */}
 
-      <div className="overflow-x-auto rounded-2xl border border-cyan-500/20 backdrop-blur-xl bg-gradient-to-br from-slate-950/80 to-slate-900/40">
+      {/* <div className="overflow-x-auto rounded-2xl border border-cyan-500/20 backdrop-blur-xl bg-gradient-to-br from-slate-950/80 to-slate-900/40">
         <table className="w-full">
           <thead>
             <tr className="border-b border-cyan-500/20">
@@ -324,7 +324,7 @@ const ComparisonTable = () => {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> */}
     </motion.div>
   );
 };

@@ -1,13 +1,8 @@
-
 import { useEffect, useRef, useState } from "react";
-import {motion, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Hero3D from "../components/Hero3D";
 import { useMemo } from "react";
-import {
-  Sparkles,
-  Play,
-  ArrowUpRight,
-} from "lucide-react";
+import { Sparkles, Play, ArrowUpRight } from "lucide-react";
 import usePerformanceMode from "../hooks/usePerformanceMode";
 
 // const floatingBeacons = [
@@ -85,7 +80,6 @@ const HeroAboutPage = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [performanceMode]);
 
-
   const ambientParticles = useMemo(() => {
     const count = performanceMode ? 8 : isSmallScreen ? 12 : 18;
 
@@ -159,21 +153,23 @@ const HeroAboutPage = () => {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-1 flex-col justify-center"
           >
-            <motion.div
+            {/* <motion.div
               className="inline-flex items-center gap-3 self-start rounded-full border border-cyan-500/40 bg-white/5 px-5 py-2 text-xs font-medium uppercase tracking-[0.3em] text-cyan-200 backdrop-blur-lg w-fit"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.7 }}
             >
-              <Sparkles className="h-4 w-4 text-cyan-300" />
-              Frostrek Neural Edge
-            </motion.div>
+            </motion.div> */}
 
             <motion.h1
-              className="mt-8 text-4xl font-bold leading-tight text-[#F8FAFC] sm:text-5xl lg:text-6xl xl:text-5xl"
+              className="mt-8 text-5xl font-bold leading-tight text-[#F8FAFC] sm:text-6xl lg:text-7xl xl:text-6xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
+              transition={{
+                delay: 0.3,
+                duration: 0.9,
+                ease: [0.2, 0.8, 0.2, 1],
+              }}
             >
               <span className="bg-gradient-to-r from-cyan-300 via-indigo-400 to-teal-300 bg-clip-text text-transparent font-Raleway">
                 Intelligent systems
@@ -182,15 +178,15 @@ const HeroAboutPage = () => {
             </motion.h1>
 
             <motion.p
-              className="mt-8 max-w-2xl text-base font-normal leading-relaxed text-slate-300/80 md:text-lg font-quicksand"
+              className="mt-8 max-w-3xl text-base font-normal leading-relaxed text-slate-300/80 md:text-lg font-quicksand"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.8 }}
             >
               Frostrek orchestrates data, decisions, and human oversight into a
-              single cognitive stack. Deploy bespoke copilots, automation agents,
-              and predictive intelligence with enterprise reliability and precise
-              guardrails.
+              single cognitive stack. Deploy bespoke copilots, automation
+              agents, and predictive intelligence with enterprise reliability
+              and precise guardrails.
             </motion.p>
 
             <motion.div
@@ -198,86 +194,7 @@ const HeroAboutPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-            >
-              <motion.button 
-                className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-500 px-6 py-3 text-sm font-semibold text-slate-900 shadow-[0_20px_40px_rgba(6,182,212,0.3)] transition-all duration-300 whitespace-nowrap w-fit"
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -5,
-                  boxShadow: "0 25px 50px rgba(6,182,212,0.4)"
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {/* Animated shine effect */}
-                <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 "
-                  animate={{ x: ['-200%', '200%'] }}
-                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-                />
-                
-                {/* Rotating border glow */}
-                <motion.span
-                  className="absolute inset-0 rounded-full"
-                  animate={{
-                    boxShadow: [
-                      '0 0 20px rgba(255,255,255,0.3) inset',
-                      '0 0 40px rgba(255,255,255,0.5) inset',
-                      '0 0 20px rgba(255,255,255,0.3) inset',
-                    ]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                
-                <span className="relative z-10 inline-flex items-center gap-2 whitespace-nowrap">
-                  Launch Your AI Program
-                  <motion.div
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    <ArrowUpRight className="h-5 w-5" />
-                  </motion.div>
-                </span>
-              </motion.button>
-
-              {/* Secondary Button */}
-              <motion.button 
-                className="group relative inline-flex items-center justify-center gap-3 rounded-full border-2 border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/50 hover:bg-cyan-500/10 whitespace-nowrap w-fit cursor-pointer"
-                whileHover={{ 
-                  scale: 1.05,
-                  y: -2,
-                  boxShadow: "0 10px 30px rgba(6,182,212,0.2)"
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {/* Glow effect on hover */}
-                <motion.span
-                  className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background: 'radial-gradient(circle at center, rgba(6,182,212,0.1), transparent 70%)'
-                  }}
-                />
-                
-                {/* Play icon with animation */}
-                <motion.span 
-                  className="relative flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 border border-cyan-400/30 text-cyan-300 transition-all duration-300 group-hover:border-cyan-400/60 group-hover:bg-cyan-400/30"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  {/* Pulse effect */}
-                  <motion.span
-                    className="absolute inset-0 rounded-full bg-cyan-400/20"
-                    animate={{
-                      scale: [1, 1.4, 1],
-                      opacity: [0.5, 0, 0.5],
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                  <Play className="h-4 w-4 relative z-10" />
-                </motion.span>
-                
-                <span className="relative z-10 whitespace-nowrap">See platform in action</span>
-              </motion.button>
-            </motion.div>
+            ></motion.div>
           </motion.div>
 
           <motion.div
@@ -344,7 +261,10 @@ const HeroAboutPage = () => {
       </section>
 
       {/* ===== ABOUT SECTION ===== */}
-      <section id="about" className="relative w-full py-12 sm:py-8 md:py-20 lg:py-28 bg-[#06060C] font-sans overflow-hidden">
+      <section
+        id="about"
+        className="relative w-full py-12 sm:py-8 md:py-20 lg:py-28 bg-[#06060C] font-sans overflow-hidden"
+      >
         {/* Advanced Tech Background */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Holographic grid base */}
@@ -354,25 +274,72 @@ const HeroAboutPage = () => {
           </div>
 
           {/* Neural network connections */}
-          <svg className="absolute inset-0 w-full h-full opacity-30" style={{ filter: 'blur(0.5px)' }}>
+          <svg
+            className="absolute inset-0 w-full h-full opacity-30"
+            style={{ filter: "blur(0.5px)" }}
+          >
             <defs>
-              <linearGradient id="line-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient
+                id="line-gradient-1"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
                 <stop offset="0%" stopColor="#00ffff" stopOpacity="0" />
                 <stop offset="50%" stopColor="#00ffff" stopOpacity="0.6" />
                 <stop offset="100%" stopColor="#00ffff" stopOpacity="0" />
               </linearGradient>
-              <linearGradient id="line-gradient-2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <linearGradient
+                id="line-gradient-2"
+                x1="100%"
+                y1="0%"
+                x2="0%"
+                y2="100%"
+              >
                 <stop offset="0%" stopColor="#a855f7" stopOpacity="0" />
                 <stop offset="50%" stopColor="#a855f7" stopOpacity="0.6" />
                 <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
               </linearGradient>
             </defs>
-            
+
             {/* Animated connection lines */}
-            <line x1="10%" y1="20%" x2="90%" y2="80%" stroke="url(#line-gradient-1)" strokeWidth="1" className="animate-pulse-line" />
-            <line x1="80%" y1="10%" x2="20%" y2="90%" stroke="url(#line-gradient-2)" strokeWidth="1" className="animate-pulse-line-delayed" />
-            <line x1="30%" y1="0%" x2="70%" y2="100%" stroke="url(#line-gradient-1)" strokeWidth="1" className="animate-pulse-line-more" />
-            <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="url(#line-gradient-2)" strokeWidth="1" className="animate-pulse-line-slow" />
+            <line
+              x1="10%"
+              y1="20%"
+              x2="90%"
+              y2="80%"
+              stroke="url(#line-gradient-1)"
+              strokeWidth="1"
+              className="animate-pulse-line"
+            />
+            <line
+              x1="80%"
+              y1="10%"
+              x2="20%"
+              y2="90%"
+              stroke="url(#line-gradient-2)"
+              strokeWidth="1"
+              className="animate-pulse-line-delayed"
+            />
+            <line
+              x1="30%"
+              y1="0%"
+              x2="70%"
+              y2="100%"
+              stroke="url(#line-gradient-1)"
+              strokeWidth="1"
+              className="animate-pulse-line-more"
+            />
+            <line
+              x1="0%"
+              y1="50%"
+              x2="100%"
+              y2="50%"
+              stroke="url(#line-gradient-2)"
+              strokeWidth="1"
+              className="animate-pulse-line-slow"
+            />
           </svg>
 
           {/* Circuit board patterns */}
@@ -382,7 +349,7 @@ const HeroAboutPage = () => {
                 key={`circuit-${i}`}
                 className="absolute bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-circuit-flow"
                 style={{
-                  width: '2px',
+                  width: "2px",
                   height: `${20 + Math.random() * 30}%`,
                   left: `${10 + i * 12}%`,
                   top: `${Math.random() * 80}%`,
@@ -418,7 +385,10 @@ const HeroAboutPage = () => {
               >
                 <div className="relative">
                   {/* Outer ring */}
-                  <div className="w-8 h-8 rounded-full border border-cyan-400/40 animate-ping-slow" style={{ animationDelay: `${i * 0.2}s` }} />
+                  <div
+                    className="w-8 h-8 rounded-full border border-cyan-400/40 animate-ping-slow"
+                    style={{ animationDelay: `${i * 0.2}s` }}
+                  />
                   {/* Inner dot */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(0,255,255,0.8)] animate-pulse" />
                 </div>
@@ -434,7 +404,7 @@ const HeroAboutPage = () => {
                 className="absolute w-[1px] bg-gradient-to-b from-cyan-400 via-cyan-400/50 to-transparent animate-digital-rain"
                 style={{
                   left: `${i * 8.33}%`,
-                  height: '100px',
+                  height: "100px",
                   animationDelay: `${i * 0.4}s`,
                   animationDuration: `${2 + Math.random() * 2}s`,
                 }}
@@ -459,8 +429,10 @@ const HeroAboutPage = () => {
                 style={{
                   left: `${20 + i * 15}%`,
                   top: `${20 + i * 10}%`,
-                  background: `radial-gradient(circle, ${['cyan', 'purple', 'indigo', 'teal', 'pink'][i]}-400 0%, transparent 70%)`,
-                  filter: 'blur(20px)',
+                  background: `radial-gradient(circle, ${
+                    ["cyan", "purple", "indigo", "teal", "pink"][i]
+                  }-400 0%, transparent 70%)`,
+                  filter: "blur(20px)",
                   animationDelay: `${i * 0.8}s`,
                   animationDuration: `${15 + i * 3}s`,
                 }}
@@ -472,7 +444,12 @@ const HeroAboutPage = () => {
           <div className="absolute inset-0 opacity-15">
             <div className="absolute top-[10%] left-[15%] w-32 h-32 border border-cyan-400/30 rotate-45 animate-rotate-slow" />
             <div className="absolute bottom-[15%] right-[20%] w-40 h-40 border-2 border-purple-400/30 rounded-full animate-scale-pulse" />
-            <div className="absolute top-[50%] right-[10%] w-24 h-24 border border-indigo-400/30 animate-rotate-reverse" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }} />
+            <div
+              className="absolute top-[50%] right-[10%] w-24 h-24 border border-indigo-400/30 animate-rotate-reverse"
+              style={{
+                clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+              }}
+            />
           </div>
 
           {/* Particle system */}
@@ -677,19 +654,41 @@ const HeroAboutPage = () => {
               className="relative flex h-[300px] sm:h-[380px] md:h-[460px] lg:h-[500px] w-full items-center justify-center order-1 lg:order-2"
             >
               {/* Central AI Core */}
-               <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48">
+              <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48">
                 {/* Rotating rings - Pure CSS */}
                 <div className="absolute inset-0 animate-spin-slow">
-                  <div className="absolute inset-0 rounded-full border-2 border-cyan-500/30" 
-                       style={{ width: '100%', height: '100%' }} />
+                  <div
+                    className="absolute inset-0 rounded-full border-2 border-cyan-500/30"
+                    style={{ width: "100%", height: "100%" }}
+                  />
                 </div>
-                <div className="absolute inset-0 animate-spin-reverse" style={{ animationDuration: '20s' }}>
-                  <div className="absolute inset-0 rounded-full border-2 border-purple-500/30" 
-                       style={{ width: '120%', height: '120%', left: '-10%', top: '-10%' }} />
+                <div
+                  className="absolute inset-0 animate-spin-reverse"
+                  style={{ animationDuration: "20s" }}
+                >
+                  <div
+                    className="absolute inset-0 rounded-full border-2 border-purple-500/30"
+                    style={{
+                      width: "120%",
+                      height: "120%",
+                      left: "-10%",
+                      top: "-10%",
+                    }}
+                  />
                 </div>
-                <div className="absolute inset-0 animate-spin-slow" style={{ animationDuration: '25s' }}>
-                  <div className="absolute inset-0 rounded-full border-2 border-indigo-500/30" 
-                       style={{ width: '140%', height: '140%', left: '-20%', top: '-20%' }} />
+                <div
+                  className="absolute inset-0 animate-spin-slow"
+                  style={{ animationDuration: "25s" }}
+                >
+                  <div
+                    className="absolute inset-0 rounded-full border-2 border-indigo-500/30"
+                    style={{
+                      width: "140%",
+                      height: "140%",
+                      left: "-20%",
+                      top: "-20%",
+                    }}
+                  />
                 </div>
 
                 {/* Central core */}
@@ -703,7 +702,7 @@ const HeroAboutPage = () => {
 
                 {/* Orbiting dots */}
                 {[0, 1, 2, 3, 4, 5].map((i) => {
-                  const angle = (i * 60);
+                  const angle = i * 60;
                   return (
                     <div
                       key={i}
@@ -747,7 +746,7 @@ const HeroAboutPage = () => {
               transform: rotate(360deg) translateX(70px) rotate(-360deg);
             }
           }
-          
+
           @keyframes spin-slow {
             from {
               transform: rotate(0deg);
@@ -756,7 +755,7 @@ const HeroAboutPage = () => {
               transform: rotate(360deg);
             }
           }
-          
+
           @keyframes spin-reverse {
             from {
               transform: rotate(360deg);
@@ -765,7 +764,7 @@ const HeroAboutPage = () => {
               transform: rotate(0deg);
             }
           }
-          
+
           @keyframes grid-scan {
             0% {
               transform: translateY(0);
@@ -774,7 +773,7 @@ const HeroAboutPage = () => {
               transform: translateY(40px);
             }
           }
-          
+
           @keyframes diagonal-grid {
             0% {
               transform: translate(0, 0);
@@ -783,9 +782,10 @@ const HeroAboutPage = () => {
               transform: translate(60px, 60px);
             }
           }
-          
+
           @keyframes pulse-line {
-            0%, 100% {
+            0%,
+            100% {
               opacity: 0.3;
               stroke-dashoffset: 1000;
             }
@@ -794,9 +794,10 @@ const HeroAboutPage = () => {
               stroke-dashoffset: 0;
             }
           }
-          
+
           @keyframes pulse-line-delayed {
-            0%, 100% {
+            0%,
+            100% {
               opacity: 0.2;
               stroke-dashoffset: 1000;
             }
@@ -805,9 +806,10 @@ const HeroAboutPage = () => {
               stroke-dashoffset: 0;
             }
           }
-          
+
           @keyframes pulse-line-more {
-            0%, 100% {
+            0%,
+            100% {
               opacity: 0.25;
               stroke-dashoffset: 1000;
             }
@@ -816,9 +818,10 @@ const HeroAboutPage = () => {
               stroke-dashoffset: 0;
             }
           }
-          
+
           @keyframes pulse-line-slow {
-            0%, 100% {
+            0%,
+            100% {
               opacity: 0.2;
               stroke-dashoffset: 1000;
             }
@@ -827,7 +830,7 @@ const HeroAboutPage = () => {
               stroke-dashoffset: 0;
             }
           }
-          
+
           @keyframes circuit-flow {
             0% {
               transform: translateY(-100%);
@@ -844,7 +847,7 @@ const HeroAboutPage = () => {
               opacity: 0;
             }
           }
-          
+
           @keyframes hex-drift {
             0% {
               transform: translate(0, 0) rotate(0deg);
@@ -853,7 +856,7 @@ const HeroAboutPage = () => {
               transform: translate(50px, 50px) rotate(360deg);
             }
           }
-          
+
           @keyframes scan-line-1 {
             0% {
               top: -2px;
@@ -870,7 +873,7 @@ const HeroAboutPage = () => {
               opacity: 0;
             }
           }
-          
+
           @keyframes scan-line-2 {
             0% {
               top: -2px;
@@ -887,7 +890,7 @@ const HeroAboutPage = () => {
               opacity: 0;
             }
           }
-          
+
           @keyframes scan-line-3 {
             0% {
               top: -1px;
@@ -904,7 +907,7 @@ const HeroAboutPage = () => {
               opacity: 0;
             }
           }
-          
+
           @keyframes ping-slow {
             0% {
               transform: scale(1);
@@ -915,7 +918,7 @@ const HeroAboutPage = () => {
               opacity: 0;
             }
           }
-          
+
           @keyframes digital-rain {
             0% {
               transform: translateY(-100px);
@@ -932,9 +935,10 @@ const HeroAboutPage = () => {
               opacity: 0;
             }
           }
-          
+
           @keyframes holo-sweep-1 {
-            0%, 100% {
+            0%,
+            100% {
               transform: translateY(-20px);
               opacity: 0;
             }
@@ -942,9 +946,10 @@ const HeroAboutPage = () => {
               opacity: 1;
             }
           }
-          
+
           @keyframes holo-sweep-2 {
-            0%, 100% {
+            0%,
+            100% {
               transform: translateY(-20px);
               opacity: 0;
             }
@@ -952,9 +957,10 @@ const HeroAboutPage = () => {
               opacity: 1;
             }
           }
-          
+
           @keyframes holo-sweep-3 {
-            0%, 100% {
+            0%,
+            100% {
               transform: translateY(-20px);
               opacity: 0;
             }
@@ -962,9 +968,10 @@ const HeroAboutPage = () => {
               opacity: 1;
             }
           }
-          
+
           @keyframes holo-sweep-4 {
-            0%, 100% {
+            0%,
+            100% {
               transform: translateY(-20px);
               opacity: 0;
             }
@@ -972,9 +979,10 @@ const HeroAboutPage = () => {
               opacity: 1;
             }
           }
-          
+
           @keyframes orb-float {
-            0%, 100% {
+            0%,
+            100% {
               transform: translate(0, 0) scale(1);
             }
             33% {
@@ -984,7 +992,7 @@ const HeroAboutPage = () => {
               transform: translate(-20px, 30px) scale(0.9);
             }
           }
-          
+
           @keyframes rotate-slow {
             from {
               transform: rotate(45deg);
@@ -993,7 +1001,7 @@ const HeroAboutPage = () => {
               transform: rotate(405deg);
             }
           }
-          
+
           @keyframes rotate-reverse {
             from {
               transform: rotate(0deg);
@@ -1002,9 +1010,10 @@ const HeroAboutPage = () => {
               transform: rotate(-360deg);
             }
           }
-          
+
           @keyframes scale-pulse {
-            0%, 100% {
+            0%,
+            100% {
               transform: scale(1);
               opacity: 0.3;
             }
@@ -1013,9 +1022,10 @@ const HeroAboutPage = () => {
               opacity: 0.6;
             }
           }
-          
+
           @keyframes particle-drift {
-            0%, 100% {
+            0%,
+            100% {
               transform: translate(0, 0);
               opacity: 0;
             }
@@ -1033,9 +1043,10 @@ const HeroAboutPage = () => {
               opacity: 0;
             }
           }
-          
+
           @keyframes laser-pulse {
-            0%, 100% {
+            0%,
+            100% {
               opacity: 0.2;
               transform: scaleY(0.8);
             }
@@ -1044,9 +1055,10 @@ const HeroAboutPage = () => {
               transform: scaleY(1.2);
             }
           }
-          
+
           @keyframes laser-pulse-delayed {
-            0%, 100% {
+            0%,
+            100% {
               opacity: 0.15;
               transform: scaleY(0.7);
             }
@@ -1055,9 +1067,10 @@ const HeroAboutPage = () => {
               transform: scaleY(1.3);
             }
           }
-          
+
           @keyframes laser-pulse-more {
-            0%, 100% {
+            0%,
+            100% {
               opacity: 0.25;
               transform: scaleY(0.9);
             }
@@ -1066,119 +1079,119 @@ const HeroAboutPage = () => {
               transform: scaleY(1.1);
             }
           }
-          
+
           .animate-spin-slow {
             animation: spin-slow 15s linear infinite;
           }
-          
+
           .animate-spin-reverse {
             animation: spin-reverse 15s linear infinite;
           }
-          
+
           .animate-grid-scan {
             animation: grid-scan 20s linear infinite;
           }
-          
+
           .animate-diagonal-grid {
             animation: diagonal-grid 30s linear infinite;
           }
-          
+
           .animate-pulse-line {
             animation: pulse-line 4s ease-in-out infinite;
             stroke-dasharray: 1000;
           }
-          
+
           .animate-pulse-line-delayed {
             animation: pulse-line-delayed 5s ease-in-out infinite 1s;
             stroke-dasharray: 1000;
           }
-          
+
           .animate-pulse-line-more {
             animation: pulse-line-more 4.5s ease-in-out infinite 2s;
             stroke-dasharray: 1000;
           }
-          
+
           .animate-pulse-line-slow {
             animation: pulse-line-slow 6s ease-in-out infinite 0.5s;
             stroke-dasharray: 1000;
           }
-          
+
           .animate-circuit-flow {
             animation: circuit-flow 4s ease-in-out infinite;
           }
-          
+
           .animate-hex-drift {
             animation: hex-drift 40s linear infinite;
           }
-          
+
           .animate-scan-line-1 {
             animation: scan-line-1 6s ease-in-out infinite;
           }
-          
+
           .animate-scan-line-2 {
             animation: scan-line-2 7s ease-in-out infinite 1.5s;
           }
-          
+
           .animate-scan-line-3 {
             animation: scan-line-3 8s ease-in-out infinite 3s;
           }
-          
+
           .animate-ping-slow {
             animation: ping-slow 3s ease-out infinite;
           }
-          
+
           .animate-digital-rain {
             animation: digital-rain 4s linear infinite;
           }
-          
+
           .animate-holo-sweep-1 {
             animation: holo-sweep-1 8s ease-in-out infinite;
           }
-          
+
           .animate-holo-sweep-2 {
             animation: holo-sweep-2 9s ease-in-out infinite 2s;
           }
-          
+
           .animate-holo-sweep-3 {
             animation: holo-sweep-3 10s ease-in-out infinite 4s;
           }
-          
+
           .animate-holo-sweep-4 {
             animation: holo-sweep-4 11s ease-in-out infinite 6s;
           }
-          
+
           .animate-orb-float {
             animation: orb-float 20s ease-in-out infinite;
           }
-          
+
           .animate-rotate-slow {
             animation: rotate-slow 30s linear infinite;
           }
-          
+
           .animate-rotate-reverse {
             animation: rotate-reverse 25s linear infinite;
           }
-          
+
           .animate-scale-pulse {
             animation: scale-pulse 4s ease-in-out infinite;
           }
-          
+
           .animate-particle-drift {
             animation: particle-drift 8s ease-in-out infinite;
           }
-          
+
           .animate-laser-pulse {
             animation: laser-pulse 3s ease-in-out infinite;
           }
-          
+
           .animate-laser-pulse-delayed {
             animation: laser-pulse-delayed 3.5s ease-in-out infinite 0.5s;
           }
-          
+
           .animate-laser-pulse-more {
             animation: laser-pulse-more 4s ease-in-out infinite 1s;
           }
-          
+
           @media (max-width: 640px) {
             @keyframes orbit {
               from {

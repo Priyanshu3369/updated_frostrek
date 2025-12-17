@@ -12,23 +12,9 @@ const contactMethods = [
   {
     icon: Mail,
     label: "Email us",
-    detail: "hello@frostrek.ai",
-    href: "mailto:hello@frostrek.ai",
+    detail: "info@frostrek.com",
+    href: "mailto:info@frostrek.com",
     color: "from-cyan-500 to-blue-500"
-  },
-  {
-    icon: Phone,
-    label: "Call the studio",
-    detail: "+1 (415) 555-0199",
-    href: "tel:+14155550199",
-    color: "from-purple-500 to-pink-500"
-  },
-  {
-    icon: MessageSquare,
-    label: "Book a call",
-    detail: "Choose a slot that suits you",
-    href: "#",
-    color: "from-indigo-500 to-cyan-500"
   },
 ];
 
