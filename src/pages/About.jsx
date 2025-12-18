@@ -2,6 +2,14 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import { ArrowRight, Zap, Users, Target, Eye, CheckCircle, Sparkles, Activity } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import {
+    Brain,
+    Bot,
+    Workflow,
+    LayoutDashboard,
+    Code2,
+    PlugZap
+  } from "lucide-react";
 
 const FloatingParticles = () => {
   const particles = Array.from({ length: 40 }, (_, i) => ({
@@ -211,18 +219,48 @@ const About = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+
   const services = [
-    { icon: Zap, title: "AI Model Training", desc: "Leverage our 200+ RLHF experts to train and enhance your AI models.", color: "cyan" },
-    { icon: Users, title: "Talent Solutions", desc: "Connect with top AI talent aligned with leading organizations.", color: "indigo" },
-    { icon: Target, title: "Custom AI Solutions", desc: "Tailored AI strategies for your unique business challenges.", color: "purple" },
-    { icon: Eye, title: "AI Integration", desc: "Seamless integration of AI technologies into your operations.", color: "teal" }
+    {
+      title: "AI Model Training & Optimization",
+      desc: "Training and refining advanced AI models using RLHF and human-in-the-loop methodologies to improve accuracy, reliability, and alignment.",
+      icon: Brain,
+    },
+    {
+      title: "AI Agents & Agentic AI Systems",
+      desc: "Building autonomous AI agents that can reason, plan, and execute tasks across business workflows with controlled decision-making.",
+      icon: Bot,
+    },
+    {
+      title: "Intelligent Workflow & Process Automation",
+      desc: "Embedding AI into organizational flows to automate operations, reduce manual effort, and improve execution efficiency.",
+      icon: Workflow,
+    },
+    {
+      title: "AI-Powered Application Development",
+      desc: "Developing AI-enabled web and mobile applications, chatbots, copilots, and internal tools.",
+      icon: LayoutDashboard,
+    },
+    {
+      title: "Software & Platform Engineering",
+      desc: "Full-stack development of scalable platforms, APIs, dashboards, and enterprise systems.",
+      icon: Code2,
+    },
+    {
+      title: "AI Integration & Deployment",
+      desc: "Integrating AI capabilities into existing products and systems with secure, production-ready architectures.",
+      icon: PlugZap,
+    },
   ];
+
 
   const features = [
     "Cutting-edge AI model training tailored to your goals",
     "Expertise in RLHF ensures precise model alignment",
     "Access to a pool of top-tier AI talent",
-    "Seamless integration and optimization"
+    "Seamless integration and optimization",
+    "End-to-end software development for production-ready AI solutions",
+    "Scalable, secure platforms built to support real-world business workflows"
   ];
 
   return (
@@ -336,7 +374,7 @@ const About = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
               >
-                Revolutionizing AI Solutions with Expert Training and Talent Matching
+                Revolutionizing AI Solutions with Intelligent Systems and Engineering Excellence
               </motion.p>
 
               <motion.p
@@ -345,7 +383,7 @@ const About = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
               >
-                We are a cutting-edge AI company specializing in training advanced AI models through Reinforcement Learning from Human Feedback (RLHF). Founded with a vision to redefine AI development, we empower organizations by transforming their AI models into smarter, more reliable systems.
+                We are a cutting-edge AI and technology company specializing in AI model training, agentic AI systems, and end-to-end software development. Founded with a vision to redefine how AI is built and deployed, we empower organizations by delivering smarter, scalable, and production-ready solutions that integrate seamlessly into real-world business workflows.
               </motion.p>
 
               <motion.button
@@ -460,7 +498,7 @@ const About = () => {
                 >
                   Empowering
                 </motion.span>{" "}
-                your AI journey
+                your AI & Development journey
               </motion.h2>
 
               <motion.p
@@ -470,161 +508,160 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
               >
-                Discover our comprehensive suite of AI solutions designed to transform your business
+                 Building intelligent systems, agentic AI, and scalable software for real-world business needs.
               </motion.p>
             </div>
           </RevealSection>
-
-          {/* Services Cards - Responsive Grid */}
+          {/* Services Cards - Responsive Grid with Flip Animation */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{
-                  delay: index * 0.15,
-                  duration: 0.8,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-              >
+            {services.map((service, index) => {
+              const [isFlipped, setIsFlipped] = useState(false);
+
+              return (
                 <motion.div
-                  className="group relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl backdrop-blur-xl border border-white/5 overflow-hidden cursor-pointer h-full"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)'
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{
+                    delay: index * 0.15,
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1]
                   }}
-                  whileHover={{
-                    scale: 1.02,
-                    y: -8,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
+                  className="h-[280px] sm:h-[320px] md:h-[350px]"
+                  style={{ perspective: '1500px' }}
+                  onMouseEnter={() => setIsFlipped(true)}
+                  onMouseLeave={() => setIsFlipped(false)}
                 >
-                  {/* Animated gradient background */}
                   <motion.div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                    style={{
-                      background: `radial-gradient(circle at 50% 50%, ${index === 0 ? 'rgba(6,182,212,0.1)' :
-                        index === 1 ? 'rgba(99,102,241,0.1)' :
-                          index === 2 ? 'rgba(168,85,247,0.1)' :
-                            'rgba(20,184,166,0.1)'
-                        }, transparent 70%)`
-                    }}
+                    className="relative w-full h-full cursor-pointer"
+                    style={{ transformStyle: 'preserve-3d' }}
                     animate={{
-                      scale: [1, 1.2, 1],
+                      rotateY: isFlipped ? 180 : 0,
+                      scale: isFlipped ? 1.02 : 1,
+                      y: isFlipped ? -8 : 0
                     }}
-                    transition={{ duration: 4, repeat: Infinity }}
-                  />
-
-                  {/* Border glow effect */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100"
-                    style={{
-                      background: `linear-gradient(135deg, ${index === 0 ? 'rgba(6,182,212,0.3)' :
-                        index === 1 ? 'rgba(99,102,241,0.3)' :
-                          index === 2 ? 'rgba(168,85,247,0.3)' :
-                            'rgba(20,184,166,0.3)'
-                        } 0%, transparent 50%)`,
-                      padding: '2px',
-                      WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                      WebkitMaskComposite: 'xor',
-                      maskComposite: 'exclude',
-                    }}
-                    transition={{ duration: 0.5 }}
-                  />
-
-                  {/* Number badge */}
-                  <motion.div
-                    className="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-white/10 flex items-center justify-center text-xs sm:text-sm font-bold text-cyan-400"
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.15 + 0.3, type: "spring" }}
-                    whileHover={{ scale: 1.2, rotate: 360 }}
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                   >
-                    <motion.span
-                      animate={{
-                        textShadow: [
-                          '0 0 5px rgba(6,182,212,0.5)',
-                          '0 0 20px rgba(6,182,212,0.8)',
-                          '0 0 5px rgba(6,182,212,0.5)',
-                        ]
+                    {/* Front Side */}
+                    <div
+                      className="absolute inset-0 rounded-2xl sm:rounded-3xl backdrop-blur-xl border border-white/5 overflow-hidden"
+                      style={{
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)'
                       }}
-                      transition={{ duration: 2, repeat: Infinity }}
                     >
-                      {index + 1}
-                    </motion.span>
-                  </motion.div>
+                      {/* Animated gradient background */}
+                      <div
+                        className="absolute inset-0 opacity-30"
+                        style={{
+                          background: `radial-gradient(circle at 50% 50%, ${index === 0 ? 'rgba(6,182,212,0.15)' :
+                            index === 1 ? 'rgba(99,102,241,0.15)' :
+                              index === 2 ? 'rgba(168,85,247,0.15)' :
+                                'rgba(20,184,166,0.15)'
+                            }, transparent 70%)`
+                        }}
+                      />
 
-                  {/* Icon with multiple animation layers */}
-                  <motion.div
-                    className="relative mb-4 sm:mb-6 inline-block"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    {/* Outer rotating ring */}
-                    <motion.div
-                      className="absolute inset-0 -m-2 sm:-m-3"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                    >
-                      <div className="w-full h-full rounded-full border-2 border-dashed border-cyan-400/20" />
-                    </motion.div>
+                      <div className="relative z-10 p-6 sm:p-8 h-full flex flex-col justify-center items-center text-center">
+                        {/* Icon with animation */}
+                        <motion.div
+                          className="relative mb-4 sm:mb-6"
+                          animate={{ y: [0, -5, 0] }}
+                          transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                        >
+                          <motion.div
+                            className="absolute inset-0 -m-2 rounded-full bg-cyan-400/10"
+                            animate={{
+                              scale: [1, 1.3, 1],
+                              opacity: [0.5, 0, 0.5]
+                            }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                          />
+                          <div className="relative flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400/20 to-indigo-500/20 backdrop-blur-sm">
+                            <service.icon className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-400" />
+                          </div>
+                        </motion.div>
 
-                    {/* Pulsing background */}
-                    <motion.div
-                      className="absolute inset-0 -m-1 sm:-m-2 rounded-full bg-cyan-400/10"
-                      animate={{
-                        scale: [1, 1.3, 1],
-                        opacity: [0.5, 0, 0.5]
+                        {/* Title */}
+                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
+                          {service.title}
+                        </h3>
+
+                        {/* Hover instruction */}
+                        <motion.p
+                          className="text-xs sm:text-sm text-cyan-400 flex items-center gap-2"
+                          animate={{ opacity: [0.5, 1, 0.5] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                        </motion.p>
+                      </div>
+                    </div>
+
+                    {/* Back Side */}
+                    <div
+                      className="absolute inset-0 rounded-2xl sm:rounded-3xl backdrop-blur-xl border border-white/5 overflow-hidden"
+                      style={{
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)',
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%)'
                       }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-
-                    {/* Icon container */}
-                    <motion.div
-                      className="relative flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br from-cyan-400/20 to-indigo-500/20 backdrop-blur-sm"
-                      whileHover={{ rotate: [0, -10, 10, 0] }}
-                      transition={{ duration: 0.5 }}
                     >
+                      {/* Animated gradient background */}
                       <motion.div
-                        animate={{ y: [0, -3, 0] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
-                      >
-                        <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" />
-                      </motion.div>
-                    </motion.div>
-                  </motion.div>
+                        className="absolute inset-0"
+                        style={{
+                          background: `radial-gradient(circle at 50% 50%, ${index === 0 ? 'rgba(6,182,212,0.2)' :
+                            index === 1 ? 'rgba(99,102,241,0.2)' :
+                              index === 2 ? 'rgba(168,85,247,0.2)' :
+                                'rgba(20,184,166,0.2)'
+                            }, transparent 70%)`
+                        }}
+                        animate={{
+                          scale: [1, 1.2, 1],
+                        }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                      />
 
-                  {/* Content */}
-                  <motion.div
-                    className="relative z-10"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.15 + 0.4 }}
-                  >
-                    <motion.h3
-                      className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-white"
-                      whileHover={{ x: 5 }}
-                    >
-                      {service.title}
-                    </motion.h3>
-                    <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-3 sm:mb-4">
-                      {service.desc}
-                    </p>
+                      {/* Border glow effect */}
+                      <div
+                        className="absolute inset-0 rounded-2xl sm:rounded-3xl"
+                        style={{
+                          background: `linear-gradient(135deg, ${index === 0 ? 'rgba(6,182,212,0.3)' :
+                            index === 1 ? 'rgba(99,102,241,0.3)' :
+                              index === 2 ? 'rgba(168,85,247,0.3)' :
+                                'rgba(20,184,166,0.3)'
+                            } 0%, transparent 50%)`,
+                          padding: '2px',
+                          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                          WebkitMaskComposite: 'xor',
+                          maskComposite: 'exclude',
+                        }}
+                      />
 
-                    {/* Animated underline */}
-                    <motion.div
-                      className="h-1 bg-gradient-to-r from-cyan-400 via-indigo-500 to-purple-500 rounded-full"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: '60%' }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.15 + 0.6, duration: 0.8 }}
-                    />
+                      <div className="relative z-10 p-6 sm:p-8 h-full flex flex-col justify-center">
+                        {/* Icon (smaller on back) */}
+                        <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-400/20 to-indigo-500/20 backdrop-blur-sm mb-4">
+                          <service.icon className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">
+                          {service.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                          {service.desc}
+                        </p>
+                      </div>
+                    </div>
                   </motion.div>
                 </motion.div>
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -815,8 +852,8 @@ const About = () => {
           {/* Mission & Vision Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {[
-              { icon: Target, title: "Our Mission", desc: "To create transformative AI solutions and empower organizations by merging technology with human expertise.", gradient: "from-cyan-500/10" },
-              { icon: Eye, title: "Our Vision", desc: "To be the global leader in AI model training and talent empowerment, fostering innovation and success.", gradient: "from-indigo-500/10" }
+              { icon: Target, title: "Our Mission", desc: " To build transformative AI and software solutions by merging advanced technology, strong engineering, and human expertise to empower organizations.", gradient: "from-cyan-500/10" },
+              { icon: Eye, title: "Our Vision", desc: " To be a global leader in AI innovation and intelligent system development, empowering talent and enabling organizations to build scalable, real-world AI solutions.", gradient: "from-indigo-500/10" }
             ].map((item, index) => (
               <RevealSection key={index} delay={index * 0.15} direction={index === 0 ? "left" : "right"}>
                 <LiquidCard className={`p-6 sm:p-8 md:p-10 bg-gradient-to-br ${item.gradient} to-transparent rounded-2xl border border-white/10 backdrop-blur-xl relative overflow-hidden`}>
