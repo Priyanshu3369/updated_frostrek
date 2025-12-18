@@ -190,19 +190,37 @@ const Services = () => {
       number: "01",
       title: "AI Talent Sourcing and Deployment",
       description:
-        "Source and deploy the best AI professionals, aligning expertise with your project's specific requirements, needs, and goals.",
+        " Source and deploy skilled AI professionals aligned with your project’s specific requirements, objectives, and delivery timelines.",
     },
     {
       number: "02",
       title: "AI Model Training and Optimization",
       description:
-        "Enhance your AI model's performance through expert training, optimization, and real-world impact, ensuring accurate and efficient results.",
+        " Enhance AI model performance through expert training, optimization, and real-world evaluation to ensure accuracy, reliability, and measurable impact.",
     },
     {
       number: "03",
       title: "Customized AI Development Solutions",
       description:
-        "Tailor AI systems to your business needs, providing scalable, reliable, and efficient solutions for your most complex challenges.",
+        "Design and build tailored AI systems that address complex business challenges with scalable, reliable, and efficient architectures.",
+    },
+    {
+      number: "04",
+      title: "AI Agents & Agentic AI Systems",
+      description:
+        " Develop intelligent AI agents capable of reasoning, decision-making, and autonomous task execution across business and operational workflows.",
+    },
+    {
+      number: "05",
+      title: "AI-Powered Application & Platform Development",
+      description:
+        "Build production-ready web and mobile applications, internal tools, dashboards, and platforms that embed AI into everyday business use.",
+    },
+    {
+      number: "06",
+      title: "Organizational Workflow Automation & Integration",
+      description:
+        " Integrate AI into organizational processes to automate workflows, improve efficiency, and enable seamless coordination across systems and teams.",
     },
   ];
 
@@ -267,24 +285,12 @@ const Services = () => {
           <SlideIn direction="up" delay={0.5}>
             <div className="max-w-5xl mx-auto space-y-6">
               <p className="text-lg text-slate-300/80 leading-relaxed text-center">
-                At Frostrek AI, we believe that every organization has unique
-                needs when it comes to building and optimizing AI systems.
-                That's why we specialize in delivering customized solutions
-                designed to align seamlessly with your goals. Whether you're at
-                the beginning of your AI journey or looking to refine existing
-                systems, we're here to help. Our services range from sourcing
-                top AI talent to conducting over 5000+ training sessions,
-                ensuring that your models are not only innovative but also
-                tailored to real-world demands.
+                At Frostrek AI, we believe that every organization has unique needs when it comes to building, deploying, and scaling intelligent systems. That’s why we specialize in delivering customized AI and software solutions designed to align seamlessly with your business goals. Whether you are at the beginning of your AI journey or looking to enhance and operationalize existing systems, we partner with you end to end.
+                Our services span AI model training, data workflows, agentic AI systems, and full-stack application development.
               </p>
               <p className="text-lg text-slate-300/80 leading-relaxed text-center">
-                With a focus on Reinforcement Learning from Human Feedback
-                (RLHF), we bring human expertise into AI training, empowering
-                your systems to perform efficiently while staying adaptable in a
-                rapidly changing landscape. Let us help you harness the power of
-                AI to drive measurable success and bring your vision to life.
-                Explore our services to see how we can transform your ideas into
-                exceptional outcomes.
+                From sourcing top AI talent and conducting 5,000+ training and evaluation sessions to building production-ready platforms, AI agents, and workflow automation, we ensure your solutions are not only innovative but also practical and scalable.
+                With deep expertise in Reinforcement Learning from Human Feedback (RLHF) and strong engineering capabilities, we bring human insight and robust development together. This enables organizations to deploy reliable AI systems, integrate them into real-world operations, and adapt confidently in a rapidly evolving landscape. Explore our services to see how Frostrek AI can transform your ideas into intelligent, measurable outcomes.
               </p>
             </div>
           </SlideIn>
