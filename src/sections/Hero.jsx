@@ -190,7 +190,7 @@ const HeroAboutPage = () => {
             </motion.p>
 
             <motion.div
-              className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
+              className="mt-44 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
