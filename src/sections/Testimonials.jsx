@@ -27,7 +27,7 @@ const testimonials = [
     role: "Quality Lead, frostrek LLP",
     feedback:
       "Working with Frostrek on our medical AI application was transformative. Their expertise in healthcare compliance combined with cutting-edge AI made our product launch a success.",
-    avatar: "https://i.pravatar.cc/100?img=47",
+    avatar: "https://i.pravatar.cc/100?img=42",
     rating: 5,
     category: "Startup"
   },
