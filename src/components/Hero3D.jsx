@@ -24,7 +24,7 @@ export default function Hero3D() {
     return () => clearTimeout(timer);
   }, []);
   return (
-    <div className="relative w-full h-[500px] md:h-[600px]">
+    <div className="relative w-full h-[350px] md:h-[500px]">
       {showBubble && (
       <motion.div
         drag
@@ -48,7 +48,7 @@ export default function Hero3D() {
           text-slate-200
           shadow-[0_12px_32px_rgba(0,255,255,0.18)]
         "
-        style={{ top: isMobile ? '-15%' : '-3%' }}
+        style={{ top: isMobile ? '-25%' : '-3%' }}
       >
         <span
           className="
@@ -83,7 +83,7 @@ export default function Hero3D() {
       <Canvas 
         camera={{ position: [2, 1.8, 3], fov: 40 }} 
         dpr={[1, 1.5]}
-        style={{ touchAction: 'pan-y' }}
+        style={{ touchAction: 'pan-y', pointerEvents: isMobile ? 'none' : 'auto'}}
       >
         <ambientLight intensity={0.6} />
         <directionalLight position={[5, 5, 5]} intensity={1.5} />
@@ -101,11 +101,12 @@ export default function Hero3D() {
           </EffectComposer>
         </Suspense>
 
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false} 
-          enableRotate={!isMobile}
-        />
+        {!isMobile && (
+          <OrbitControls 
+            enableZoom={false} 
+            enablePan={false} 
+          />
+        )}
       </Canvas>
     </div>
   );
