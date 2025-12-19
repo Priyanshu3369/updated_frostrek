@@ -1,66 +1,79 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { motion, useInView, useSpring } from 'framer-motion';
-import { ArrowRight, User, Mail, Phone, Building, MessageSquare, Briefcase, Globe, Send, Sparkles, CheckCircle } from 'lucide-react';
+import React, { useRef, useEffect, useState } from "react";
+import { motion, useInView, useSpring } from "framer-motion";
+import {
+  ArrowRight,
+  User,
+  Mail,
+  Phone,
+  Building,
+  MessageSquare,
+  Briefcase,
+  Globe,
+  Send,
+  Sparkles,
+  CheckCircle,
+} from "lucide-react";
 
 const FloatingGrid = () => {
   const canvasRef = useRef(null);
-  
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
+
+    const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    
+
     const gridSize = 60;
     const perspective = 600;
     let rotationY = 0;
     let rotationX = 0.3;
-    
+
     const drawGrid = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.save();
       ctx.translate(canvas.width / 2, canvas.height / 2);
-      
+
       rotationY += 0.002;
-      
+
       for (let x = -5; x <= 5; x++) {
         for (let z = -5; z <= 5; z++) {
           const x3d = x * gridSize;
           const z3d = z * gridSize;
           const y3d = Math.sin(x * 0.3 + z * 0.3 + rotationY * 2) * 20;
-          
+
           const cosY = Math.cos(rotationY);
           const sinY = Math.sin(rotationY);
           const cosX = Math.cos(rotationX);
           const sinX = Math.sin(rotationX);
-          
+
           const x1 = x3d * cosY - z3d * sinY;
           const z1 = x3d * sinY + z3d * cosY;
           const y1 = y3d * cosX - z1 * sinX;
           const z2 = y3d * sinX + z1 * cosX;
-          
+
           const scale = perspective / (perspective + z2);
           const x2d = x1 * scale;
           const y2d = y1 * scale;
-          
+
           const opacity = Math.max(0, Math.min(1, (z2 + 300) / 600)) * 0.15;
-          
+
           ctx.fillStyle = `rgba(6, 182, 212, ${opacity})`;
           ctx.beginPath();
           ctx.arc(x2d, y2d, 2 * scale, 0, Math.PI * 2);
           ctx.fill();
-          
+
           if (x < 5) {
             const nextX3d = (x + 1) * gridSize;
             const nextX1 = nextX3d * cosY - z3d * sinY;
             const nextZ1 = nextX3d * sinY + z3d * cosY;
-            const nextY3d = Math.sin((x + 1) * 0.3 + z * 0.3 + rotationY * 2) * 20;
+            const nextY3d =
+              Math.sin((x + 1) * 0.3 + z * 0.3 + rotationY * 2) * 20;
             const nextY1 = nextY3d * cosX - nextZ1 * sinX;
             const nextZ2 = nextY3d * sinX + nextZ1 * cosX;
             const nextScale = perspective / (perspective + nextZ2);
-            
+
             ctx.strokeStyle = `rgba(6, 182, 212, ${opacity * 0.5})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
@@ -70,26 +83,32 @@ const FloatingGrid = () => {
           }
         }
       }
-      
+
       ctx.restore();
       requestAnimationFrame(drawGrid);
     };
-    
+
     drawGrid();
-    
+
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-    
-    window.addEventListener('resize', handleResize);
-    
+
+    window.addEventListener("resize", handleResize);
+
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
-  
-  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none opacity-40" style={{ mixBlendMode: 'screen' }} />;
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 pointer-events-none opacity-40"
+      style={{ mixBlendMode: "screen" }}
+    />
+  );
 };
 
 const FloatingParticles = () => {
@@ -118,9 +137,18 @@ const FloatingParticles = () => {
   );
 };
 
-const FormInput = ({ icon: Icon, label, type = "text", name, value, onChange, required = true, error }) => {
+const FormInput = ({
+  icon: Icon,
+  label,
+  type = "text",
+  name,
+  value,
+  onChange,
+  required = true,
+  error,
+}) => {
   const [isFocused, setIsFocused] = useState(false);
-  
+
   return (
     <motion.div
       className="relative"
@@ -135,9 +163,9 @@ const FormInput = ({ icon: Icon, label, type = "text", name, value, onChange, re
       <div className="relative">
         <motion.div
           className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
-          animate={{ 
+          animate={{
             color: isFocused ? "rgb(34, 211, 238)" : "rgb(148, 163, 184)",
-            scale: isFocused ? 1.1 : 1
+            scale: isFocused ? 1.1 : 1,
           }}
           transition={{ duration: 0.2 }}
         >
@@ -169,9 +197,17 @@ const FormInput = ({ icon: Icon, label, type = "text", name, value, onChange, re
   );
 };
 
-const FormTextarea = ({ icon: Icon, label, name, value, onChange, required = true, error }) => {
+const FormTextarea = ({
+  icon: Icon,
+  label,
+  name,
+  value,
+  onChange,
+  required = true,
+  error,
+}) => {
   const [isFocused, setIsFocused] = useState(false);
-  
+
   return (
     <motion.div
       className="relative"
@@ -186,9 +222,9 @@ const FormTextarea = ({ icon: Icon, label, name, value, onChange, required = tru
       <div className="relative">
         <motion.div
           className="absolute left-4 top-4 text-slate-400"
-          animate={{ 
+          animate={{
             color: isFocused ? "rgb(34, 211, 238)" : "rgb(148, 163, 184)",
-            scale: isFocused ? 1.1 : 1
+            scale: isFocused ? 1.1 : 1,
           }}
           transition={{ duration: 0.2 }}
         >
@@ -220,9 +256,18 @@ const FormTextarea = ({ icon: Icon, label, name, value, onChange, required = tru
   );
 };
 
-const FormSelect = ({ icon: Icon, label, name, value, onChange, options, required = true, error }) => {
+const FormSelect = ({
+  icon: Icon,
+  label,
+  name,
+  value,
+  onChange,
+  options,
+  required = true,
+  error,
+}) => {
   const [isFocused, setIsFocused] = useState(false);
-  
+
   return (
     <motion.div
       className="relative"
@@ -237,9 +282,9 @@ const FormSelect = ({ icon: Icon, label, name, value, onChange, options, require
       <div className="relative">
         <motion.div
           className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none z-10"
-          animate={{ 
+          animate={{
             color: isFocused ? "rgb(34, 211, 238)" : "rgb(148, 163, 184)",
-            scale: isFocused ? 1.1 : 1
+            scale: isFocused ? 1.1 : 1,
           }}
           transition={{ duration: 0.2 }}
         >
@@ -255,9 +300,15 @@ const FormSelect = ({ icon: Icon, label, name, value, onChange, options, require
           required={required}
           whileFocus={{ scale: 1.01 }}
         >
-          <option value="" className="bg-[#0B0B0E] text-slate-400">Select an option</option>
+          <option value="" className="bg-[#0B0B0E] text-slate-400">
+            Select an option
+          </option>
           {options.map((option, index) => (
-            <option key={index} value={option} className="bg-[#0B0B0E] text-slate-100">
+            <option
+              key={index}
+              value={option}
+              className="bg-[#0B0B0E] text-slate-100"
+            >
               {option}
             </option>
           ))}
@@ -278,72 +329,73 @@ const FormSelect = ({ icon: Icon, label, name, value, onChange, options, require
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    company: '',
-    website: '',
-    service: '',
-    budget: '',
-    message: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    company: "",
+    website: "",
+    service: "",
+    budget: "",
+    message: "",
   });
-  
+
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
-    if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
-    if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
+
+    if (!formData.firstName.trim())
+      newErrors.firstName = "First name is required";
+    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = "Email is invalid";
     }
-    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
-    if (!formData.service) newErrors.service = 'Please select a service';
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
-    
+    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
+    if (!formData.service) newErrors.service = "Please select a service";
+    if (!formData.message.trim()) newErrors.message = "Message is required";
+
     return newErrors;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = validateForm();
-    
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        company: '',
-        website: '',
-        service: '',
-        budget: '',
-        message: ''
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        company: "",
+        website: "",
+        service: "",
+        budget: "",
+        message: "",
       });
-      
+
       setTimeout(() => {
         setIsSubmitted(false);
       }, 5000);
@@ -351,39 +403,39 @@ const ContactForm = () => {
   };
 
   const services = [
-    'AI Talent Sourcing',
-    'AI Model Training',
-    'Custom AI Development',
-    'Data Annotation',
-    'Data Labeling',
-    'Model Evaluation',
-    'Other'
+    "AI Talent Sourcing",
+    "AI Model Training",
+    "Custom AI Development",
+    "Data Annotation",
+    "Data Labeling",
+    "Model Evaluation",
+    "Other",
   ];
 
   const budgets = [
-    'Less than $10,000',
-    '$10,000 - $50,000',
-    '$50,000 - $100,000',
-    'More than $100,000',
-    'Not Sure'
+    "Less than $10,000",
+    "$10,000 - $50,000",
+    "$50,000 - $100,000",
+    "More than $100,000",
+    "Not Sure",
   ];
 
   return (
     <div className="bg-[#0B0B0E] text-[#F8FAFC] min-h-screen overflow-hidden">
       <FloatingGrid />
       <FloatingParticles />
-      
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,255,255,0.16),transparent_55%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(109,40,217,0.12),transparent_60%)]" />
-        
+
         <div className="absolute inset-0 opacity-[0.18]">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(26,187,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(125,95,255,0.08)_1px,transparent_1px)] bg-[size:80px_80px]" />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -405,7 +457,7 @@ const ContactForm = () => {
               contact us
             </motion.div>
 
-            <motion.h1 
+            <motion.h1
               className="text-4xl md:text-6xl font-semibold mb-6 leading-tight"
               initial={{ opacity: 0, y: 30, rotateX: -15 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -423,7 +475,8 @@ const ContactForm = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              Ready to transform your AI initiatives? Fill out the form below and our team will get back to you within 24 hours.
+              Ready to transform your AI initiatives? Fill out the form below
+              and our team will get back to you within 24 hours.
             </motion.p>
           </motion.div>
         </div>
@@ -448,13 +501,13 @@ const ContactForm = () => {
               >
                 <motion.div
                   className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-cyan-400 to-indigo-500 rounded-full mb-6"
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.1, 1],
-                    rotate: [0, 360]
+                    rotate: [0, 360],
                   }}
-                  transition={{ 
+                  transition={{
                     scale: { duration: 1.5, repeat: Infinity },
-                    rotate: { duration: 2, ease: "easeInOut" }
+                    rotate: { duration: 2, ease: "easeInOut" },
                   }}
                 >
                   <CheckCircle className="w-12 h-12 text-white" />
@@ -536,8 +589,7 @@ const ContactForm = () => {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"></div>
 
                 <div className="mb-8">
                   <FormTextarea
@@ -555,11 +607,15 @@ const ContactForm = () => {
                   onClick={handleSubmit}
                   disabled={isSubmitting}
                   className="group relative w-full flex items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-500 px-8 py-5 text-lg font-semibold text-[#06111F] shadow-[0_12px_30px_rgba(13,148,136,0.25)] disabled:opacity-50 disabled:cursor-not-allowed"
-                  whileHover={!isSubmitting ? { 
-                    scale: 1.02,
-                    y: -2,
-                    boxShadow: "0 20px 40px rgba(13,148,136,0.4)"
-                  } : {}}
+                  whileHover={
+                    !isSubmitting
+                      ? {
+                          scale: 1.02,
+                          y: -2,
+                          boxShadow: "0 20px 40px rgba(13,148,136,0.4)",
+                        }
+                      : {}
+                  }
                   whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >
                   <span className="relative z-10 flex items-center gap-2">
@@ -567,7 +623,11 @@ const ContactForm = () => {
                       <>
                         <motion.div
                           animate={{ rotate: 360 }}
-                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
                         >
                           <Sparkles className="w-5 h-5" />
                         </motion.div>
@@ -596,7 +656,8 @@ const ContactForm = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1 }}
                 >
-                  By submitting this form, you agree to our privacy policy and terms of service.
+                  By submitting this form, you agree to our privacy policy and
+                  terms of service.
                 </motion.p>
               </div>
             )}
@@ -609,9 +670,24 @@ const ContactForm = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: Mail, title: "Email Us", info: "info@frostrek.com", delay: 0 },
-              { icon: Phone, title: "Call Us", info: "+1 (555) 123-4567", delay: 0.2 },
-              { icon: Building, title: "Visit Us", info: "San Francisco, CA", delay: 0.4 }
+              {
+                icon: Mail,
+                title: "Email Us",
+                info: "info@frostrek.com",
+                delay: 0,
+              },
+              {
+                icon: Phone,
+                title: "WhatsApp (US)",
+                info: "+1 757 472 2491",
+                delay: 0.2,
+              },
+              {
+                icon: Building,
+                title: "India Office",
+                info: "422, Suncity Success Tower, Golf Course Ext. Road, Sector - 65, Gurugram, Haryana, 122002",
+                delay: 0.4,
+              },
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -620,7 +696,7 @@ const ContactForm = () => {
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: item.delay, duration: 0.6 }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.05,
                   y: -5,
                   borderColor: "rgba(6, 182, 212, 0.3)",
@@ -635,8 +711,60 @@ const ContactForm = () => {
                 >
                   <item.icon className="w-8 h-8 text-cyan-400" />
                 </motion.div>
-                <h3 className="text-xl font-semibold text-slate-50 mb-2">{item.title}</h3>
-                <p className="text-slate-300/80">{item.info}</p>
+                <h3 className="text-xl font-semibold text-slate-50 mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-slate-300/80 text-sm leading-relaxed">
+                  {item.info}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Additional offices row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-5xl mx-auto">
+            {[
+              {
+                icon: Building,
+                title: "USA Office",
+                info: "701 Tillery Street Unit 12-3227, Austin, Texas 78702, United States",
+                delay: 0.6,
+              },
+              {
+                icon: Building,
+                title: "UK Office",
+                info: "24-26 Arcadia Avenue, Fin009/8701, London, United Kingdom, N3 2JU",
+                delay: 0.8,
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="group p-8 bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 text-center transition-all duration-300"
+                initial={{ opacity: 0, y: 50, rotateX: -10 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: item.delay, duration: 0.6 }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -5,
+                  borderColor: "rgba(6, 182, 212, 0.3)",
+                  backgroundColor: "rgba(6, 182, 212, 0.05)",
+                }}
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <motion.div
+                  className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-400/20 to-indigo-500/20 rounded-full mb-4"
+                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <item.icon className="w-8 h-8 text-cyan-400" />
+                </motion.div>
+                <h3 className="text-xl font-semibold text-slate-50 mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-slate-300/80 text-sm leading-relaxed">
+                  {item.info}
+                </p>
               </motion.div>
             ))}
           </div>
