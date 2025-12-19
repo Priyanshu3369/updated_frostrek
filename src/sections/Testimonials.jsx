@@ -4,37 +4,32 @@ import { Star, MessageCircle, TrendingUp, Users, Award } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Ananya Sharma",
-    role: "CTO, DataNova Tech",
+    name: "Ritika Jain",
+    role: "Team Lead, frostrek LLP",
     feedback:
-      "Frostrek transformed our automation workflow with intelligent AI solutions. Their precision and professionalism are unmatched. The implementation was seamless and the support throughout has been exceptional.",
+      "Frostrek gave me platform where I received an exposure and have learned a lot about professional, work flows, and got an opportunity to work closure to understand the post training methods and how an AI model works.",
     avatar: "https://i.pravatar.cc/100?img=47",
     rating: 5,
-    category: "Enterprise",
-    impact: "+45% efficiency",
-    timeline: "3 months"
+    category: "Startup",
+
   },
   {
-    name: "Rahul Verma",
-    role: "Founder, CloudEdge Systems",
+    name: "Yash G",
+    role: "Manager, frostrek LLP",
     feedback:
       "Their team delivered an AI-driven analytics tool that completely changed how we interpret our business data. Highly recommended! The ROI exceeded our expectations within the first quarter.",
     avatar: "https://i.pravatar.cc/100?img=12",
     rating: 5,
-    category: "Startup",
-    impact: "+120% data insight",
-    timeline: "2 months"
+    category: "Startup"
   },
   {
-    name: "Isabella Rodriguez",
-    role: "Director, HealthTech Solutions",
+    name: "Sharadha Gujjar",
+    role: "Quality Lead, frostrek LLP",
     feedback:
       "Working with Frostrek on our medical AI application was transformative. Their expertise in healthcare compliance combined with cutting-edge AI made our product launch a success.",
-    avatar: "https://i.pravatar.cc/100?img=67",
+    avatar: "https://i.pravatar.cc/100?img=47",
     rating: 5,
-    category: "Healthcare",
-    impact: "+120% data insight",
-    timeline: "6 months"
+    category: "Startup"
   },
 ];
 
@@ -349,18 +344,6 @@ const TestimonialCard = ({ testimonial, index }) => {
           >
             "
           </motion.div>
-        </div>
-
-        {/* Impact Stats */}
-        <div className="relative z-10 grid grid-cols-2 gap-3 mb-6 p-4 rounded-xl bg-cyan-500/5 border border-cyan-400/20">
-          <div>
-            <p className="text-xs text-slate-400 mb-1">Impact</p>
-            <p className="text-sm font-bold text-cyan-400">{testimonial.impact}</p>
-          </div>
-          <div>
-            <p className="text-xs text-slate-400 mb-1">Timeline</p>
-            <p className="text-sm font-bold text-purple-400">{testimonial.timeline}</p>
-          </div>
         </div>
 
         {/* Tech Lines */}
