@@ -5,26 +5,6 @@ import { useMemo } from "react";
 import { Sparkles, Play, ArrowUpRight } from "lucide-react";
 import usePerformanceMode from "../hooks/usePerformanceMode";
 
-// const floatingBeacons = [
-//   {
-//     title: "Neural Mesh",
-//     subtitle: "Self-healing data fabric",
-//     position: "top-[10%] left-[8%]",
-//     delay: 0.2,
-//   },
-//   {
-//     title: "Latency < 32ms",
-//     subtitle: "Realtime decisions",
-//     position: "bottom-[16%] left-[18%]",
-//     delay: 0.5,
-//   },
-//   {
-//     title: "Autonomous Ops",
-//     subtitle: "Smart escalation layer",
-//     position: "top-[14%] right-[15%]",
-//     delay: 0.8,
-//   },
-// ];
 
 const aboutStats = [
   { label: "AI Models", value: "50+" },
@@ -98,12 +78,14 @@ const HeroAboutPage = () => {
   }, [isSmallScreen, performanceMode]);
 
   const paragraph1 =
-    "frostrek is a forward-thinking AI company dedicated to empowering businesses through advanced automation, data-driven strategies, and intelligent system design.";
-  const paragraph2 =
-    "We bridge innovation with practical impact to help industries thrive in the digital age. With a deep focus on research, machine learning, and scalable solutions, our mission is to redefine how organizations leverage AI to create value, efficiency, and sustainability.";
+  "Frostrek is a forward-thinking AI company dedicated to empowering businesses through advanced automation, data-driven strategies, and intelligent system design.";
 
-  const words1 = paragraph1.split(" ");
-  const words2 = paragraph2.split(" ");
+const paragraph2 =
+  "We bridge innovation with practical impact to help industries thrive in the digital age. With a deep focus on research, machine learning, and scalable solutions, our mission is to redefine how organizations leverage AI to create value, efficiency, and sustainability.";
+
+const words1 = paragraph1.split(" ");
+const words2 = paragraph2.split(" ");
+
 
   return (
     <div className="w-full overflow-x-hidden">
@@ -203,48 +185,8 @@ const HeroAboutPage = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.25, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* <div className="absolute -left-24 top-1/4 hidden h-32 w-32 rounded-full bg-cyan-400/20 blur-3xl lg:block" />
-            <div className="absolute -right-32 bottom-16 hidden h-40 w-40 rounded-full bg-indigo-500/20 blur-3xl lg:block" /> */}
-
             <div className="relative w-full h-[500px] flex items-center justify-between cursor-grab">
-              {/* <TechGlobe enablePointer={!performanceMode} /> */}
-              {/* <img src="hello.png" alt="Hero section image" srcset="" /> */}
-              {/* <Spline scene="https://prod.spline.design/c4KMFYA6qRtkstxt/scene.splinecode" 
-              className="absolute inset-0 w-full h-full pl-16"/> */}
-
-              {/* <div className="tech-globe-overlay pointer-events-none">
-                <div className="tech-globe-grid" />
-              </div> */}
               <Hero3D />
-              {/* {!performanceMode && (
-                <motion.div
-                  className="pointer-events-none absolute inset-0"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.8 }}
-                  transition={{ delay: 0.3, duration: 1 }}
-                >
-                  {floatingBeacons.map((beacon) => (
-                    <motion.div
-                      key={beacon.title}
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.9 + beacon.delay, duration: 0.6 }}
-                      className={`absolute ${beacon.position} w-48 rounded-2xl border border-cyan-400/20 bg-[#06060C]/80 p-4 text-xs font-medium text-slate-200 shadow-[0_18px_32px_rgba(8,47,73,0.35)] backdrop-blur-lg`}
-                    >
-                      <div className="text-sm font-semibold text-cyan-200">
-                        {beacon.title}
-                      </div>
-                      <div className="mt-1 text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">
-                        {beacon.subtitle}
-                      </div>
-                      <div className="mt-3 flex items-center gap-2 text-[11px] font-medium text-slate-400/70">
-                        <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.6)]" />
-                        Systems Nominal
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              )} */}
             </div>
           </motion.div>
         </div>

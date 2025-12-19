@@ -537,24 +537,6 @@ const ContactForm = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <FormSelect
-                    icon={Briefcase}
-                    label="Service Interested In"
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    options={services}
-                    error={errors.service}
-                  />
-                  <FormSelect
-                    icon={Briefcase}
-                    label="Budget Range"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
-                    options={budgets}
-                    required={false}
-                  />
                 </div>
 
                 <div className="mb-8">
@@ -627,7 +609,7 @@ const ContactForm = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: Mail, title: "Email Us", info: "contact@frostrekai.com", delay: 0 },
+              { icon: Mail, title: "Email Us", info: "info@frostrek.com", delay: 0 },
               { icon: Phone, title: "Call Us", info: "+1 (555) 123-4567", delay: 0.2 },
               { icon: Building, title: "Visit Us", info: "San Francisco, CA", delay: 0.4 }
             ].map((item, index) => (

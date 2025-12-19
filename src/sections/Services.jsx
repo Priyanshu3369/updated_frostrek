@@ -1,40 +1,42 @@
 import { motion } from "framer-motion";
-import { Brain, Code, Cpu, LineChart, ArrowRight } from "lucide-react";
+import { Bot, Brain, Code, Cpu, LineChart, ArrowRight } from "lucide-react";
 
 const services = [
   {
-    title: "AI Automation",
+    title: "AI Talent Acquisition & Deployment",
     description:
-      "Streamline operations with intelligent workflows that remove manual busywork and scale effortlessly.",
+      "Identify and place experienced AI professionals who align precisely with your project goals, technical needs, and delivery schedules.",
     icon: Cpu,
     color: "from-cyan-500 to-blue-500",
-    glowColor: "rgba(6, 182, 212, 0.4)"
+    glowColor: "rgba(6, 182, 212, 0.4)",
   },
   {
-    title: "Data Analytics",
+    title: "AI Model Training & Performance Optimization",
     description:
-      "Transform raw data into clear signals using modern analytics pipelines and actionable dashboards.",
+      "Improve AI model outcomes through expert-led training, fine-tuning, and real-world validation for consistent accuracy and impact.",
     icon: LineChart,
     color: "from-purple-500 to-pink-500",
-    glowColor: "rgba(168, 85, 247, 0.4)"
+    glowColor: "rgba(168, 85, 247, 0.4)",
   },
   {
-    title: "Custom AI Solutions",
+    title: "Tailored AI Development Solutions",
     description:
-      "Design bespoke machine learning models that reflect your business logic and compliance needs.",
+      "Create custom-built AI systems designed to solve complex business problems with scalable, dependable, and efficient architectures.",
     icon: Brain,
     color: "from-indigo-500 to-cyan-500",
-    glowColor: "rgba(99, 102, 241, 0.4)"
+    glowColor: "rgba(99, 102, 241, 0.4)",
   },
   {
-    title: "AI Integration",
+    title: "AI Agents & Autonomous Systems",
     description:
-      "Embed AI safely into existing products with reliable deployment, monitoring, and iteration loops.",
-    icon: Code,
+      "Build intelligent AI agents capable of independent reasoning, decision-making, and task execution across operational workflows.",
+    icon: Bot,
     color: "from-teal-500 to-green-500",
-    glowColor: "rgba(20, 184, 166, 0.4)"
+    glowColor: "rgba(20, 184, 166, 0.4)",
   },
 ];
+
+
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.9 },
