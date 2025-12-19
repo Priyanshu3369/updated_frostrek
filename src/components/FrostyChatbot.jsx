@@ -24,7 +24,7 @@ const faqData = [
   },
   {
     question: "What technologies do you work with?",
-    answer: "We work with modern tech stacks including React, Next.js, Node.js, Python, AI/ML frameworks, Cloud platforms (AWS, Azure, GCP), and more. We choose the best technology based on your project requirements and scalability needs."
+    answer: "We work with modern tech stacks including React, Next.js, Node.js, Python, AI/ML frameworks, Post training of Models, LLM's, Cloud platforms (AWS, Azure, GCP), and more. We choose the best technology based on your project requirements and scalability needs."
   }
 ];
 
