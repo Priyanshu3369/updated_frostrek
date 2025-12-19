@@ -34,6 +34,22 @@ const services = [
     color: "from-teal-500 to-green-500",
     glowColor: "rgba(20, 184, 166, 0.4)",
   },
+  {
+    title: "AI-Powered Application & Platform Development",
+    description:
+      "Build production-ready web and mobile applications, internal tools, dashboards, and platforms that seamlessly embed AI into everyday business operations.",
+    icon: Bot,
+    color: "from-orange-500 to-amber-500",
+    glowColor: "rgba(251, 146, 60, 0.4)",
+  },
+  {
+    title: "Organizational Workflow Automation & Integration",
+    description:
+      "Integrate AI into organizational processes to automate workflows, enhance efficiency, and enable seamless coordination across systems and teams.",
+    icon: Brain,
+    color: "from-emerald-500 to-lime-500",
+    glowColor: "rgba(16, 185, 129, 0.4)",
+  },
 ];
 
 
