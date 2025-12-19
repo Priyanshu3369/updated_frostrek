@@ -78,13 +78,13 @@ const HeroAboutPage = () => {
   }, [isSmallScreen, performanceMode]);
 
   const paragraph1 =
-  "Frostrek is a forward-thinking AI company dedicated to empowering businesses through advanced automation, data-driven strategies, and intelligent system design.";
+    "Frostrek is a forward-thinking AI company dedicated to empowering businesses through advanced automation, data-driven strategies, and intelligent system design.";
 
-const paragraph2 =
-  "We bridge innovation with practical impact to help industries thrive in the digital age. With a deep focus on research, machine learning, and scalable solutions, our mission is to redefine how organizations leverage AI to create value, efficiency, and sustainability.";
+  const paragraph2 =
+    "We bridge innovation with real-world impact by building AI systems, agentic workflows, and scalable software that help organizations operate smarter and faster. With a strong focus on AI training, machine learning, and human-in-the-loop expertise, our mission is to redefine how businesses leverage AI to create lasting value, efficiency, and sustainable growth.";
 
-const words1 = paragraph1.split(" ");
-const words2 = paragraph2.split(" ");
+  const words1 = paragraph1.split(" ");
+  const words2 = paragraph2.split(" ");
 
 
   return (
@@ -165,10 +165,7 @@ const words2 = paragraph2.split(" ");
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.8 }}
             >
-              Frostrek orchestrates data, decisions, and human oversight into a
-              single cognitive stack. Deploy bespoke copilots, automation
-              agents, and predictive intelligence with enterprise reliability
-              and precise guardrails.
+              Frostrek builds AI systems, agentic workflows, and scalable software, backed by AI training and human-in-the-loop expertise, that turn data into decisions and automation into outcomes.
             </motion.p>
 
             <motion.div
@@ -371,9 +368,8 @@ const words2 = paragraph2.split(" ");
                 style={{
                   left: `${20 + i * 15}%`,
                   top: `${20 + i * 10}%`,
-                  background: `radial-gradient(circle, ${
-                    ["cyan", "purple", "indigo", "teal", "pink"][i]
-                  }-400 0%, transparent 70%)`,
+                  background: `radial-gradient(circle, ${["cyan", "purple", "indigo", "teal", "pink"][i]
+                    }-400 0%, transparent 70%)`,
                   filter: "blur(20px)",
                   animationDelay: `${i * 0.8}s`,
                   animationDuration: `${15 + i * 3}s`,
