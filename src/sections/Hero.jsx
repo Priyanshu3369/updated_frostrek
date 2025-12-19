@@ -165,10 +165,7 @@ const words2 = paragraph2.split(" ");
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.8 }}
             >
-              Frostrek orchestrates data, decisions, and human oversight into a
-              single cognitive stack. Deploy bespoke copilots, automation
-              agents, and predictive intelligence with enterprise reliability
-              and precise guardrails.
+              Frostrek builds AI systems, agentic workflows, and scalable software, backed by AI training and human-in-the-loop expertise, that turn data into decisions and automation into outcomes.
             </motion.p>
 
             <motion.div
