@@ -8,6 +8,14 @@ const RobotModel = lazy(() => import("./RobotModel"));
 
 export default function Hero3D() {
   const [showBubble, setShowBubble] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -24,9 +32,12 @@ export default function Hero3D() {
         className="
           absolute
           top-[-3%]
-          right-[-10%]   
+          md:top-[-3%]
+          right-[5%]
+          md:right-[-10%]
           z-20
-          max-w-[270px]
+          max-w-[220px]
+          md:max-w-[270px]
           cursor-grab
           rounded-xl
           bg-[#06060C]/80
@@ -37,6 +48,7 @@ export default function Hero3D() {
           text-slate-200
           shadow-[0_12px_32px_rgba(0,255,255,0.18)]
         "
+        style={{ top: isMobile ? '-15%' : '-3%' }}
       >
         <span
           className="
@@ -68,7 +80,11 @@ export default function Hero3D() {
       </motion.div>
       )}
 
-      <Canvas camera={{ position: [2, 1.8, 3], fov: 40 }} dpr={[1, 1.5]}>
+      <Canvas 
+        camera={{ position: [2, 1.8, 3], fov: 40 }} 
+        dpr={[1, 1.5]}
+        style={{ touchAction: 'pan-y' }}
+      >
         <ambientLight intensity={0.6} />
         <directionalLight position={[5, 5, 5]} intensity={1.5} />
 
@@ -85,7 +101,11 @@ export default function Hero3D() {
           </EffectComposer>
         </Suspense>
 
-        <OrbitControls enableZoom={false} enablePan={false} />
+        <OrbitControls 
+          enableZoom={false} 
+          enablePan={false} 
+          enableRotate={!isMobile}
+        />
       </Canvas>
     </div>
   );
