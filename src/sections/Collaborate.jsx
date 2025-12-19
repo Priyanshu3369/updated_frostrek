@@ -1,3 +1,4 @@
+import emailjs from "emailjs-com";
 import { useState, useRef, useEffect } from "react";
 import { Mail, MessageSquare, Phone, Send, CheckCircle2, AlertCircle, Zap, Shield, Cpu } from "lucide-react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
@@ -251,25 +252,43 @@ const Collaborate = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const errors = validateForm();
+  event.preventDefault();
+  const errors = validateForm();
 
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
+  if (Object.keys(errors).length > 0) {
+    setFormErrors(errors);
+    return;
+  }
 
-    setLoading(true);
-    setFormErrors({});
+  setLoading(true);
+  setFormErrors({});
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+  const templateParams = {
+    from_name: formData.name,
+    from_email: formData.email,
+    company: formData.company || "N/A",
+    message: formData.message,
+  };
+
+  try {
+    await emailjs.send(
+      "service_vau3fva",
+      "template_1bg6qob",
+      templateParams,
+      "yVNB9iZBs_EfVfoY7"
+    );
 
     setStatus("submitted");
     setFormData({ name: "", email: "", company: "", message: "" });
+  } catch (error) {
+    console.error("Email send failed:", error);
+    alert("Failed to send message. Please try again.");
+  } finally {
     setLoading(false);
-
     setTimeout(() => setStatus("idle"), 5000);
-  };
+  }
+};
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

@@ -1,17 +1,17 @@
+
 import React, { useRef, useEffect, useState } from "react";
-import { motion, useInView, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  ArrowRight,
   User,
   Mail,
   Phone,
   Building,
   MessageSquare,
-  Briefcase,
   Globe,
   Send,
   Sparkles,
   CheckCircle,
+  AlertCircle,
 } from "lucide-react";
 
 const FloatingGrid = () => {
@@ -256,93 +256,25 @@ const FormTextarea = ({
   );
 };
 
-const FormSelect = ({
-  icon: Icon,
-  label,
-  name,
-  value,
-  onChange,
-  options,
-  required = true,
-  error,
-}) => {
-  const [isFocused, setIsFocused] = useState(false);
-
-  return (
-    <motion.div
-      className="relative"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-    >
-      <label className="block text-sm font-medium text-slate-300 mb-2">
-        {label} {required && <span className="text-cyan-400">*</span>}
-      </label>
-      <div className="relative">
-        <motion.div
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none z-10"
-          animate={{
-            color: isFocused ? "rgb(34, 211, 238)" : "rgb(148, 163, 184)",
-            scale: isFocused ? 1.1 : 1,
-          }}
-          transition={{ duration: 0.2 }}
-        >
-          <Icon className="w-5 h-5" />
-        </motion.div>
-        <motion.select
-          name={name}
-          value={value}
-          onChange={onChange}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          className="w-full pl-12 pr-4 py-4 bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-2xl text-slate-100 focus:outline-none focus:border-cyan-400/50 focus:bg-white/[0.06] transition-all duration-300 appearance-none cursor-pointer"
-          required={required}
-          whileFocus={{ scale: 1.01 }}
-        >
-          <option value="" className="bg-[#0B0B0E] text-slate-400">
-            Select an option
-          </option>
-          {options.map((option, index) => (
-            <option
-              key={index}
-              value={option}
-              className="bg-[#0B0B0E] text-slate-100"
-            >
-              {option}
-            </option>
-          ))}
-        </motion.select>
-        {error && (
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-red-400 text-sm mt-2"
-          >
-            {error}
-          </motion.p>
-        )}
-      </div>
-    </motion.div>
-  );
-};
-
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     phone: "",
     company: "",
     website: "",
-    service: "",
-    budget: "",
     message: "",
   });
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
+  const EMAILJS_SERVICE_ID = "service_jpnwy19";
+  const EMAILJS_TEMPLATE_ID = "template_ikfra7o";
+  const EMAILJS_PUBLIC_KEY = "apFcBI5oOTyIcDQu4";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -350,28 +282,30 @@ const ContactForm = () => {
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
+    if (submitError) {
+      setSubmitError("");
+    }
   };
 
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.firstName.trim())
-      newErrors.firstName = "First name is required";
-    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
+    if (!formData.first_name.trim())
+      newErrors.first_name = "First name is required";
+    if (!formData.last_name.trim())
+      newErrors.last_name = "Last name is required";
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid";
     }
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
-    if (!formData.service) newErrors.service = "Please select a service";
     if (!formData.message.trim()) newErrors.message = "Message is required";
 
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     const newErrors = validateForm();
 
     if (Object.keys(newErrors).length > 0) {
@@ -380,45 +314,68 @@ const ContactForm = () => {
     }
 
     setIsSubmitting(true);
+    setSubmitError("");
 
-    setTimeout(() => {
+    try {
+      // Load EmailJS script dynamically
+      if (!window.emailjs) {
+        await new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+          script.onload = resolve;
+          script.onerror = reject;
+          document.head.appendChild(script);
+        });
+      }
+
+      // Initialize EmailJS
+      window.emailjs.init(EMAILJS_PUBLIC_KEY);
+
+      // Prepare template parameters matching your email template
+      const templateParams = {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company || "Not provided",
+        website: formData.website || "Not provided",
+        message: formData.message,
+        time: new Date().toLocaleString(),
+      };
+
+      // Send email
+      const response = await window.emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+
+      console.log("✅ Email sent successfully:", response);
+
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({
-        firstName: "",
-        lastName: "",
+        first_name: "",
+        last_name: "",
         email: "",
         phone: "",
         company: "",
         website: "",
-        service: "",
-        budget: "",
         message: "",
       });
 
+      // Reset success message after 5 seconds
       setTimeout(() => {
         setIsSubmitted(false);
       }, 5000);
-    }, 2000);
+    } catch (error) {
+      console.error("❌ Email send error:", error);
+      setIsSubmitting(false);
+      setSubmitError(
+        error.text || "Failed to send message. Please try again or contact us directly at info@frostrek.com"
+      );
+    }
   };
-
-  const services = [
-    "AI Talent Sourcing",
-    "AI Model Training",
-    "Custom AI Development",
-    "Data Annotation",
-    "Data Labeling",
-    "Model Evaluation",
-    "Other",
-  ];
-
-  const budgets = [
-    "Less than $10,000",
-    "$10,000 - $50,000",
-    "$50,000 - $100,000",
-    "More than $100,000",
-    "Not Sure",
-  ];
 
   return (
     <div className="bg-[#0B0B0E] text-[#F8FAFC] min-h-screen overflow-hidden">
@@ -482,6 +439,39 @@ const ContactForm = () => {
         </div>
       </section>
 
+      {/* Setup Instructions */}
+      {(EMAILJS_SERVICE_ID === "YOUR_SERVICE_ID_HERE" ||
+        EMAILJS_TEMPLATE_ID === "YOUR_TEMPLATE_ID_HERE" ||
+        EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY_HERE") && (
+        <section className="relative px-4 sm:px-6 lg:px-8 pb-8">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              className="bg-amber-500/10 backdrop-blur-xl rounded-2xl border border-amber-500/30 p-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <div className="flex gap-4">
+                <AlertCircle className="w-6 h-6 text-amber-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-lg font-semibold text-amber-300 mb-2">
+                    Setup Required
+                  </h3>
+                  <p className="text-slate-300 text-sm mb-3">
+                    To enable email sending, you need to configure EmailJS:
+                  </p>
+                  <ol className="text-slate-300 text-sm space-y-2 list-decimal list-inside">
+                    <li>Create a free account at <a href="https://emailjs.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">emailjs.com</a></li>
+                    <li>Create an email service (Gmail, Outlook, etc.)</li>
+                    <li>Create an email template with these variables: first_name, last_name, email, phone, company, website, message, time</li>
+                    <li>Replace the credentials in the code (lines 264-266) with your Service ID, Template ID, and Public Key</li>
+                  </ol>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
       {/* Form Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto relative z-10">
@@ -528,23 +518,34 @@ const ContactForm = () => {
                 </motion.button>
               </motion.div>
             ) : (
-              <div onSubmit={handleSubmit}>
+              <div>
+                {submitError && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm flex items-start gap-3"
+                  >
+                    <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <span>{submitError}</span>
+                  </motion.div>
+                )}
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <FormInput
                     icon={User}
                     label="First Name"
-                    name="firstName"
-                    value={formData.firstName}
+                    name="first_name"
+                    value={formData.first_name}
                     onChange={handleChange}
-                    error={errors.firstName}
+                    error={errors.first_name}
                   />
                   <FormInput
                     icon={User}
                     label="Last Name"
-                    name="lastName"
-                    value={formData.lastName}
+                    name="last_name"
+                    value={formData.last_name}
                     onChange={handleChange}
-                    error={errors.lastName}
+                    error={errors.last_name}
                   />
                 </div>
 
@@ -589,8 +590,6 @@ const ContactForm = () => {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"></div>
-
                 <div className="mb-8">
                   <FormTextarea
                     icon={MessageSquare}
@@ -603,7 +602,6 @@ const ContactForm = () => {
                 </div>
 
                 <motion.button
-                  type="button"
                   onClick={handleSubmit}
                   disabled={isSubmitting}
                   className="group relative w-full flex items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-500 px-8 py-5 text-lg font-semibold text-[#06111F] shadow-[0_12px_30px_rgba(13,148,136,0.25)] disabled:opacity-50 disabled:cursor-not-allowed"
@@ -720,7 +718,6 @@ const ContactForm = () => {
               </motion.div>
             ))}
           </div>
-
           {/* Additional offices row */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-5xl mx-auto">
             {[
