@@ -272,7 +272,7 @@ const Collaborate = () => {
       dateStyle: "medium",
       timeStyle: "short",
     }),
-  };
+  }
 
   try {
     await emailjs.send(
