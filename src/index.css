@@ -34,6 +34,24 @@ html.dark body {
   background: linear-gradient(180deg, #14B8A6, #00FFFF);
 }
 
+/* Chatbot scrollbar styles */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.3);
+  border-radius: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.5);
+}
+
 .font-Raleway {
   font-family: 'Raleway', sans-serif;
 }
