@@ -264,10 +264,14 @@ const Collaborate = () => {
   setFormErrors({});
 
   const templateParams = {
-    from_name: formData.name,
-    from_email: formData.email,
+    full_name: formData.name,
+    email: formData.email,
     company: formData.company || "N/A",
     message: formData.message,
+    time: new Date().toLocaleString("en-IN", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    }),
   };
 
   try {
@@ -288,6 +292,7 @@ const Collaborate = () => {
     setTimeout(() => setStatus("idle"), 5000);
   }
 };
+
 
 
   const handleInputChange = (e) => {
