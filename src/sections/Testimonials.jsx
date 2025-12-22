@@ -8,29 +8,30 @@ const testimonials = [
     role: "Team Lead, frostrek LLP",
     feedback:
       "Frostrek gave me platform where I received an exposure and have learned a lot about professional, work flows, and got an opportunity to work closure to understand the post training methods and how an AI model works.",
-    avatar: "https://i.pravatar.cc/100?img=47",
+    avatar: "ritikamam.jpg",
     rating: 5,
     category: "Startup",
 
   },
   {
-    name: "Yash G",
-    role: "Manager, frostrek LLP",
+    name: "Shradha",
+    role: "Quality Lead, frostrek LLP",
     feedback:
-      "Their team delivered an AI-driven analytics tool that completely changed how we interpret our business data. Highly recommended! The ROI exceeded our expectations within the first quarter.",
-    avatar: "https://i.pravatar.cc/100?img=12",
+      "Working with Frostrek on our medical AI application was a truly transformative experience. Their deep expertise in healthcare compliance, ensured that every aspect of the solution met industry standards while remaining highly innovative.",
+    avatar: "/shradhamam.jpg",
     rating: 5,
     category: "Startup"
   },
   {
-    name: "Sharadha Gujjar",
-    role: "Quality Lead, frostrek LLP",
+    name: "Yash Goyal",
+    role: "Manager, frostrek LLP",
     feedback:
-      "Working with Frostrek on our medical AI application was transformative. Their expertise in healthcare compliance combined with cutting-edge AI made our product launch a success.",
-    avatar: "https://i.pravatar.cc/100?img=42",
+      "Their team delivered an AI-driven analytics tool that completely changed how we interpret our business data. Highly recommended! The ROI exceeded our expectations within the first quarter.",
+    avatar: "yashsir.jpg",
     rating: 5,
     category: "Startup"
   },
+  
 ];
 
 const stats = [
