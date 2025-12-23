@@ -17,6 +17,7 @@ import ServicePage from "./pages/Services";
 import GetInTouch from "./pages/GetInTouch";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
+import LegalPage from "./pages/Legal";
 
 const Home = () => {
   return (
@@ -45,7 +46,8 @@ const App = () => {
         <Route path="/services" element={<ServicePage />} />
         <Route path="/faqs" element={<FAQPage />} />
         <Route path="/get-in-touch" element={<GetInTouch />} />
-        <Route path="*" element={<Home />} /> {/* ✅ always last */}
+        <Route path="/legal" element={<LegalPage />} />
+        <Route path="*" element={<Home />} />
       </Routes>
 
       <Footer />

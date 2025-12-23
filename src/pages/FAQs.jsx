@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion';
 import { ArrowRight, ChevronDown, Brain, Users, Sparkles, Zap, Target, Award, TrendingUp, Shield, CheckCircle } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 const FloatingGrid = () => {
   const canvasRef = useRef(null);
@@ -141,7 +142,7 @@ const Card3D = ({ children, className = "", delay = 0 }) => {
           background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(6,182,212,0.15), transparent 40%)`,
         }}
       />
-      
+
       <div style={{ transformStyle: "preserve-3d", transform: "translateZ(30px)" }}>
         {children}
       </div>
@@ -213,7 +214,7 @@ const FAQCard = ({ faq, index, isOpen, toggle, color = "cyan" }) => {
               transition={{ duration: 0.5 }}
             >
               <motion.span
-                animate={{ 
+                animate={{
                   textShadow: [
                     '0 0 5px rgba(255,255,255,0.5)',
                     '0 0 15px rgba(255,255,255,0.8)',
@@ -353,12 +354,12 @@ const FAQs = () => {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background Effects */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(6,182,212,0.18),transparent_60%)]"
           animate={{ scale: [1, 1.2, 1], opacity: [0.18, 0.25, 0.18] }}
           transition={{ duration: 8, repeat: Infinity }}
         />
-        <motion.div 
+        <motion.div
           className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_rgba(109,40,217,0.15),transparent_65%)]"
           animate={{ scale: [1, 1.3, 1] }}
           transition={{ duration: 10, repeat: Infinity }}
@@ -368,7 +369,7 @@ const FAQs = () => {
         <div className="absolute inset-0 opacity-[0.12]">
           <motion.div
             className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(109,40,217,0.1)_1px,transparent_1px)] bg-[size:60px_60px]"
-            animate={{ 
+            animate={{
               backgroundPosition: ['0px 0px', '60px 60px'],
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -387,7 +388,7 @@ const FAQs = () => {
               className="inline-flex items-center gap-3 rounded-full border border-cyan-500/40 bg-white/5 px-6 py-2 text-sm uppercase tracking-widest text-cyan-200 backdrop-blur-lg mb-8"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 borderColor: "rgba(6,182,212,0.6)",
                 boxShadow: "0 0 30px rgba(6,182,212,0.3)"
@@ -411,7 +412,7 @@ const FAQs = () => {
             >
               <motion.span
                 className="inline-block bg-gradient-to-r from-cyan-300 via-indigo-400 to-purple-400 bg-clip-text text-transparent"
-                animate={{ 
+                animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
                 }}
                 transition={{ duration: 8, repeat: Infinity }}
@@ -464,7 +465,7 @@ const FAQs = () => {
             </motion.div>
 
             <div className="flex-1">
-              <motion.h2 
+              <motion.h2
                 className="text-3xl md:text-5xl font-bold mb-3"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -475,7 +476,7 @@ const FAQs = () => {
                   AI Solutions
                 </span>
               </motion.h2>
-              <motion.p 
+              <motion.p
                 className="text-slate-400 text-lg"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -518,11 +519,11 @@ const FAQs = () => {
             viewport={{ once: true }}
             transition={{ duration: 1.2 }}
           />
-          
+
           {/* Glowing dot */}
           <motion.div
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-cyan-400"
-            animate={{ 
+            animate={{
               scale: [1, 1.5, 1],
               boxShadow: [
                 '0 0 10px rgba(6,182,212,0.5)',
@@ -561,7 +562,7 @@ const FAQs = () => {
             </motion.div>
 
             <div className="flex-1">
-              <motion.h2 
+              <motion.h2
                 className="text-3xl md:text-5xl font-bold mb-3"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -572,7 +573,7 @@ const FAQs = () => {
                   Talent Pool
                 </span>
               </motion.h2>
-              <motion.p 
+              <motion.p
                 className="text-slate-400 text-lg"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -602,7 +603,7 @@ const FAQs = () => {
 
       {/* Stats Section with 3D Cards */}
       <section className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(6,182,212,0.15),transparent_70%)]"
           animate={{ scale: [1, 1.3, 1] }}
           transition={{ duration: 12, repeat: Infinity }}
@@ -687,12 +688,12 @@ const FAQs = () => {
       {/* CTA Section */}
       <section className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Animated background */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0"
           style={{
             background: 'radial-gradient(circle at 30% 50%, rgba(6,182,212,0.15) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(109,40,217,0.15) 0%, transparent 50%)'
           }}
-          animate={{ 
+          animate={{
             backgroundPosition: ['0% 0%', '100% 100%'],
           }}
           transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
@@ -701,8 +702,8 @@ const FAQs = () => {
         {/* Rotating gradient ring */}
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-20"
-          style={{ 
-            background: 'conic-gradient(from 0deg, transparent 0deg, rgba(6,182,212,0.4) 60deg, transparent 120deg, rgba(109,40,217,0.4) 180deg, transparent 240deg)' 
+          style={{
+            background: 'conic-gradient(from 0deg, transparent 0deg, rgba(6,182,212,0.4) 60deg, transparent 120deg, rgba(109,40,217,0.4) 180deg, transparent 240deg)'
           }}
           animate={{ rotate: 360 }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
@@ -722,12 +723,12 @@ const FAQs = () => {
                 x: '-50%',
                 y: '-50%',
               }}
-              animate={{ 
+              animate={{
                 scale: [1, 1.15, 1],
                 opacity: [0.2, 0.4, 0.2]
               }}
-              transition={{ 
-                duration: 5, 
+              transition={{
+                duration: 5,
                 repeat: Infinity,
                 delay: i * 0.4
               }}
@@ -782,7 +783,7 @@ const FAQs = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
             >
-              Whether you're looking to enhance your AI models or explore new opportunities, 
+              Whether you're looking to enhance your AI models or explore new opportunities,
               we're here to help. Let's discuss how we can collaborate and drive success together.
             </motion.p>
 
@@ -810,7 +811,7 @@ const FAQs = () => {
               {/* Pulsing border */}
               <motion.span
                 className="absolute inset-0 rounded-full border-2 border-white/40"
-                animate={{ 
+                animate={{
                   scale: [1, 1.4, 1.4],
                   opacity: [1, 0, 0]
                 }}
@@ -818,22 +819,25 @@ const FAQs = () => {
               />
 
               {/* Button content */}
-              <span className="relative z-10 flex items-center gap-2">
-                Get in Touch
-                <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <ArrowRight className="w-5 h-5" />
-                </motion.div>
-              </span>
+              <Link to="/get-in-touch">
+
+                <span className="relative z-10 flex items-center gap-2">
+                  Get in Touch
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <ArrowRight className="w-5 h-5" />
+                  </motion.div>
+                </span>
+              </Link>
             </motion.button>
 
             {/* Trust indicators */}
-            <motion.div 
+            <motion.div
               className="mt-16 flex justify-center gap-8 flex-wrap"
-              initial={{ opacity: 0 }} 
-              whileInView={{ opacity: 1 }} 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.8 }}
             >
@@ -842,10 +846,10 @@ const FAQs = () => {
                 { icon: TrendingUp, text: "Proven Results" },
                 { icon: CheckCircle, text: "24/7 Support" }
               ].map((item, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10"
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.05,
                     borderColor: "rgba(6,182,212,0.3)",
                     boxShadow: "0 0 20px rgba(6,182,212,0.2)"
@@ -879,12 +883,12 @@ const FAQs = () => {
               key={i}
               className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-cyan-400"
               style={{ left: `${25 + i * 25}%` }}
-              animate={{ 
+              animate={{
                 scale: [1, 1.5, 1],
                 opacity: [1, 0.5, 1]
               }}
-              transition={{ 
-                duration: 2, 
+              transition={{
+                duration: 2,
                 repeat: Infinity,
                 delay: i * 0.3
               }}

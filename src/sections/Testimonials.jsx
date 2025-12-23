@@ -4,10 +4,19 @@ import { Star, MessageCircle, TrendingUp, Users, Award } from "lucide-react";
 
 const testimonials = [
   {
+    name: "Surendra Yadav",
+    role: "Founder, Crescent Etail",
+    feedback:
+      "Frostrek has been a great partner for us across our technology and e-commerce work. The team is structured, easy to work with and focused on delivering quality results that actually align with business needs. They’re proactive, responsive and dependable throughout the process.",
+    avatar: "surendrasir.jpg",
+    rating: 5,
+    category: "Startup"
+  },
+  {
     name: "Ritika Jain",
     role: "Team Lead, frostrek LLP",
     feedback:
-      "Frostrek gave me platform where I received an exposure and have learned a lot about professional, work flows, and got an opportunity to work closure to understand the post training methods and how an AI model works.",
+      "Frostrek gave me a platform where I gained valuable real-world exposure and learned a great deal about professional work environments and structured workflows. The experience helped me understand how teams collaborate effectively in an industry setting, manage projects, and maintain quality standards.",
     avatar: "ritikamam.jpg",
     rating: 5,
     category: "Startup",
@@ -17,21 +26,12 @@ const testimonials = [
     name: "Shradha",
     role: "Quality Lead, frostrek LLP",
     feedback:
-      "Working with Frostrek on our medical AI application was a truly transformative experience. Their deep expertise in healthcare compliance, ensured that every aspect of the solution met industry standards while remaining highly innovative.",
+      "Frostrek provided me with an excellent learning platform where I was able to gain hands-on exposure to professional workflows and industry-level practices. Through close collaboration and mentorship, I developed a clearer understanding of post-training methodologies and how AI models evolve after initial development.",
     avatar: "/shradhamam.jpg",
     rating: 5,
     category: "Startup"
   },
-  {
-    name: "Yash Goyal",
-    role: "Manager, frostrek LLP",
-    feedback:
-      "Their team delivered an AI-driven analytics tool that completely changed how we interpret our business data. Highly recommended! The ROI exceeded our expectations within the first quarter.",
-    avatar: "yashsir.jpg",
-    rating: 5,
-    category: "Startup"
-  },
-  
+
 ];
 
 const stats = [
@@ -242,8 +242,9 @@ const TestimonialCard = ({ testimonial, index }) => {
         <div className="relative flex items-start justify-between mb-6 z-10">
           <div className="flex-1">
             {/* Avatar Section */}
+            {/* Avatar Section */}
             <div className="relative flex items-center mb-4">
-              <div className="relative">
+              <div className="relative w-14 h-14 flex-shrink-0">
                 {/* Rotating Rings */}
                 <motion.div
                   className="absolute -inset-2 rounded-full border-2 border-cyan-400/50"
@@ -270,12 +271,12 @@ const TestimonialCard = ({ testimonial, index }) => {
                 <img
                   src={testimonial.avatar}
                   alt={testimonial.name}
-                  className="relative w-14 h-14 rounded-full border-2 border-cyan-400 object-cover"
+                  className="relative w-14 h-14 rounded-full border-2 border-cyan-400 object-cover bg-slate-800"
                 />
 
                 {/* Status Indicator */}
                 <motion.div
-                  className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-[#111827]"
+                  className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-[#0B0B0E]"
                   animate={{
                     scale: [1, 1.2, 1],
                     boxShadow: ["0 0 0 0 rgba(34, 197, 94, 0.7)", "0 0 0 8px rgba(34, 197, 94, 0)", "0 0 0 0 rgba(34, 197, 94, 0.7)"],

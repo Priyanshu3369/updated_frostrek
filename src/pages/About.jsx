@@ -3,13 +3,14 @@ import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-mo
 import { ArrowRight, Zap, Users, Target, Eye, CheckCircle, Sparkles, Activity } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import {
-    Brain,
-    Bot,
-    Workflow,
-    LayoutDashboard,
-    Code2,
-    PlugZap
-  } from "lucide-react";
+  Brain,
+  Bot,
+  Workflow,
+  LayoutDashboard,
+  Code2,
+  PlugZap
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const FloatingParticles = () => {
   const particles = Array.from({ length: 40 }, (_, i) => ({
@@ -508,7 +509,7 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
               >
-                 Building intelligent systems, agentic AI, and scalable software for real-world business needs.
+                Building intelligent systems, agentic AI, and scalable software for real-world business needs.
               </motion.p>
             </div>
           </RevealSection>
@@ -1009,8 +1010,9 @@ const About = () => {
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-
-              <span className="relative z-10">Get in touch</span>
+              <Link to="/get-in-touch">
+                <span className="relative z-10">Get in touch</span>
+              </Link>
               <motion.div
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}

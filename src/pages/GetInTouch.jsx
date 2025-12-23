@@ -664,9 +664,11 @@ const ContactForm = () => {
       </section>
 
       {/* Contact Info Section */}
+      {/* Contact Info Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Email and Phone */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
             {[
               {
                 icon: Mail,
@@ -678,13 +680,7 @@ const ContactForm = () => {
                 icon: Phone,
                 title: "WhatsApp (US)",
                 info: "+1 757 472 2491",
-                delay: 0.2,
-              },
-              {
-                icon: Building,
-                title: "India Office",
-                info: "422, Suncity Success Tower, Golf Course Ext. Road, Sector - 65, Gurugram, Haryana, 122002",
-                delay: 0.4,
+                delay: 0.1,
               },
             ].map((item, index) => (
               <motion.div
@@ -718,20 +714,39 @@ const ContactForm = () => {
               </motion.div>
             ))}
           </div>
-          {/* Additional offices row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-5xl mx-auto">
+
+          {/* Office Addresses */}
+          <motion.div
+            className="text-center mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl font-semibold bg-gradient-to-r from-cyan-300 to-indigo-400 bg-clip-text text-transparent">
+              Our Offices
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
+              {
+                icon: Building,
+                title: "India Office",
+                info: "422, Suncity Success Tower, Golf Course Ext. Road, Sector - 65, Gurugram, Haryana, 122002",
+                delay: 0.2,
+              },
               {
                 icon: Building,
                 title: "USA Office",
                 info: "701 Tillery Street Unit 12-3227, Austin, Texas 78702, United States",
-                delay: 0.6,
+                delay: 0.3,
               },
               {
                 icon: Building,
                 title: "UK Office",
                 info: "24-26 Arcadia Avenue, Fin009/8701, London, United Kingdom, N3 2JU",
-                delay: 0.8,
+                delay: 0.4,
               },
             ].map((item, index) => (
               <motion.div

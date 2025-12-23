@@ -118,9 +118,9 @@ const Footer = () => {
   ];
 
 const legalLinks = [
-  { name: "Privacy Policy", href: "/#about" },      // Hero / About section
-  { name: "Terms of Service", href: "/#services" }, // Services section
-  { name: "Cookie Policy", href: "/#about" },     // Client feedback section
+  { name: "Privacy Policy", href: "/legal#privacy" },
+  { name: "Terms of Service", href: "/legal#terms" },
+  { name: "Cookie Policy", href: "/legal#cookies" },
 ];
 
 

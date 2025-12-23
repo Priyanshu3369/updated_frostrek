@@ -187,40 +187,38 @@ const Services = () => {
 
   const mainServices = [
     {
+      id: "ai-talent",
       number: "01",
       title: "AI Talent Sourcing and Deployment",
-      description:
-        " Source and deploy skilled AI professionals aligned with your project’s specific requirements, objectives, and delivery timelines.",
+      description: " Source and deploy skilled AI professionals aligned with your project's specific requirements, objectives, and delivery timelines.",
     },
     {
+      id: "model-training",
       number: "02",
       title: "AI Model Training and Optimization",
-      description:
-        " Enhance AI model performance through expert training, optimization, and real-world evaluation to ensure accuracy, reliability, and measurable impact.",
+      description: " Enhance AI model performance through expert training, optimization, and real-world evaluation to ensure accuracy, reliability, and measurable impact.",
     },
     {
+      id: "tailored-ai",
       number: "03",
       title: "Customized AI Development Solutions",
-      description:
-        "Design and build tailored AI systems that address complex business challenges with scalable, reliable, and efficient architectures.",
+      description: "Design and build tailored AI systems that address complex business challenges with scalable, reliable, and efficient architectures.",
     },
     {
+      id: "ai-agents",
       number: "04",
       title: "AI Agents & Agentic AI Systems",
-      description:
-        " Develop intelligent AI agents capable of reasoning, decision-making, and autonomous task execution across business and operational workflows.",
+      description: " Develop intelligent AI agents capable of reasoning, decision-making, and autonomous task execution across business and operational workflows.",
     },
     {
       number: "05",
       title: "AI-Powered Application & Platform Development",
-      description:
-        "Build production-ready web and mobile applications, internal tools, dashboards, and platforms that embed AI into everyday business use.",
+      description: "Build production-ready web and mobile applications, internal tools, dashboards, and platforms that embed AI into everyday business use.",
     },
     {
       number: "06",
       title: "Organizational Workflow Automation & Integration",
-      description:
-        " Integrate AI into organizational processes to automate workflows, improve efficiency, and enable seamless coordination across systems and teams.",
+      description: " Integrate AI into organizational processes to automate workflows, improve efficiency, and enable seamless coordination across systems and teams.",
     },
   ];
 
@@ -385,6 +383,7 @@ const Services = () => {
               >
                 <ParallaxSection speed={index % 2 === 0 ? 0.2 : -0.2}>
                   <motion.div
+                    id={service.id} // Add this line
                     className="group relative p-8 md:p-10 bg-white/[0.04] backdrop-blur-xl rounded-[28px] border border-white/5 transition-all duration-300"
                     whileHover={{
                       scale: 1.02,

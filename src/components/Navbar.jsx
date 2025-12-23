@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import usePerformanceMode from "../hooks/usePerformanceMode";
 
 const links = [
   { label: "Home", href: "/", type: "route" },
@@ -12,10 +11,10 @@ const links = [
 ];
 
 const servicesDropdown = [
-  { label: "AI Talent Acquisition & Deployment", href: "/services#ai-talent" },
-  { label: "AI Model Training & Performance Optimization", href: "/services#model-training" },
-  { label: "Tailored AI Development Solutions", href: "/services#tailored-ai" },
-  { label: "AI Agents & Autonomous Systems", href: "/services#ai-agents" },
+  { label: "AI Talent Acquisition & Deployment", sectionId: "ai-talent" },
+  { label: "AI Model Training & Performance Optimization", sectionId: "model-training" },
+  { label: "Tailored AI Development Solutions", sectionId: "tailored-ai" },
+  { label: "AI Agents & Autonomous Systems", sectionId: "ai-agents" },
   {
     label: "More Services",
     href: "https://old.frostrek.com",
@@ -26,8 +25,8 @@ const servicesDropdown = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const performanceMode = usePerformanceMode();
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,6 +47,42 @@ const Navbar = () => {
   const isActive = (href) => {
     if (href === "/") return location.pathname === "/";
     return location.pathname.startsWith(href);
+  };
+
+  const handleServiceClick = (item) => {
+    if (item.external) {
+      window.open(item.href, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    if (item.sectionId) {
+      // If already on services page, scroll directly
+      if (location.pathname === "/services") {
+        scrollToSection(item.sectionId);
+      } else {
+        // Navigate to services page first, then scroll
+        navigate("/services");
+        // Wait for navigation and render
+        setTimeout(() => {
+          scrollToSection(item.sectionId);
+        }, 100);
+      }
+    }
+    closeMenu();
+  };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = 80; // Adjust based on your navbar height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
   };
 
   return (
@@ -99,27 +134,15 @@ const Navbar = () => {
                   {/* Dropdown */}
                   <div className="absolute left-0 top-full mt-3 w-80 rounded-xl border border-cyan-500/20 bg-[#061c21] shadow-xl shadow-cyan-900/30 opacity-0 invisible translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
                     <ul className="py-2">
-                      {servicesDropdown.map((item, idx) =>
-                        item.external ? (
-                          <a
-                            key={idx}
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-5 py-2.5 text-sm hover:bg-cyan-500/10 hover:text-cyan-200 transition"
-                          >
-                            {item.label}
-                          </a>
-                        ) : (
-                          <Link
-                            key={idx}
-                            to={item.href}
-                            className="block px-5 py-2.5 text-sm hover:bg-cyan-500/10 hover:text-cyan-200 transition"
-                          >
-                            {item.label}
-                          </Link>
-                        )
-                      )}
+                      {servicesDropdown.map((item, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => handleServiceClick(item)}
+                          className="w-full text-left block px-5 py-2.5 text-sm hover:bg-cyan-500/10 hover:text-cyan-200 transition"
+                        >
+                          {item.label}
+                        </button>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -172,6 +195,20 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
+            
+            {/* Mobile Services Dropdown */}
+            <div className="pl-4 flex flex-col gap-2 mt-2">
+              {servicesDropdown.map((item, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleServiceClick(item)}
+                  className="text-left text-sm px-3 py-2 hover:bg-cyan-500/10 rounded-lg"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+            
             <Link
               to="/get-in-touch"
               onClick={closeMenu}
