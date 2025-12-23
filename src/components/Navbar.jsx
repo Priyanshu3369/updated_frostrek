@@ -17,7 +17,7 @@ const servicesDropdown = [
   { label: "AI Agents & Autonomous Systems", sectionId: "ai-agents" },
   {
     label: "More Services",
-    href: "https://frostrek.com",
+    href: "https://old.frostrek.com",
     external: true,
   },
 ];
