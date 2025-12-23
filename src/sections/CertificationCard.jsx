@@ -7,14 +7,14 @@ const certifications = [
     id: 1,
     title: "ISO 27001:2022",
     description: "Information Security Management System",
-    image: "/iso3.png",
+    image: "/2.png",
     year: "2022",
   },
   {
     id: 2,
     title: "ISO 9001:2015",
     description: "Quality Management System",
-    image: "/iso4.png",
+    image: "/3.png",
     year: "2015",
   }
 ];
@@ -140,33 +140,31 @@ const CertificationCard = ({ cert, index }) => {
           }} />
         </div>
 
-        {/* Image Container */}
-        <div className="relative mb-6 mt-4">
-          <motion.div
-            className="relative w-full aspect-[4/3] flex items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900/50 to-slate-950/50 border border-cyan-500/10"
-            animate={isHovered ? { scale: 1.02 } : { scale: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Pulse Effect */}
-            <motion.div
-              className="absolute inset-0 bg-cyan-400"
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.05, 0, 0.05],
+ {/* Image Container */}
+        <div className="relative mb-8 mt-6">
+          <div className="relative w-full h-80 flex items-center justify-center">
+            {/* Static gradient glow behind image */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background: "radial-gradient(ellipse at center, rgba(0, 255, 255, 0.2), rgba(109, 40, 217, 0.15), transparent 70%)",
+                filter: "blur(50px)",
               }}
-              transition={{ duration: 2, repeat: Infinity }}
             />
 
-            {/* Inner Glow */}
-            <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/5 via-transparent to-purple-500/5" />
-
+            {/* Image with clean blend */}
             <img
               src={cert.image}
               alt={cert.title}
-              className="relative z-10 w-full h-full object-contain p-8 drop-shadow-2xl"
+              className="relative z-10 w-80 h-80 object-contain mix-blend-screen"
+              style={{
+                filter: "brightness(1.15) contrast(1.1) drop-shadow(0 0 40px rgba(0, 255, 255, 0.4))",
+                opacity: 0.9,
+              }}
             />
-          </motion.div>
+          </div>
         </div>
+        
 
         {/* Content */}
         <div className="relative z-10">
@@ -334,13 +332,6 @@ const CertificationsPage = () => {
           />
         </motion.div>
 
-        {/* Achievement Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20 max-w-5xl mx-auto">
-          <AchievementBadge icon={Shield} label="Certifications" value="2+" delay={0.1} />
-          <AchievementBadge icon={Award} label="Standards Met" value="100%" delay={0.2} />
-          <AchievementBadge icon={CheckCircle} label="Compliance" value="Full" delay={0.3} />
-          <AchievementBadge icon={Star} label="Recognition" value="Global" delay={0.4} />
-        </div>
 
         {/* Certifications Grid */}
         <motion.div
