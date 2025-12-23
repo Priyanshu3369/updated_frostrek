@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 const links = [
   { label: "Home", href: "/", type: "route" },
@@ -17,13 +17,14 @@ const servicesDropdown = [
   { label: "AI Agents & Autonomous Systems", sectionId: "ai-agents" },
   {
     label: "More Services",
-    href: "https://old.frostrek.com",
+    href: "https://frostrek.com",
     external: true,
   },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -42,7 +43,10 @@ const Navbar = () => {
     return () => (document.body.style.overflow = "unset");
   }, [isOpen]);
 
-  const closeMenu = () => setIsOpen(false);
+  const closeMenu = () => {
+    setIsOpen(false);
+    setServicesOpen(false);
+  };
 
   const isActive = (href) => {
     if (href === "/") return location.pathname === "/";
@@ -52,17 +56,15 @@ const Navbar = () => {
   const handleServiceClick = (item) => {
     if (item.external) {
       window.open(item.href, "_blank", "noopener,noreferrer");
+      closeMenu();
       return;
     }
 
     if (item.sectionId) {
-      // If already on services page, scroll directly
       if (location.pathname === "/services") {
         scrollToSection(item.sectionId);
       } else {
-        // Navigate to services page first, then scroll
         navigate("/services");
-        // Wait for navigation and render
         setTimeout(() => {
           scrollToSection(item.sectionId);
         }, 100);
@@ -74,7 +76,7 @@ const Navbar = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const navbarHeight = 80; // Adjust based on your navbar height
+      const navbarHeight = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
 
@@ -131,7 +133,7 @@ const Navbar = () => {
                     Services
                   </Link>
 
-                  {/* Dropdown */}
+                  {/* Desktop Dropdown */}
                   <div className="absolute left-0 top-full mt-3 w-80 rounded-xl border border-cyan-500/20 bg-[#061c21] shadow-xl shadow-cyan-900/30 opacity-0 invisible translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
                     <ul className="py-2">
                       {servicesDropdown.map((item, idx) => (
@@ -181,33 +183,59 @@ const Navbar = () => {
         {/* Mobile Menu */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-500 ${
-            isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+            isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
           <nav className="flex flex-col px-5 py-4 gap-2 text-slate-200">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                onClick={closeMenu}
-                className="rounded-lg px-3 py-2 hover:bg-cyan-500/10"
-              >
-                {link.label}
-              </Link>
-            ))}
-            
-            {/* Mobile Services Dropdown */}
-            <div className="pl-4 flex flex-col gap-2 mt-2">
-              {servicesDropdown.map((item, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleServiceClick(item)}
-                  className="text-left text-sm px-3 py-2 hover:bg-cyan-500/10 rounded-lg"
+            {links.map((link) => 
+              link.label === "Services" ? (
+                <div key={link.href} className="flex flex-col">
+                  {/* Services Button */}
+                  <button
+                    onClick={() => setServicesOpen(!servicesOpen)}
+                    className={`flex items-center justify-between rounded-lg px-3 py-2 hover:bg-cyan-500/10 ${
+                      isActive("/services") ? "bg-cyan-500/20 text-cyan-200" : ""
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <ChevronDown 
+                      size={16} 
+                      className={`transition-transform duration-300 ${
+                        servicesOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  
+                  {/* Mobile Services Dropdown */}
+                  <div
+                    className={`flex flex-col gap-1 pl-4 mt-1 overflow-hidden transition-all duration-300 ${
+                      servicesOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    {servicesDropdown.map((item, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => handleServiceClick(item)}
+                        className="text-left text-sm px-3 py-2 hover:bg-cyan-500/10 rounded-lg transition-colors"
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={closeMenu}
+                  className={`rounded-lg px-3 py-2 hover:bg-cyan-500/10 ${
+                    isActive(link.href) ? "bg-cyan-500/20 text-cyan-200" : ""
+                  }`}
                 >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+                  {link.label}
+                </Link>
+              )
+            )}
             
             <Link
               to="/get-in-touch"

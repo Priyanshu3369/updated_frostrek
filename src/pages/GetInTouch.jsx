@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -664,7 +663,6 @@ const ContactForm = () => {
       </section>
 
       {/* Contact Info Section */}
-      {/* Contact Info Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Email and Phone */}
@@ -675,17 +673,22 @@ const ContactForm = () => {
                 title: "Email Us",
                 info: "info@frostrek.com",
                 delay: 0,
+                link: "mailto:info@frostrek.com",
               },
               {
                 icon: Phone,
                 title: "WhatsApp (US)",
                 info: "+1 757 472 2491",
                 delay: 0.1,
+                link: "https://wa.me/17574722491",
               },
             ].map((item, index) => (
-              <motion.div
+              <motion.a
                 key={index}
-                className="group p-8 bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 text-center transition-all duration-300"
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-8 bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 text-center transition-all duration-300 cursor-pointer block"
                 initial={{ opacity: 0, y: 50, rotateX: -10 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 viewport={{ once: true }}
@@ -711,7 +714,7 @@ const ContactForm = () => {
                 <p className="text-slate-300/80 text-sm leading-relaxed">
                   {item.info}
                 </p>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
 
@@ -735,23 +738,29 @@ const ContactForm = () => {
                 title: "India Office",
                 info: "422, Suncity Success Tower, Golf Course Ext. Road, Sector - 65, Gurugram, Haryana, 122002",
                 delay: 0.2,
+                mapLink: "https://www.google.com/maps/search/?api=1&query=422+Suncity+Success+Tower+Golf+Course+Ext+Road+Sector+65+Gurugram+Haryana+122002",
               },
               {
                 icon: Building,
                 title: "USA Office",
                 info: "701 Tillery Street Unit 12-3227, Austin, Texas 78702, United States",
                 delay: 0.3,
+                mapLink: "https://www.google.com/maps/search/?api=1&query=701+Tillery+Street+Unit+12-3227+Austin+Texas+78702+United+States",
               },
               {
                 icon: Building,
                 title: "UK Office",
                 info: "24-26 Arcadia Avenue, Fin009/8701, London, United Kingdom, N3 2JU",
                 delay: 0.4,
+                mapLink: "https://www.google.com/maps/search/?api=1&query=24-26+Arcadia+Avenue+Fin009+8701+London+United+Kingdom+N3+2JU",
               },
             ].map((item, index) => (
-              <motion.div
+              <motion.a
                 key={index}
-                className="group p-8 bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 text-center transition-all duration-300"
+                href={item.mapLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-8 bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 text-center transition-all duration-300 cursor-pointer block"
                 initial={{ opacity: 0, y: 50, rotateX: -10 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 viewport={{ once: true }}
@@ -777,7 +786,7 @@ const ContactForm = () => {
                 <p className="text-slate-300/80 text-sm leading-relaxed">
                   {item.info}
                 </p>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
         </div>

@@ -12,7 +12,7 @@ const blogData = {
     date: "Sept 15, 2025",
     tag: "AI & ML",
     content: `
-Artificial Intelligence is no longer a futuristic concept — it is actively
+Artificial Intelligence is no longer a futuristic concept - it is actively
 reshaping how modern businesses operate.
 
 From automating repetitive workflows to enabling intelligent decision-making,

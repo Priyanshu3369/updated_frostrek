@@ -18,6 +18,7 @@ import GetInTouch from "./pages/GetInTouch";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import LegalPage from "./pages/Legal";
+import CertificationsPage from "./sections/CertificationCard";
 
 const Home = () => {
   return (
@@ -26,6 +27,7 @@ const Home = () => {
       <Services />
       <WhyChooseUs />
       <Testimonials />
+      <CertificationsPage/>
       <FAQs />
       <Collaborate />
     </div>

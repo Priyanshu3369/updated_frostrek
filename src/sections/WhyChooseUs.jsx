@@ -303,21 +303,21 @@ const ComparisonTable = () => {
                       <CheckCircle2 size={16} className="text-cyan-400" />
                     </motion.div>
                   ) : (
-                    <div className="text-2xl text-slate-600">—</div>
+                    <div className="text-2xl text-slate-600">-</div>
                   )}
                 </td>
                 <td className="px-6 py-4 text-center">
                   {row.competitor1 ? (
                     <CheckCircle2 size={16} className="text-slate-500 mx-auto" />
                   ) : (
-                    <div className="text-2xl text-slate-600">—</div>
+                    <div className="text-2xl text-slate-600">-</div>
                   )}
                 </td>
                 <td className="px-6 py-4 text-center">
                   {row.competitor2 ? (
                     <CheckCircle2 size={16} className="text-slate-500 mx-auto" />
                   ) : (
-                    <div className="text-2xl text-slate-600">—</div>
+                    <div className="text-2xl text-slate-600">-</div>
                   )}
                 </td>
               </motion.tr>

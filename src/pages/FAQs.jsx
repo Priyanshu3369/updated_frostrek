@@ -308,7 +308,7 @@ const FAQs = () => {
     },
     {
       question: "What sets your AI solutions apart from others in the market?",
-      answer: "Our focus on personalized RLHF, extensive expertise with 200+ specialists, and commitment to real-world performance makes us stand out. We don't just train models—we create AI systems that understand and align with human values."
+      answer: "Our focus on personalized RLHF, extensive expertise with 200+ specialists, and commitment to real-world performance makes us stand out. We don't just train models-we create AI systems that understand and align with human values."
     },
     {
       question: "How long does it take to train an AI model with RLHF?",

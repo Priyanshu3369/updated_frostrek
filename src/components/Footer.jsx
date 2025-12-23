@@ -189,7 +189,7 @@ const legalLinks = [
               frostrek
             </motion.h2>
             <p className="text-slate-400 text-xs md:text-sm leading-relaxed mx-auto md:mx-0 max-w-md mb-4 md:mb-4">
-              Empowering industries through AI, automation, and innovation — one intelligent solution at a time.
+              Empowering industries through AI, automation, and innovation - one intelligent solution at a time.
             </p>
             
             {/* Social Links */}
