@@ -178,12 +178,6 @@ const CertificationCard = ({ cert, index }) => {
           <p className="text-[#D1D5DB] text-sm font-normal leading-relaxed mb-4">
             {cert.description}
           </p>
-
-          {/* Year Badge */}
-          <div className="flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-green-400" />
-            <span className="text-xs font-semibold text-green-400">Certified Since {cert.year}</span>
-          </div>
         </div>
 
         {/* Tech Lines */}

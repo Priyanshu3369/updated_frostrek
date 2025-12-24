@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 
 const blogPosts = [
   {
+    title: "From Classroom to Career: Why Industry–Academia Collaboration Is Critical in the AI Era",
+    slug: "industry-academia-collaboration-ai-era",
+    description:
+      "Exploring the critical gap between academic learning and industry expectations in AI, and how Frostrek is bridging this divide through strategic partnerships with RJIT and ITM University.",
+    date: "Dec 20, 2025",
+    tag: "AI & Education",
+  },
+  {
     title: "How AI is Transforming Modern Businesses",
     slug: "how-ai-is-transforming-modern-businesses",
     description:

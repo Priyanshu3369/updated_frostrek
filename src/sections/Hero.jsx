@@ -165,7 +165,7 @@ const HeroAboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.8 }}
             >
-              Frostrek builds AI systems, agentic workflows, and scalable software, backed by AI training and human-in-the-loop expertise, that turn data into decisions and automation into outcomes.
+              Frostrek is an ISO 9001:2015 and ISO 27001:2022 certified company, delivering AI systems, agentic workflows, and scalable software backed by AI training and human-in-the-loop expertise to turn data into decisions and automation into outcomes.
             </motion.p>
 
             <motion.div
