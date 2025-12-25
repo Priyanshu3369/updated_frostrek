@@ -12,10 +12,10 @@ const blogPosts = [
     tag: "AI & Education",
   },
   {
-    title: "How AI is Transforming Modern Businesses",
+    title: "How AI Is Transforming Modern Businesses",
     slug: "how-ai-is-transforming-modern-businesses",
     description:
-      "Explore how artificial intelligence is reshaping industries, improving efficiency, and driving innovation.",
+      "From automation to intelligence—exploring how AI is reshaping business operations, decision-making, and competitive advantage in the modern era.",
     date: "Sept 15, 2025",
     tag: "AI & ML",
   },
@@ -84,7 +84,8 @@ const Blog = () => {
               boxShadow: "0 20px 40px rgba(6,182,212,0.18)",
             }}
             className="group relative rounded-[28px] bg-white/[0.04] backdrop-blur-xl
-                       border border-white/5 p-8 transition-all duration-300"
+                       border border-white/5 p-8 transition-all duration-300
+                       flex flex-col"
           >
             {/* Tag */}
             <span
@@ -97,13 +98,13 @@ const Blog = () => {
             {/* Title */}
             <h3
               className="text-2xl font-semibold leading-snug mb-4
-                           group-hover:text-cyan-300 transition-colors"
+                           group-hover:text-cyan-300 transition-colors min-h-[80px]"
             >
               {post.title}
             </h3>
 
             {/* Description */}
-            <p className="text-slate-300/80 leading-relaxed text-sm">
+            <p className="text-slate-300/80 leading-relaxed text-sm flex-grow">
               {post.description}
             </p>
 
