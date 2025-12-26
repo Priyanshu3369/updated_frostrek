@@ -42,12 +42,12 @@ const reasons = [
 ];
 
 const comparisonData = [
-  { feature: "AI Expertise", frostrek: true, competitor1: true, competitor2: false },
-  { feature: "24/7 Support", frostrek: true, competitor1: false, competitor2: true },
-  { feature: "Custom Solutions", frostrek: true, competitor1: true, competitor2: false },
-  { feature: "Scalability", frostrek: true, competitor1: true, competitor2: true },
-  { feature: "Cost Efficiency", frostrek: true, competitor1: false, competitor2: true },
-  { feature: "Innovation Labs", frostrek: true, competitor1: false, competitor2: false },
+  { feature: "AI Expertise", Frostrek: true, competitor1: true, competitor2: false },
+  { feature: "24/7 Support", Frostrek: true, competitor1: false, competitor2: true },
+  { feature: "Custom Solutions", Frostrek: true, competitor1: true, competitor2: false },
+  { feature: "Scalability", Frostrek: true, competitor1: true, competitor2: true },
+  { feature: "Cost Efficiency", Frostrek: true, competitor1: false, competitor2: true },
+  { feature: "Innovation Labs", Frostrek: true, competitor1: false, competitor2: false },
 ];
 
 const AnimatedParticles = () => {
@@ -295,7 +295,7 @@ const ComparisonTable = () => {
               >
                 <td className="px-6 py-4 text-sm font-semibold text-slate-200">{row.feature}</td>
                 <td className="px-6 py-4 text-center">
-                  {row.frostrek ? (
+                  {row.Frostrek ? (
                     <motion.div
                       className="w-6 h-6 rounded-full bg-cyan-500/20 border border-cyan-400 flex items-center justify-center mx-auto"
                       whileHover={{ scale: 1.1 }}

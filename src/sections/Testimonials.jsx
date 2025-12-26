@@ -14,7 +14,7 @@ const testimonials = [
   },
   {
     name: "Ritika Jain",
-    role: "Team Lead, frostrek LLP",
+    role: "Team Lead, Frostrek LLP",
     feedback:
       "Frostrek gave me a platform where I gained valuable real-world exposure and learned a great deal about professional work environments and structured workflows. The experience helped me understand how teams collaborate effectively in an industry setting, manage projects, and maintain quality standards.",
     avatar: "ritikamam.jpg",
@@ -24,7 +24,7 @@ const testimonials = [
   },
   {
     name: "Shradha",
-    role: "Quality Lead, frostrek LLP",
+    role: "Quality Lead, Frostrek LLP",
     feedback:
       "Frostrek provided me with an excellent learning platform where I was able to gain hands-on exposure to professional workflows and industry-level practices. Through close collaboration and mentorship, I developed a clearer understanding of post-training methodologies and how AI models evolve after initial development.",
     avatar: "/shradhamam.jpg",

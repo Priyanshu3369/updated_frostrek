@@ -92,7 +92,7 @@ export default function FrostyChatbot({ isOpen, onClose }) {
     const keywordMap = [
       { keywords: ["service", "offer", "provide", "do you do", "what do you"], index: 0 },
       { keywords: ["start", "begin", "contact", "get in touch", "reach", "hire"], index: 1 },
-      { keywords: ["different", "unique", "special", "why choose", "why frostrek", "better"], index: 2 },
+      { keywords: ["different", "unique", "special", "why choose", "why Frostrek", "better"], index: 2 },
       { keywords: ["time", "timeline", "duration", "how long", "deadline", "delivery"], index: 3 },
       { keywords: ["support", "maintenance", "help", "after", "ongoing", "24/7"], index: 4 },
       { keywords: ["tech", "technology", "stack", "framework", "language", "tools", "react", "node", "python"], index: 5 }

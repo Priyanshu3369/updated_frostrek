@@ -371,7 +371,7 @@ const ContactForm = () => {
       console.error("❌ Email send error:", error);
       setIsSubmitting(false);
       setSubmitError(
-        error.text || "Failed to send message. Please try again or contact us directly at info@frostrek.com"
+        error.text || "Failed to send message. Please try again or contact us directly at info@Frostrek.com"
       );
     }
   };
@@ -671,9 +671,9 @@ const ContactForm = () => {
               {
                 icon: Mail,
                 title: "Email Us",
-                info: "info@frostrek.com",
+                info: "info@Frostrek.com",
                 delay: 0,
-                link: "mailto:info@frostrek.com",
+                link: "mailto:info@Frostrek.com",
               },
               {
                 icon: Phone,

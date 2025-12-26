@@ -115,6 +115,7 @@ const Footer = () => {
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "FAQs", href: "/faqs" },
+    { name: "Blog", href: "/blog" },
   ];
 
 const legalLinks = [
@@ -125,8 +126,8 @@ const legalLinks = [
 
 
  const socialLinks = [
-  { Icon: Linkedin, href: "https://www.linkedin.com/company/frostrek/about/" },
-  { Icon: Mail, href: "mailto:info@frostrek.com" }
+  { Icon: Linkedin, href: "https://www.linkedin.com/company/Frostrek/about/" },
+  { Icon: Mail, href: "mailto:info@Frostrek.com" }
 ];
 
 
@@ -186,7 +187,7 @@ const legalLinks = [
                 transition: { duration: 0.3 }
               }}
             >
-              frostrek
+              Frostrek
             </motion.h2>
             <p className="text-slate-400 text-xs md:text-sm leading-relaxed mx-auto md:mx-0 max-w-md mb-4 md:mb-4">
               Empowering industries through AI, automation, and innovation - one intelligent solution at a time.
@@ -265,7 +266,7 @@ const legalLinks = [
             Frostrek LLP
           </motion.span>
           
-          <p className="order-1 md:order-2">© {new Date().getFullYear()} frostrek LLP. All Rights Reserved.</p>
+          <p className="order-1 md:order-2">© {new Date().getFullYear()} Frostrek LLP. All Rights Reserved.</p>
         </motion.div>
       </motion.div>
 

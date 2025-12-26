@@ -449,7 +449,7 @@ const HeroAboutPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              frostrek
+              Frostrek
             </motion.h2>
 
             <p className="text-base sm:text-lg md:text-xl font-normal text-[#D1D5DB] max-w-2xl">

@@ -13,8 +13,8 @@ const contactMethods = [
   {
     icon: Mail,
     label: "Email us",
-    detail: "info@frostrek.com",
-    href: "mailto:info@frostrek.com",
+    detail: "info@Frostrek.com",
+    href: "mailto:info@Frostrek.com",
     color: "from-cyan-500 to-blue-500"
   },
 ];

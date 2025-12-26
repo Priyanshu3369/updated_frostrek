@@ -17,7 +17,7 @@ const servicesDropdown = [
   { label: "AI Agents & Autonomous Systems", sectionId: "ai-agents" },
   {
     label: "More Services",
-    href: "https://old.frostrek.com",
+    href: "https://old.Frostrek.com",
     external: true,
   },
 ];
@@ -113,7 +113,7 @@ const Navbar = () => {
               className="h-10 w-10 md:h-12 md:w-12 object-contain"
             />
             <span className="text-lg md:text-2xl font-bold text-white tracking-wide">
-              frostrek
+              Frostrek
             </span>
           </Link>
 

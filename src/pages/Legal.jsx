@@ -371,10 +371,10 @@ const PrivacyPolicy = () => (
       <p className="mt-4 text-cyan-400">
         To exercise these rights, contact us at{" "}
         <a
-          href="mailto:info@frostrek.com"
+          href="mailto:info@Frostrek.com"
           className="underline hover:text-cyan-300"
         >
-          info@frostrek.com
+          info@Frostrek.com
         </a>
       </p>
     </ContentBlock>
@@ -665,7 +665,7 @@ const LegalPage = () => {
             If you have any questions about our legal policies or data practices, please don't hesitate to reach out.
           </motion.p>
           <motion.a
-            href="mailto:info@frostrek.com"
+            href="mailto:info@Frostrek.com"
             className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg text-white font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 text-sm sm:text-base relative z-10 overflow-hidden group"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
