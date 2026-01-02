@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, GraduationCap, Users, Briefcase } from 'lucide-react';
-import { useNavigate } from 'react-router-dom'
+import { ChevronLeft, ChevronRight, GraduationCap, Users, Briefcase, X, MapPin, Calendar, Award } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 // Campus training images data
 const campusImages = [
@@ -32,6 +32,86 @@ const campusImages = [
   },
 ];
 
+// Partner institutions data
+const partners = [
+  {
+    id: 'itm',
+    name: 'ITM University',
+    logo: '/itm-logo.jpg',
+    location: 'Raipur, Chhattisgarh',
+    established: '2012',
+    about: 'ITM University is a premier institution dedicated to providing quality education and fostering innovation in technology and management. With state-of-the-art infrastructure and experienced faculty, ITM has been at the forefront of technical education in Central India.',
+    stats: [
+      { label: 'Students Trained', value: '120+' },
+      { label: 'Courses Delivered', value: '8' },
+      { label: 'Success Rate', value: '95%' }
+    ],
+    gallery: [
+      { url: '/itm-1.jpg', caption: 'AI/ML Workshop Session' },
+      { url: '/itm-2.jpg', caption: 'Computer Lab Training' },
+      { url: '/itm-3.jpg', caption: 'Project Presentation Day' },
+      { url: '/itm-4.jpg', caption: 'Industry Expert Session' },
+      { url: '/itm-5.jpg', caption: 'Student Achievement Ceremony' }
+    ],
+    collaboration: {
+      duration: 'Since 2023',
+      programs: [
+        'AI/ML Fundamentals Training',
+        'Data Science Bootcamp',
+        'Live Industry Projects',
+        'Technical Skill Development',
+        'Career Guidance Workshops'
+      ],
+      impact: 'Through our partnership with ITM University, we have successfully trained over 120 students in cutting-edge AI and ML technologies. Our industry-aligned curriculum has helped students secure internships and placements in leading tech companies.',
+      approach: [
+        'Weekly hands-on training sessions',
+        'Real-world project assignments',
+        'Industry mentor support',
+        'Regular assessments and feedback',
+        'Placement preparation workshops'
+      ]
+    }
+  },
+  {
+    id: 'rjit',
+    name: 'RJIT College',
+    logo: '/rjit-logo.jpg',
+    location: 'Bilaspur, Chhattisgarh',
+    established: '2008',
+    about: 'Rungta College of Engineering and Technology (RJIT) is recognized as one of the top engineering colleges in Chhattisgarh. Known for its academic excellence and industry partnerships, RJIT has been producing skilled engineers who excel in their respective fields.',
+    stats: [
+      { label: 'Students Trained', value: '80+' },
+      { label: 'Courses Delivered', value: '6' },
+      { label: 'Success Rate', value: '92%' }
+    ],
+    gallery: [
+      { url: '/rjit-1.jpg', caption: 'Deep Learning Workshop' },
+      { url: '/rjit-2.jpg', caption: 'Team Project Development' },
+      { url: '/rjit-3.jpg', caption: 'Technical Seminar' },
+      { url: '/rjit-4.jpg', caption: 'Lab Practice Session' },
+      { url: '/rjit-5.jpg', caption: 'Certificate Distribution' }
+    ],
+    collaboration: {
+      duration: 'Since 2023',
+      programs: [
+        'Python Programming Mastery',
+        'Machine Learning Applications',
+        'Web Development Training',
+        'Cloud Computing Basics',
+        'Soft Skills Enhancement'
+      ],
+      impact: 'Our collaboration with RJIT has empowered over 80 students with practical skills in AI and software development. Students have successfully completed multiple live projects and gained hands-on experience with industry-standard tools and technologies.',
+      approach: [
+        'Interactive classroom sessions',
+        'Project-based learning methodology',
+        'One-on-one mentorship programs',
+        'Industry visit opportunities',
+        'Mock interviews and resume building'
+      ]
+    }
+  }
+];
+
 // Stats data
 const stats = [
   { icon: GraduationCap, value: '200+', label: 'Students Trained' },
@@ -44,7 +124,10 @@ const Campus = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [selectedPartner, setSelectedPartner] = useState(null);
+  const [galleryIndex, setGalleryIndex] = useState(0);
   const navigate = useNavigate();
+
   // Auto-slide functionality
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -55,6 +138,18 @@ const Campus = () => {
 
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (selectedPartner) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedPartner]);
 
   const goToNext = () => {
     setCurrentIndex((prev) => (prev + 1) % campusImages.length);
@@ -71,7 +166,6 @@ const Campus = () => {
     setIsAutoPlaying(false);
   };
 
-  // Touch handlers for mobile swipe
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
   };
@@ -98,6 +192,28 @@ const Campus = () => {
     setTouchEnd(0);
   };
 
+  const openPartnerModal = (partner) => {
+    setSelectedPartner(partner);
+    setGalleryIndex(0);
+  };
+
+  const closePartnerModal = () => {
+    setSelectedPartner(null);
+    setGalleryIndex(0);
+  };
+
+  const nextGalleryImage = () => {
+    if (selectedPartner) {
+      setGalleryIndex((prev) => (prev + 1) % selectedPartner.gallery.length);
+    }
+  };
+
+  const prevGalleryImage = () => {
+    if (selectedPartner) {
+      setGalleryIndex((prev) => (prev - 1 + selectedPartner.gallery.length) % selectedPartner.gallery.length);
+    }
+  };
+
   return (
     <section className="relative px-4 sm:px-6 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 bg-[#0B0B0E] text-slate-50 overflow-hidden">
       {/* Background gradients */}
@@ -114,7 +230,6 @@ const Campus = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-8 sm:mb-10 md:mb-12"
         >
-
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-3 sm:mb-4 px-2">
             <span className="bg-gradient-to-r from-cyan-300 via-indigo-400 to-teal-300 
                            bg-clip-text text-transparent">
@@ -161,7 +276,6 @@ const Campus = () => {
           className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-white/[0.04] backdrop-blur-xl
                      border border-white/5 p-1 sm:p-2"
         >
-          {/* Main Image Container */}
           <div
             className="relative aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9] rounded-xl sm:rounded-2xl overflow-hidden"
             onTouchStart={handleTouchStart}
@@ -185,10 +299,8 @@ const Campus = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Gradient Overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-            {/* Navigation Arrows - Hidden on very small screens, visible on SM+ */}
             <button
               onClick={goToPrevious}
               className="hidden sm:flex absolute left-2 md:left-4 top-1/2 -translate-y-1/2 
@@ -215,7 +327,6 @@ const Campus = () => {
               <ChevronRight size={20} className="md:w-6 md:h-6" />
             </button>
 
-            {/* Caption Overlay - Responsive text sizes */}
             <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
               <motion.h3
                 key={`title-${currentIndex}`}
@@ -238,7 +349,6 @@ const Campus = () => {
               </motion.p>
             </div>
 
-            {/* Swipe Hint for Mobile (shows briefly on first load) */}
             <motion.div
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
@@ -254,7 +364,6 @@ const Campus = () => {
             </motion.div>
           </div>
 
-          {/* Thumbnail Indicators - Smaller on mobile */}
           <div className="flex items-center justify-center gap-1.5 sm:gap-2 mt-3 sm:mt-4 px-2 sm:px-4 pb-2">
             {campusImages.map((_, index) => (
               <button
@@ -271,7 +380,7 @@ const Campus = () => {
           </div>
         </motion.div>
 
-        {/* Call to Action - Responsive button */}
+        {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -291,7 +400,308 @@ const Campus = () => {
             Partner With Us
           </button>
         </motion.div>
+
+        {/* Campus Partners Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="mt-16 sm:mt-20 md:mt-24"
+        >
+          <div className="text-center mb-8 sm:mb-12">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4">
+              <span className="bg-gradient-to-r from-cyan-300 via-indigo-400 to-teal-300 
+                             bg-clip-text text-transparent">
+                Campus Partners
+              </span>
+            </h3>
+            <p className="text-sm sm:text-base text-slate-300/80 max-w-2xl mx-auto px-4">
+              Our trusted academic partnerships driving excellence in technical education
+            </p>
+          </div>
+
+          {/* Partner Cards Grid */}
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+            {partners.map((partner, index) => (
+              <motion.div
+                key={partner.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9 + index * 0.1, duration: 0.6 }}
+                className="group relative rounded-2xl sm:rounded-3xl overflow-hidden 
+                         bg-white/[0.04] backdrop-blur-xl border border-white/5
+                         hover:border-cyan-500/30 transition-all duration-500"
+              >
+                {/* Card Image */}
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="w-full h-full object-cover group-hover:scale-110 
+                             transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  
+                  {/* Location badge */}
+                  <div className="absolute top-4 right-4 flex items-center gap-2 
+                                px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md
+                                border border-white/20">
+                    <MapPin size={14} className="text-cyan-400" />
+                    <span className="text-xs text-white font-medium">{partner.location}</span>
+                  </div>
+
+                  {/* Partner Name Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h4 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                      {partner.name}
+                    </h4>
+                    <div className="flex items-center gap-2 text-slate-300">
+                      <Calendar size={14} />
+                      <span className="text-sm">Established {partner.established}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card Content */}
+                <div className="p-6">
+                  <p className="text-sm text-slate-300/80 mb-4 line-clamp-3">
+                    {partner.about}
+                  </p>
+
+                  {/* Quick Stats */}
+                  <div className="grid grid-cols-3 gap-3 mb-6">
+                    {partner.stats.map((stat, idx) => (
+                      <div key={idx} className="text-center p-3 rounded-xl bg-white/[0.03]
+                                              border border-white/5">
+                        <div className="text-lg font-bold text-cyan-300">{stat.value}</div>
+                        <div className="text-[10px] text-slate-400 leading-tight mt-1">
+                          {stat.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Read More Button */}
+                  <button
+                    onClick={() => openPartnerModal(partner)}
+                    className="w-full px-6 py-3 rounded-full 
+                             bg-gradient-to-r from-cyan-500/10 to-indigo-500/10
+                             border border-cyan-500/30
+                             text-cyan-300 text-sm font-semibold 
+                             hover:from-cyan-500/20 hover:to-indigo-500/20
+                             hover:border-cyan-500/50
+                             transition-all duration-300 hover:scale-105 active:scale-95"
+                  >
+                    Read More
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
+
+      {/* Partner Detail Modal */}
+      <AnimatePresence>
+        {selectedPartner && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={closePartnerModal}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 50 }}
+              transition={{ type: 'spring', damping: 25 }}
+              className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto
+                       bg-[#0B0B0E] rounded-3xl border border-white/10
+                       scrollbar-thin scrollbar-track-transparent scrollbar-thumb-cyan-500/30"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={closePartnerModal}
+                className="sticky top-4 left-full ml-4 z-10 w-10 h-10 rounded-full
+                         bg-white/10 backdrop-blur-md border border-white/20
+                         flex items-center justify-center text-white
+                         hover:bg-white/20 transition-all duration-300"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Modal Content */}
+              <div className="p-6 sm:p-8">
+                {/* Header */}
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden
+                                border-2 border-cyan-500/30 flex-shrink-0">
+                    <img
+                      src={selectedPartner.logo}
+                      alt={selectedPartner.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                      {selectedPartner.name}
+                    </h3>
+                    <div className="flex flex-wrap gap-3 text-sm text-slate-300">
+                      <div className="flex items-center gap-1.5">
+                        <MapPin size={16} className="text-cyan-400" />
+                        {selectedPartner.location}
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Calendar size={16} className="text-cyan-400" />
+                        Est. {selectedPartner.established}
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Award size={16} className="text-cyan-400" />
+                        Partner {selectedPartner.collaboration.duration}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* About */}
+                <div className="mb-8">
+                  <h4 className="text-lg font-semibold text-cyan-300 mb-3">About the Institution</h4>
+                  <p className="text-slate-300/80 leading-relaxed">
+                    {selectedPartner.about}
+                  </p>
+                </div>
+
+                {/* Photo Gallery */}
+                <div className="mb-8">
+                  <h4 className="text-lg font-semibold text-cyan-300 mb-4">Photo Gallery</h4>
+                  <div className="relative rounded-2xl overflow-hidden bg-white/[0.04] 
+                                border border-white/5 p-2">
+                    <div className="relative aspect-video rounded-xl overflow-hidden">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={galleryIndex}
+                          initial={{ opacity: 0, scale: 1.05 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.95 }}
+                          transition={{ duration: 0.5 }}
+                          className="absolute inset-0"
+                        >
+                          <img
+                            src={selectedPartner.gallery[galleryIndex].url}
+                            alt={selectedPartner.gallery[galleryIndex].caption}
+                            className="w-full h-full object-cover"
+                          />
+                        </motion.div>
+                      </AnimatePresence>
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+
+                      {/* Gallery Navigation */}
+                      <button
+                        onClick={prevGalleryImage}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 
+                                 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md 
+                                 border border-white/20 flex items-center justify-center
+                                 text-white hover:bg-white/20 transition-all"
+                      >
+                        <ChevronLeft size={20} />
+                      </button>
+
+                      <button
+                        onClick={nextGalleryImage}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 
+                                 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md 
+                                 border border-white/20 flex items-center justify-center
+                                 text-white hover:bg-white/20 transition-all"
+                      >
+                        <ChevronRight size={20} />
+                      </button>
+
+                      {/* Caption */}
+                      <div className="absolute bottom-0 left-0 right-0 p-4">
+                        <p className="text-white text-sm">
+                          {selectedPartner.gallery[galleryIndex].caption}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Gallery Indicators */}
+                    <div className="flex items-center justify-center gap-2 mt-3 pb-1">
+                      {selectedPartner.gallery.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setGalleryIndex(idx)}
+                          className={`transition-all duration-300 rounded-full
+                            ${idx === galleryIndex
+                              ? 'w-8 h-2 bg-cyan-400'
+                              : 'w-2 h-2 bg-white/30 hover:bg-white/50'
+                            }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* How Frostrek Works */}
+                <div className="space-y-6">
+                  <h4 className="text-lg font-semibold text-cyan-300">
+                    How Frostrek Works with {selectedPartner.name}
+                  </h4>
+
+                  {/* Programs Offered */}
+                  <div>
+                    <h5 className="text-md font-medium text-white mb-3">Programs Offered</h5>
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      {selectedPartner.collaboration.programs.map((program, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-start gap-3 p-3 rounded-xl
+                                   bg-white/[0.03] border border-white/5"
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
+                          <span className="text-sm text-slate-300">{program}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Impact */}
+                  <div>
+                    <h5 className="text-md font-medium text-white mb-3">Our Impact</h5>
+                    <p className="text-slate-300/80 leading-relaxed p-4 rounded-xl
+                                bg-white/[0.03] border border-white/5">
+                      {selectedPartner.collaboration.impact}
+                    </p>
+                  </div>
+
+                  {/* Our Approach */}
+                  <div>
+                    <h5 className="text-md font-medium text-white mb-3">Our Approach</h5>
+                    <div className="space-y-2">
+                      {selectedPartner.collaboration.approach.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-start gap-3 p-3 rounded-xl
+                                   bg-white/[0.03] border border-white/5
+                                   hover:border-cyan-500/30 transition-colors"
+                        >
+                          <div className="w-6 h-6 rounded-full bg-cyan-500/20 
+                                        flex items-center justify-center flex-shrink-0">
+                            <span className="text-cyan-400 text-xs font-bold">{idx + 1}</span>
+                          </div>
+                          <span className="text-sm text-slate-300 pt-0.5">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
