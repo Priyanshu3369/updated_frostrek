@@ -41,7 +41,6 @@ const blogPosts = [
 const Blog = () => {
   return (
     <>
-      <Campus />
       <section className="relative px-6 py-24 bg-[#0B0B0E] text-slate-50 overflow-hidden">
         {/* Background Gradients */}
         <div className="absolute inset-0 -z-10">

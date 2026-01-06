@@ -74,39 +74,39 @@ const partners = [
   },
   {
     id: 'rjit',
-    name: 'RJIT College',
-    logo: '/rjit-logo.jpg',
-    location: 'Bilaspur, Chhattisgarh',
-    established: '2008',
-    about: 'Rungta College of Engineering and Technology (RJIT) is recognized as one of the top engineering colleges in Chhattisgarh. Known for its academic excellence and industry partnerships, RJIT has been producing skilled engineers who excel in their respective fields.',
+    name: 'Rustamji Institute of Technology',
+    logo: '/rjit.png',
+    location: 'Gwalior, Madhya Pradesh',
+    established: '1996',
+    about: 'Rustamji Institute of Technology (RJIT), Gwalior, is a premier engineering institution committed to delivering quality technical education. With a strong focus on industry collaboration and practical learning, RJIT prepares students to excel in rapidly evolving technology domains through innovative pedagogy and professional mentorship.',
     stats: [
-      { label: 'Students Trained', value: '80+' },
-      { label: 'Courses Delivered', value: '6' },
-      { label: 'Success Rate', value: '92%' }
+      { label: 'Students Engaged', value: 'Final Year' },
+      { label: 'Focus Areas', value: 'AI & Data' },
+      { label: 'Training Mode', value: 'Hands-on' }
     ],
     gallery: [
-      { url: '/rjit-1.jpg', caption: 'Deep Learning Workshop' },
-      { url: '/rjit-2.jpg', caption: 'Team Project Development' },
-      { url: '/rjit-3.jpg', caption: 'Technical Seminar' },
-      { url: '/rjit-4.jpg', caption: 'Lab Practice Session' },
-      { url: '/rjit-5.jpg', caption: 'Certificate Distribution' }
+      { url: '/campus-4.jpg', caption: 'Participants of the Frostrek training program with faculty members at RJIT, Gwalior' },
+      { url: '/campus-6.jpg', caption: 'Industry-oriented training session in progress' },
+      { url: '/campus-1.jpg', caption: 'Students working on real-world AI projects' },
+      { url: '/campus-5.jpg', caption: 'Collaborative learning under professional mentorship' },
+      { url: '/campus-7.jpg', caption: 'Practical problem-solving and project development' }
     ],
     collaboration: {
-      duration: 'Since 2023',
+      duration: 'Ongoing 2024-25',
       programs: [
-        'Python Programming Mastery',
-        'Machine Learning Applications',
-        'Web Development Training',
-        'Cloud Computing Basics',
-        'Soft Skills Enhancement'
+        'AI & Machine Learning Fundamentals',
+        'Data Analytics & Engineering',
+        'Product Development & Engineering',
+        'Cloud Solutions & Automation',
+        'Real-World Project Implementation'
       ],
-      impact: 'Our collaboration with RJIT has empowered over 80 students with practical skills in AI and software development. Students have successfully completed multiple live projects and gained hands-on experience with industry-standard tools and technologies.',
+      impact: 'The ongoing training program at RJIT focuses on preparing final-year students for real-world projects through practical, industry-oriented activities. Students engage in authentic scenarios under professional mentorship, strengthening their practical understanding, enhancing problem-solving abilities, and building strong industry readiness. The program effectively bridges the gap between classroom concepts and real-time applications in AI, data, and product engineering environments.',
       approach: [
-        'Interactive classroom sessions',
-        'Project-based learning methodology',
-        'One-on-one mentorship programs',
-        'Industry visit opportunities',
-        'Mock interviews and resume building'
+        'Hands-on, practical learning sessions',
+        'Real-world project assignments under mentorship',
+        'Industry-oriented problem-solving activities',
+        'Application of concepts to authentic scenarios',
+        'Post-training project opportunities'
       ]
     }
   }

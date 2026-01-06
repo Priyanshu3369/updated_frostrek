@@ -19,6 +19,7 @@ import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import LegalPage from "./pages/Legal";
 import CertificationsPage from "./sections/CertificationCard";
+import Campus from "./pages/Campus";
 
 const Home = () => {
   return (
@@ -43,12 +44,13 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogDetail />} /> {/* ✅ move up */}
+        <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/services" element={<ServicePage />} />
         <Route path="/faqs" element={<FAQPage />} />
         <Route path="/get-in-touch" element={<GetInTouch />} />
         <Route path="/legal" element={<LegalPage />} />
+        <Route path="/campus" element={<Campus />} />
         <Route path="*" element={<Home />} />
       </Routes>
 
