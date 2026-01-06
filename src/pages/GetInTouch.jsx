@@ -442,34 +442,34 @@ const ContactForm = () => {
       {(EMAILJS_SERVICE_ID === "YOUR_SERVICE_ID_HERE" ||
         EMAILJS_TEMPLATE_ID === "YOUR_TEMPLATE_ID_HERE" ||
         EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY_HERE") && (
-        <section className="relative px-4 sm:px-6 lg:px-8 pb-8">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              className="bg-amber-500/10 backdrop-blur-xl rounded-2xl border border-amber-500/30 p-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              <div className="flex gap-4">
-                <AlertCircle className="w-6 h-6 text-amber-400 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-lg font-semibold text-amber-300 mb-2">
-                    Setup Required
-                  </h3>
-                  <p className="text-slate-300 text-sm mb-3">
-                    To enable email sending, you need to configure EmailJS:
-                  </p>
-                  <ol className="text-slate-300 text-sm space-y-2 list-decimal list-inside">
-                    <li>Create a free account at <a href="https://emailjs.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">emailjs.com</a></li>
-                    <li>Create an email service (Gmail, Outlook, etc.)</li>
-                    <li>Create an email template with these variables: first_name, last_name, email, phone, company, website, message, time</li>
-                    <li>Replace the credentials in the code (lines 264-266) with your Service ID, Template ID, and Public Key</li>
-                  </ol>
+          <section className="relative px-4 sm:px-6 lg:px-8 pb-8">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                className="bg-amber-500/10 backdrop-blur-xl rounded-2xl border border-amber-500/30 p-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <div className="flex gap-4">
+                  <AlertCircle className="w-6 h-6 text-amber-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-amber-300 mb-2">
+                      Setup Required
+                    </h3>
+                    <p className="text-slate-300 text-sm mb-3">
+                      To enable email sending, you need to configure EmailJS:
+                    </p>
+                    <ol className="text-slate-300 text-sm space-y-2 list-decimal list-inside">
+                      <li>Create a free account at <a href="https://emailjs.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">emailjs.com</a></li>
+                      <li>Create an email service (Gmail, Outlook, etc.)</li>
+                      <li>Create an email template with these variables: first_name, last_name, email, phone, company, website, message, time</li>
+                      <li>Replace the credentials in the code (lines 264-266) with your Service ID, Template ID, and Public Key</li>
+                    </ol>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      )}
+              </motion.div>
+            </div>
+          </section>
+        )}
 
       {/* Form Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
@@ -607,10 +607,10 @@ const ContactForm = () => {
                   whileHover={
                     !isSubmitting
                       ? {
-                          scale: 1.02,
-                          y: -2,
-                          boxShadow: "0 20px 40px rgba(13,148,136,0.4)",
-                        }
+                        scale: 1.02,
+                        y: -2,
+                        boxShadow: "0 20px 40px rgba(13,148,136,0.4)",
+                      }
                       : {}
                   }
                   whileTap={!isSubmitting ? { scale: 0.98 } : {}}
@@ -666,7 +666,7 @@ const ContactForm = () => {
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Email and Phone */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-6 mb-12 max-w-6xl mx-auto">
             {[
               {
                 icon: Mail,
@@ -674,6 +674,12 @@ const ContactForm = () => {
                 info: "info@Frostrek.com",
                 delay: 0,
                 link: "mailto:info@Frostrek.com",
+              },
+              {
+                icon: Phone,
+                title: "Call Us (IN)",
+                info: "+91 6399999955",
+                delay: 0.1,
               },
               {
                 icon: Phone,
