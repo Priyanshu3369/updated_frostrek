@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, GraduationCap, Users, Briefcase, X, MapPin, Calendar, Award } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 // Campus training images data
 const campusImages = [
@@ -119,6 +118,107 @@ const stats = [
   { icon: Briefcase, value: '15+', label: 'Live Projects' },
 ];
 
+// Animated Background Components
+const FloatingOrbs = () => {
+  const orbs = Array.from({ length: 25 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: 8 + Math.random() * 12,
+    delay: Math.random() * 5,
+    size: Math.random() * 80 + 40,
+    color: i % 3 === 0 ? 'rgba(6,182,212,' : i % 3 === 1 ? 'rgba(99,102,241,' : 'rgba(168,85,247,',
+  }));
+
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      {orbs.map((orb) => (
+        <motion.div
+          key={orb.id}
+          className="absolute rounded-full blur-3xl"
+          style={{
+            width: orb.size,
+            height: orb.size,
+            background: `radial-gradient(circle, ${orb.color}${0.15 + Math.random() * 0.1}), transparent)`,
+          }}
+          initial={{ left: `${orb.x}%`, top: `${orb.y}%`, opacity: 0 }}
+          animate={{
+            y: [0, -100, 0],
+            x: [0, Math.random() * 60 - 30, 0],
+            opacity: [0, 0.6, 0],
+            scale: [0.8, 1.3, 0.8],
+          }}
+          transition={{
+            duration: orb.duration,
+            delay: orb.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+const AnimatedMesh = () => {
+  return (
+    <div className="fixed inset-0 opacity-[0.06] pointer-events-none">
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(6,182,212,0.2) 1.5px, transparent 1.5px),
+            linear-gradient(90deg, rgba(99,102,241,0.2) 1.5px, transparent 1.5px),
+            linear-gradient(rgba(168,85,247,0.15) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(20,184,166,0.15) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px, 80px 80px, 20px 20px, 20px 20px',
+        }}
+        animate={{
+          backgroundPosition: [
+            '0px 0px, 0px 0px, 0px 0px, 0px 0px',
+            '80px 80px, 80px 80px, 20px 20px, 20px 20px',
+          ],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+    </div>
+  );
+};
+
+const GlowingLines = () => {
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute h-px w-full"
+          style={{
+            top: `${15 + i * 15}%`,
+            background: `linear-gradient(90deg, transparent, ${
+              i % 2 === 0 ? 'rgba(6,182,212,0.3)' : 'rgba(168,85,247,0.3)'
+            }, transparent)`,
+          }}
+          animate={{
+            x: ['-100%', '100%'],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: 8 + i * 2,
+            repeat: Infinity,
+            delay: i * 1.5,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 const Campus = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -126,7 +226,19 @@ const Campus = () => {
   const [touchEnd, setTouchEnd] = useState(0);
   const [selectedPartner, setSelectedPartner] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
-  const navigate = useNavigate();
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  // Mouse tracking for interactive effects
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({
+        x: (e.clientX - window.innerWidth / 2) / 50,
+        y: (e.clientY - window.innerHeight / 2) / 50,
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   // Auto-slide functionality
   useEffect(() => {
@@ -216,13 +328,75 @@ const Campus = () => {
 
   return (
     <section className="relative px-4 sm:px-6 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 bg-[#0B0B0E] text-slate-50 overflow-hidden">
-      {/* Background gradients */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(0,255,255,0.12),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_rgba(109,40,217,0.1),transparent_50%)]" />
+      {/* Animated Background Layers */}
+      <FloatingOrbs />
+      <AnimatedMesh />
+      <GlowingLines />
+      
+      {/* Dynamic gradient overlay */}
+      <div className="fixed inset-0 -z-10">
+        <motion.div 
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle at 20% 30%, rgba(6,182,212,0.15) 0%, transparent 60%),
+              radial-gradient(circle at 80% 60%, rgba(99,102,241,0.12) 0%, transparent 60%),
+              radial-gradient(circle at 40% 80%, rgba(168,85,247,0.1) 0%, transparent 60%)
+            `,
+          }}
+          animate={{
+            opacity: [0.4, 0.7, 0.4],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
       </div>
 
-      <div className="max-w-7xl mx-auto">
+      {/* Interactive mouse follower */}
+      <motion.div
+        className="fixed w-[400px] sm:w-[700px] h-[400px] sm:h-[700px] pointer-events-none rounded-full blur-3xl opacity-10 z-0"
+        style={{
+          background: 'radial-gradient(circle, rgba(6,182,212,0.6), rgba(168,85,247,0.4), transparent)',
+          x: mousePos.x * 5,
+          y: mousePos.y * 5,
+          left: '50%',
+          top: '50%',
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+      />
+
+      {/* Diagonal light streaks */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-20">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-full"
+            style={{
+              left: `${20 + i * 25}%`,
+              background: `linear-gradient(180deg, transparent, ${
+                i % 2 === 0 ? 'rgba(6,182,212,0.4)' : 'rgba(99,102,241,0.4)'
+              }, transparent)`,
+              transform: 'skewX(-15deg)',
+            }}
+            animate={{
+              y: ['-100%', '100%'],
+              opacity: [0, 0.6, 0],
+            }}
+            transition={{
+              duration: 6 + i * 1.5,
+              repeat: Infinity,
+              delay: i * 2,
+              ease: "linear",
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -391,7 +565,6 @@ const Campus = () => {
             Interested in bringing industry-aligned AI training to your institution?
           </p>
           <button 
-            onClick={() => navigate('/get-in-touch')}
             className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-full 
                            bg-gradient-to-r from-cyan-500 to-indigo-500
                            text-white text-sm sm:text-base font-semibold 
