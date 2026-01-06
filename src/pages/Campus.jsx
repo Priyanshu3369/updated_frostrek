@@ -37,7 +37,7 @@ const partners = [
   {
   id: 'itm',
   name: 'ITM University Gwalior',
-  logo: '/rjit.png',
+  logo: '/itm.png',
   location: 'Gwalior, Madhya Pradesh',
   established: '2011',
   about: 'ITM University Gwalior is a multidisciplinary university known for its strong academic reputation, innovative teaching-learning practices, and vibrant campus life. Nestled amidst lush greenery, the university provides a peaceful and inspiring environment that fosters intellectual growth, creativity, and professional excellence. With a focus on research, innovation, and industry readiness, ITM University prepares students to thrive in a rapidly evolving global landscape.',
@@ -618,10 +618,10 @@ const Campus = () => {
 
                   {/* Location badge */}
                   <div className="absolute top-4 right-4 flex items-center gap-2 
-                                px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md
-                                border border-white/20">
+                                px-3 py-2 rounded-full bg-black/60 backdrop-blur-xl shadow-lg shadow-black/50 
+                                border border-cyan-400/40">
                     <MapPin size={14} className="text-cyan-400" />
-                    <span className="text-xs text-white font-medium">{partner.location}</span>
+                    <span className="text-xs text-white font-semibold">{partner.location}</span>
                   </div>
 
                   {/* Partner Name Overlay */}
