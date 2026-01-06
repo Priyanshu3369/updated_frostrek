@@ -114,9 +114,9 @@ const Footer = () => {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "FAQs", href: "/faqs" },
     { name: "Blog", href: "/blog" },
     { name: "Partners", href: "/campus" },
+    { name: "FAQs", href: "/faqs" },
   ];
 
 const legalLinks = [

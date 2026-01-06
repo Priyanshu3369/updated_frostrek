@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, GraduationCap, Users, Briefcase, X, MapPin, Calendar, Award } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 
 // Campus training images data
 const campusImages = [
@@ -34,43 +35,42 @@ const campusImages = [
 // Partner institutions data
 const partners = [
   {
-    id: 'itm',
-    name: 'ITM University',
-    logo: '/itm-logo.jpg',
-    location: 'Raipur, Chhattisgarh',
-    established: '2012',
-    about: 'ITM University is a premier institution dedicated to providing quality education and fostering innovation in technology and management. With state-of-the-art infrastructure and experienced faculty, ITM has been at the forefront of technical education in Central India.',
-    stats: [
-      { label: 'Students Trained', value: '120+' },
-      { label: 'Courses Delivered', value: '8' },
-      { label: 'Success Rate', value: '95%' }
+  id: 'itm',
+  name: 'ITM University Gwalior',
+  logo: '/rjit.png',
+  location: 'Gwalior, Madhya Pradesh',
+  established: '2011',
+  about: 'ITM University Gwalior is a multidisciplinary university known for its strong academic reputation, innovative teaching-learning practices, and vibrant campus life. Nestled amidst lush greenery, the university provides a peaceful and inspiring environment that fosters intellectual growth, creativity, and professional excellence. With a focus on research, innovation, and industry readiness, ITM University prepares students to thrive in a rapidly evolving global landscape.',
+  stats: [
+    { label: 'University Type', value: 'Multidisciplinary' },
+    { label: 'Campus', value: 'Green & Residential' },
+    { label: 'Academic Focus', value: 'Industry-Oriented' }
+  ],
+  gallery: [
+    { url: '/itm-1.jpeg', caption: 'AI/ML Workshop Session at ITM University Gwalior' },
+    { url: '/itm-2.jpeg', caption: 'Hands-on Technical Training in Computer Labs' },
+    { url: '/itm-3.jpeg', caption: 'Student Project Presentation and Evaluation' },
+    { url: '/itm-4.jpeg', caption: 'Expert Mentor Interaction and Career Guidance Session' }
+  ],
+  collaboration: {
+    duration: 'Since 2023',
+    programs: [
+      'AI & Machine Learning Fundamentals',
+      'Data Science & Analytics Bootcamp',
+      'Live Industry-Aligned Projects',
+      'Technical Skill Development Programs',
+      'Career Guidance & Placement Readiness Workshops'
     ],
-    gallery: [
-      { url: '/itm-1.jpg', caption: 'AI/ML Workshop Session' },
-      { url: '/itm-2.jpg', caption: 'Computer Lab Training' },
-      { url: '/itm-3.jpg', caption: 'Project Presentation Day' },
-      { url: '/itm-4.jpg', caption: 'Industry Expert Session' },
-      { url: '/itm-5.jpg', caption: 'Student Achievement Ceremony' }
-    ],
-    collaboration: {
-      duration: 'Since 2023',
-      programs: [
-        'AI/ML Fundamentals Training',
-        'Data Science Bootcamp',
-        'Live Industry Projects',
-        'Technical Skill Development',
-        'Career Guidance Workshops'
-      ],
-      impact: 'Through our partnership with ITM University, we have successfully trained over 120 students in cutting-edge AI and ML technologies. Our industry-aligned curriculum has helped students secure internships and placements in leading tech companies.',
-      approach: [
-        'Weekly hands-on training sessions',
-        'Real-world project assignments',
-        'Industry mentor support',
-        'Regular assessments and feedback',
-        'Placement preparation workshops'
-      ]
-    }
-  },
+    impact: 'Through our partnership with ITM University Gwalior, Frostrek has successfully trained over 120 students in cutting-edge AI and Machine Learning technologies. The collaboration emphasizes industry-aligned learning, enabling students to gain practical exposure, build real-world projects, and enhance their employability. Many participants have leveraged this training to secure internships and placement opportunities in leading technology-driven organizations.',
+    approach: [
+      'Structured hands-on training sessions',
+      'Real-world project-based learning',
+      'Industry mentor-led guidance and reviews',
+      'Continuous assessment and performance feedback',
+      'Career orientation and placement preparation support'
+    ]
+  }
+},
   {
     id: 'rjit',
     name: 'Rustamji Institute of Technology',
@@ -199,9 +199,8 @@ const GlowingLines = () => {
           className="absolute h-px w-full"
           style={{
             top: `${15 + i * 15}%`,
-            background: `linear-gradient(90deg, transparent, ${
-              i % 2 === 0 ? 'rgba(6,182,212,0.3)' : 'rgba(168,85,247,0.3)'
-            }, transparent)`,
+            background: `linear-gradient(90deg, transparent, ${i % 2 === 0 ? 'rgba(6,182,212,0.3)' : 'rgba(168,85,247,0.3)'
+              }, transparent)`,
           }}
           animate={{
             x: ['-100%', '100%'],
@@ -227,6 +226,7 @@ const Campus = () => {
   const [selectedPartner, setSelectedPartner] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const navigate = useNavigate();
 
   // Mouse tracking for interactive effects
   useEffect(() => {
@@ -332,10 +332,10 @@ const Campus = () => {
       <FloatingOrbs />
       <AnimatedMesh />
       <GlowingLines />
-      
+
       {/* Dynamic gradient overlay */}
       <div className="fixed inset-0 -z-10">
-        <motion.div 
+        <motion.div
           className="absolute inset-0"
           style={{
             background: `
@@ -377,9 +377,8 @@ const Campus = () => {
             className="absolute w-1 h-full"
             style={{
               left: `${20 + i * 25}%`,
-              background: `linear-gradient(180deg, transparent, ${
-                i % 2 === 0 ? 'rgba(6,182,212,0.4)' : 'rgba(99,102,241,0.4)'
-              }, transparent)`,
+              background: `linear-gradient(180deg, transparent, ${i % 2 === 0 ? 'rgba(6,182,212,0.4)' : 'rgba(99,102,241,0.4)'
+                }, transparent)`,
               transform: 'skewX(-15deg)',
             }}
             animate={{
@@ -564,12 +563,14 @@ const Campus = () => {
           <p className="text-sm sm:text-base text-slate-300/80 mb-4 sm:mb-6">
             Interested in bringing industry-aligned AI training to your institution?
           </p>
-          <button 
+          <button
+            onClick={() => navigate("/get-in-touch")}
             className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-full 
-                           bg-gradient-to-r from-cyan-500 to-indigo-500
-                           text-white text-sm sm:text-base font-semibold 
-                           hover:shadow-lg hover:shadow-cyan-500/50
-                           transition-all duration-300 hover:scale-105 active:scale-95">
+                 bg-gradient-to-r from-cyan-500 to-indigo-500
+                 text-white text-sm sm:text-base font-semibold 
+                 hover:shadow-lg hover:shadow-cyan-500/50
+                 transition-all duration-300 hover:scale-105 active:scale-95"
+          >
             Partner With Us
           </button>
         </motion.div>
@@ -614,7 +615,7 @@ const Campus = () => {
                              transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  
+
                   {/* Location badge */}
                   <div className="absolute top-4 right-4 flex items-center gap-2 
                                 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md

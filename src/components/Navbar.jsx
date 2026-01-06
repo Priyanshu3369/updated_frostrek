@@ -7,8 +7,8 @@ const links = [
   { label: "About", href: "/about", type: "route" },
   { label: "Services", href: "/services", type: "route" },
   { label: "Blog", href: "/blog", type: "route" },
-  { label: "FAQs", href: "/faqs", type: "route" },
   { label: "Partners", href: "/campus", type: "route" },
+  { label: "FAQs", href: "/faqs", type: "route" },
 ];
 
 const servicesDropdown = [
