@@ -10,6 +10,7 @@ const links = [
   { label: "Partners", href: "/campus", type: "route" },
   { label: "FAQs", href: "/faqs", type: "route" },
   { label: "NewPage", href: "/servicepage", type: "route" },
+  { label: "Talent", href: "/talent", type: "route" },
 ];
 
 const servicesDropdown = [

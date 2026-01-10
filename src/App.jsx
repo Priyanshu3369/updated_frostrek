@@ -21,6 +21,7 @@ import BlogDetail from "./pages/BlogDetail";
 import LegalPage from "./pages/Legal";
 import CertificationsPage from "./sections/CertificationCard";
 import Campus from "./pages/Campus";
+import TalentPool from "./pages/TalentPool";
 
 const Home = () => {
   return (
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/faqs" element={<FAQPage />} />
         <Route path="/get-in-touch" element={<GetInTouch />} />
         <Route path="/servicepage" element={<NewPage />} />
+        <Route path="/talent" element={<TalentPool />} />
         <Route path="/legal" element={<LegalPage />} />
         <Route path="/campus" element={<Campus />} />
         <Route path="*" element={<Home />} />
