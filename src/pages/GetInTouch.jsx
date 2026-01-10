@@ -12,6 +12,7 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 const FloatingGrid = () => {
   const canvasRef = useRef(null);
@@ -270,6 +271,7 @@ const ContactForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const location = useLocation();
 
   const EMAILJS_SERVICE_ID = "service_jpnwy19";
   const EMAILJS_TEMPLATE_ID = "template_ikfra7o";
@@ -375,7 +377,14 @@ const ContactForm = () => {
       );
     }
   };
-
+  useEffect(() => {
+    if (location.state?.serviceTitle) {
+      setFormData(prev => ({
+        ...prev,
+        message: `Hi, I'm interested in ${location.state.serviceTitle}. `
+      }));
+    }
+  }, [location.state]);
   return (
     <div className="bg-[#0B0B0E] text-[#F8FAFC] min-h-screen overflow-hidden">
       <FloatingGrid />

@@ -14,6 +14,7 @@ import Collaborate from "./sections/Collaborate";
 import AboutPage from "./pages/About";
 import FAQPage from "./pages/FAQs";
 import ServicePage from "./pages/Services";
+import NewPage from "./pages/NewPage";
 import GetInTouch from "./pages/GetInTouch";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/services" element={<ServicePage />} />
         <Route path="/faqs" element={<FAQPage />} />
         <Route path="/get-in-touch" element={<GetInTouch />} />
+        <Route path="/servicepage" element={<NewPage />} />
         <Route path="/legal" element={<LegalPage />} />
         <Route path="/campus" element={<Campus />} />
         <Route path="*" element={<Home />} />
