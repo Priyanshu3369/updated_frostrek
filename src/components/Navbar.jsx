@@ -9,7 +9,6 @@ const links = [
   { label: "Blog", href: "/blog", type: "route" },
   { label: "Partners", href: "/campus", type: "route" },
   { label: "FAQs", href: "/faqs", type: "route" },
-  { label: "NewPage", href: "/servicepage", type: "route" },
   { label: "Talent", href: "/talent", type: "route" },
 ];
 
@@ -25,9 +24,15 @@ const servicesDropdown = [
   },
 ];
 
+const partnersDropdown = [
+  { label: "Partners", href: "/campus" },
+  { label: "Be Partner", href: "/bepartner" },
+];
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [partnersOpen, setPartnersOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -49,6 +54,7 @@ const Navbar = () => {
   const closeMenu = () => {
     setIsOpen(false);
     setServicesOpen(false);
+    setPartnersOpen(false);
   };
 
   const isActive = (href) => {
@@ -136,7 +142,7 @@ const Navbar = () => {
                     Services
                   </Link>
 
-                  {/* Desktop Dropdown */}
+                  {/* Desktop Services Dropdown */}
                   <div className="absolute left-0 top-full mt-3 w-80 rounded-xl border border-cyan-500/20 bg-[#061c21] shadow-xl shadow-cyan-900/30 opacity-0 invisible translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
                     <ul className="py-2">
                       {servicesDropdown.map((item, idx) => (
@@ -147,6 +153,33 @@ const Navbar = () => {
                         >
                           {item.label}
                         </button>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ) : link.label === "Partners" ? (
+                <div key={link.href} className="relative group">
+                  <button
+                    className={`rounded-full px-3 py-1 transition-colors ${
+                      isActive("/campus") || isActive("/bepartner")
+                        ? "bg-cyan-500/20 text-cyan-200"
+                        : "hover:bg-cyan-500/10 hover:text-cyan-200"
+                    }`}
+                  >
+                    Partners
+                  </button>
+
+                  {/* Desktop Partners Dropdown */}
+                  <div className="absolute left-0 top-full mt-3 w-48 rounded-xl border border-cyan-500/20 bg-[#061c21] shadow-xl shadow-cyan-900/30 opacity-0 invisible translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                    <ul className="py-2">
+                      {partnersDropdown.map((item, idx) => (
+                        <Link
+                          key={idx}
+                          to={item.href}
+                          className="w-full text-left block px-5 py-2.5 text-sm hover:bg-cyan-500/10 hover:text-cyan-200 transition"
+                        >
+                          {item.label}
+                        </Link>
                       ))}
                     </ul>
                   </div>
@@ -223,6 +256,42 @@ const Navbar = () => {
                       >
                         {item.label}
                       </button>
+                    ))}
+                  </div>
+                </div>
+              ) : link.label === "Partners" ? (
+                <div key={link.href} className="flex flex-col">
+                  {/* Partners Button */}
+                  <button
+                    onClick={() => setPartnersOpen(!partnersOpen)}
+                    className={`flex items-center justify-between rounded-lg px-3 py-2 hover:bg-cyan-500/10 ${
+                      isActive("/campus") || isActive("/bepartner") ? "bg-cyan-500/20 text-cyan-200" : ""
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <ChevronDown 
+                      size={16} 
+                      className={`transition-transform duration-300 ${
+                        partnersOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  
+                  {/* Mobile Partners Dropdown */}
+                  <div
+                    className={`flex flex-col gap-1 pl-4 mt-1 overflow-hidden transition-all duration-300 ${
+                      partnersOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    {partnersDropdown.map((item, idx) => (
+                      <Link
+                        key={idx}
+                        to={item.href}
+                        onClick={closeMenu}
+                        className="text-left text-sm px-3 py-2 hover:bg-cyan-500/10 rounded-lg transition-colors"
+                      >
+                        {item.label}
+                      </Link>
                     ))}
                   </div>
                 </div>
