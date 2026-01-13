@@ -169,129 +169,95 @@ const TalentPool = () => {
 
   const categories = [
     "All",
-    "Machine Learning",
     "Data Science",
     "AI Engineering",
-    "Research",
     "Full Stack",
     "RLHF Specialists",
   ];
 
   const talentProfiles = [
     {
-      name: "Senior ML Engineer",
-      category: "Machine Learning",
-      experience: "8+ years",
-      skills: ["PyTorch", "TensorFlow", "MLOps", "Computer Vision"],
+      name: "Full-Stack MERN Developer",
+      category: "Full Stack",
+      experience: "3+ years",
+      skills: ["React", "Node.js", "Express", "MongoDB", "REST APIs", "Authentication"],
       availability: "Available",
       rate: "Competitive",
       location: "Remote",
       rating: 4.9,
-      projects: 45,
-      description: "Expert in designing and deploying large-scale ML systems with focus on computer vision and NLP applications.",
+      projects: 40,
+      description:
+        "Experienced in building scalable MERN stack applications with strong focus on frontend and backend development, API integration, authentication systems, and clean maintainable code.",
     },
+    { name: "Data Scientist", category: "Data Science", experience: "3+ years", skills: ["Python", "SQL", "Statistical Modeling", "A/B Testing"], availability: "Available", rate: "Competitive", location: "Remote", rating: 4.8, projects: 58, description: "Data-driven professional with expertise in building predictive models and delivering actionable insights.", },
+    { name: "RLHF Specialist", category: "RLHF Specialists", experience: "2+ years", skills: ["RLHF", "LLM Training", "Human Feedback", "Evaluation"], availability: "Available", rate: "Competitive", location: "Remote", rating: 4.9, projects: 28, description: "Specialized in training and fine-tuning large language models using reinforcement learning from human feedback.", },
     {
-      name: "AI Research Scientist",
-      category: "Research",
-      experience: "6+ years",
-      skills: ["Deep Learning", "Reinforcement Learning", "Publications", "Math"],
+      name: "Full-Stack Backend Engineer",
+      category: "Full Stack",
+      experience: "3+ years",
+      skills: ["React", "Node.js", "Express", "MongoDB", "FastAPI", "Git", "GitHub"],
       availability: "Available",
       rate: "Competitive",
+      location: "Remote",
+      rating: 4.8,
+      projects: 52,
+      description:
+        "Full-stack engineer experienced in developing scalable web applications using React, Node.js, Express, MongoDB, and FastAPI. Strong in authentication, core system design, and collaborative development using Git and GitHub.",
+    },
+    {
+      name: "AI & Data Engineer",
+      category: "AI Engineering",
+      experience: "2+ years",
+      skills: ["Python", "SQL", "Machine Learning", "LLMs", "Data Analysis", "Backend Systems"],
+      availability: "Available",
+      rate: "Competitive",
+      location: "Remote",
+      rating: 4.9,
+      projects: 35,
+      description:
+        "Skilled in Python, SQL, and machine learning with hands-on experience in data analysis, model building, AI-powered applications, LLM systems, backend services, and real-world data-driven projects.",
+    },
+    {
+      name: "Full-Stack FastAPI Developer",
+      category: "Full Stack",
+      experience: "3+ years",
+      skills: ["React", "Python", "FastAPI", "Authentication", "REST APIs", "Git", "GitHub"],
+      availability: "Available",
+      rate: "Competitive",
+      location: "Remote",
+      rating: 4.8,
+      projects: 46,
+      description:
+        "Experienced in developing scalable web applications using React, Python, and FastAPI. Works across both frontend and backend, handling authentication and core system functionality while delivering robust and reliable solutions.",
+    },
+
+    // 🔥 YOUR COMPLETE TECH PROFILE
+    {
+      name: "AI Full-Stack Engineer",
+      category: "AI Engineering",
+      experience: "3+ years",
+      skills: [
+        "Python",
+        "Machine Learning",
+        "LLMs",
+        "AI Systems",
+      ],
+      availability: "Available",
+      rate: "Premium",
       location: "Remote",
       rating: 5.0,
-      projects: 32,
-      description: "PhD in AI with multiple publications in top-tier conferences. Specializes in novel algorithm development.",
-    },
-    {
-      name: "Data Scientist",
-      category: "Data Science",
-      experience: "5+ years",
-      skills: ["Python", "R", "SQL", "Statistical Modeling", "A/B Testing"],
-      availability: "Available",
-      rate: "Competitive",
-      location: "Remote",
-      rating: 4.8,
-      projects: 58,
-      description: "Data-driven professional with expertise in building predictive models and delivering actionable insights.",
-    },
-    {
-      name: "RLHF Specialist",
-      category: "RLHF Specialists",
-      experience: "4+ years",
-      skills: ["RLHF", "LLM Training", "Human Feedback", "Evaluation"],
-      availability: "Available",
-      rate: "Competitive",
-      location: "Remote",
-      rating: 4.9,
-      projects: 28,
-      description: "Specialized in training and fine-tuning large language models using reinforcement learning from human feedback.",
-    },
-    {
-      name: "Full Stack AI Developer",
-      category: "Full Stack",
-      experience: "7+ years",
-      skills: ["React", "Node.js", "Python", "AI Integration", "Cloud"],
-      availability: "Available",
-      rate: "Competitive",
-      location: "Remote",
-      rating: 4.7,
-      projects: 62,
-      description: "End-to-end developer skilled in building production-ready AI-powered applications and platforms.",
-    },
-    {
-      name: "Computer Vision Engineer",
-      category: "AI Engineering",
-      experience: "6+ years",
-      skills: ["OpenCV", "YOLO", "Image Processing", "3D Vision"],
-      availability: "Available",
-      rate: "Competitive",
-      location: "Remote",
-      rating: 4.8,
-      projects: 41,
-      description: "Specialist in developing advanced computer vision systems for object detection, tracking, and recognition.",
-    },
-    {
-      name: "NLP Engineer",
-      category: "AI Engineering",
-      experience: "5+ years",
-      skills: ["Transformers", "BERT", "GPT", "Text Analysis", "LLMs"],
-      availability: "Available",
-      rate: "Competitive",
-      location: "Remote",
-      rating: 4.9,
-      projects: 37,
-      description: "Expert in natural language processing with focus on transformer models and large language model applications.",
-    },
-    {
-      name: "MLOps Engineer",
-      category: "Machine Learning",
-      experience: "6+ years",
-      skills: ["Kubernetes", "Docker", "CI/CD", "Model Deployment", "Monitoring"],
-      availability: "Available",
-      rate: "Competitive",
-      location: "Remote",
-      rating: 4.8,
-      projects: 54,
-      description: "Infrastructure specialist focused on ML model deployment, monitoring, and maintaining production systems.",
-    },
-    {
-      name: "AI Product Manager",
-      category: "Research",
-      experience: "8+ years",
-      skills: ["Product Strategy", "AI/ML", "Roadmapping", "Stakeholder Management"],
-      availability: "Available",
-      rate: "Competitive",
-      location: "Remote",
-      rating: 4.9,
-      projects: 43,
-      description: "Strategic leader with deep technical understanding, bridging AI capabilities with business objectives.",
-    },
+      projects: 65,
+      description:
+        "AI Full-Stack engineer skilled in building production-grade web applications and intelligent systems using React, MERN stack, FastAPI, Python, SQL, machine learning, and LLMs. Experienced in role-based access control, backend system design, AI integration, and real-world data-driven applications. Competitive programmer with strong problem-solving skills, focused on writing optimized, clean, and maintainable code while delivering scalable and reliable solutions.",
+    }
   ];
+
+
 
   const filteredTalent = talentProfiles.filter(profile => {
     const matchesCategory = selectedCategory === "All" || profile.category === selectedCategory;
     const matchesSearch = profile.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         profile.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()));
+      profile.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
 
@@ -456,11 +422,10 @@ const TalentPool = () => {
                   <motion.button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                      selectedCategory === category
-                        ? "bg-gradient-to-r from-cyan-400 to-indigo-500 text-[#0B0B0E]"
-                        : "bg-white/5 text-slate-300 border border-white/10 hover:border-cyan-400/30 hover:bg-white/10"
-                    }`}
+                    className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === category
+                      ? "bg-gradient-to-r from-cyan-400 to-indigo-500 text-[#0B0B0E]"
+                      : "bg-white/5 text-slate-300 border border-white/10 hover:border-cyan-400/30 hover:bg-white/10"
+                      }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
