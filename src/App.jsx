@@ -19,7 +19,6 @@ import GetInTouch from "./pages/GetInTouch";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import LegalPage from "./pages/Legal";
-import CertificationsPage from "./sections/CertificationCard";
 import Campus from "./pages/Campus";
 import TalentPool from "./pages/TalentPool";
 
@@ -30,7 +29,6 @@ const Home = () => {
       <Services />
       <WhyChooseUs />
       <Testimonials />
-      <CertificationsPage/>
       <FAQs />
       <Collaborate />
     </div>

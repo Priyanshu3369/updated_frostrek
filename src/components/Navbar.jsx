@@ -19,8 +19,7 @@ const servicesDropdown = [
   { label: "AI Agents & Autonomous Systems", sectionId: "ai-agents" },
   {
     label: "More Services",
-    href: "https://old.Frostrek.com",
-    external: true,
+    href: "/bepartner",
   },
 ];
 
@@ -69,6 +68,12 @@ const Navbar = () => {
       return;
     }
 
+    if (item.href) {
+      navigate(item.href);
+      closeMenu();
+      return;
+    }
+
     if (item.sectionId) {
       if (location.pathname === "/services") {
         scrollToSection(item.sectionId);
@@ -79,6 +84,7 @@ const Navbar = () => {
         }, 100);
       }
     }
+
     closeMenu();
   };
 
@@ -100,18 +106,16 @@ const Navbar = () => {
     <>
       {/* Mobile backdrop */}
       <div
-        className={`fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300 z-40 md:hidden ${
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300 z-40 md:hidden ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         onClick={closeMenu}
       />
 
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-[#061c21] ${
-          scrolled
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-[#061c21] ${scrolled
             ? "border-b border-cyan-500/20 shadow-lg shadow-cyan-900/10"
             : "border-b border-transparent"
-        }`}
+          }`}
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-3.5">
           {/* Logo */}
@@ -133,11 +137,10 @@ const Navbar = () => {
                 <div key={link.href} className="relative group">
                   <Link
                     to="/services"
-                    className={`rounded-full px-3 py-1 transition-colors ${
-                      isActive("/services")
+                    className={`rounded-full px-3 py-1 transition-colors ${isActive("/services")
                         ? "bg-cyan-500/20 text-cyan-200"
                         : "hover:bg-cyan-500/10 hover:text-cyan-200"
-                    }`}
+                      }`}
                   >
                     Services
                   </Link>
@@ -160,11 +163,10 @@ const Navbar = () => {
               ) : link.label === "Partners" ? (
                 <div key={link.href} className="relative group">
                   <button
-                    className={`rounded-full px-3 py-1 transition-colors ${
-                      isActive("/campus") || isActive("/bepartner")
+                    className={`rounded-full px-3 py-1 transition-colors ${isActive("/campus") || isActive("/bepartner")
                         ? "bg-cyan-500/20 text-cyan-200"
                         : "hover:bg-cyan-500/10 hover:text-cyan-200"
-                    }`}
+                      }`}
                   >
                     Partners
                   </button>
@@ -188,11 +190,10 @@ const Navbar = () => {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`rounded-full px-3 py-1 transition-colors ${
-                    isActive(link.href)
+                  className={`rounded-full px-3 py-1 transition-colors ${isActive(link.href)
                       ? "bg-cyan-500/20 text-cyan-200"
                       : "hover:bg-cyan-500/10 hover:text-cyan-200"
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -218,35 +219,31 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-500 ${
-            isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-          }`}
+          className={`md:hidden overflow-hidden transition-all duration-500 ${isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+            }`}
         >
           <nav className="flex flex-col px-5 py-4 gap-2 text-slate-200">
-            {links.map((link) => 
+            {links.map((link) =>
               link.label === "Services" ? (
                 <div key={link.href} className="flex flex-col">
                   {/* Services Button */}
                   <button
                     onClick={() => setServicesOpen(!servicesOpen)}
-                    className={`flex items-center justify-between rounded-lg px-3 py-2 hover:bg-cyan-500/10 ${
-                      isActive("/services") ? "bg-cyan-500/20 text-cyan-200" : ""
-                    }`}
+                    className={`flex items-center justify-between rounded-lg px-3 py-2 hover:bg-cyan-500/10 ${isActive("/services") ? "bg-cyan-500/20 text-cyan-200" : ""
+                      }`}
                   >
                     <span>{link.label}</span>
-                    <ChevronDown 
-                      size={16} 
-                      className={`transition-transform duration-300 ${
-                        servicesOpen ? "rotate-180" : ""
-                      }`}
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
-                  
+
                   {/* Mobile Services Dropdown */}
                   <div
-                    className={`flex flex-col gap-1 pl-4 mt-1 overflow-hidden transition-all duration-300 ${
-                      servicesOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                    }`}
+                    className={`flex flex-col gap-1 pl-4 mt-1 overflow-hidden transition-all duration-300 ${servicesOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                      }`}
                   >
                     {servicesDropdown.map((item, idx) => (
                       <button
@@ -264,24 +261,21 @@ const Navbar = () => {
                   {/* Partners Button */}
                   <button
                     onClick={() => setPartnersOpen(!partnersOpen)}
-                    className={`flex items-center justify-between rounded-lg px-3 py-2 hover:bg-cyan-500/10 ${
-                      isActive("/campus") || isActive("/bepartner") ? "bg-cyan-500/20 text-cyan-200" : ""
-                    }`}
+                    className={`flex items-center justify-between rounded-lg px-3 py-2 hover:bg-cyan-500/10 ${isActive("/campus") || isActive("/bepartner") ? "bg-cyan-500/20 text-cyan-200" : ""
+                      }`}
                   >
                     <span>{link.label}</span>
-                    <ChevronDown 
-                      size={16} 
-                      className={`transition-transform duration-300 ${
-                        partnersOpen ? "rotate-180" : ""
-                      }`}
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-300 ${partnersOpen ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
-                  
+
                   {/* Mobile Partners Dropdown */}
                   <div
-                    className={`flex flex-col gap-1 pl-4 mt-1 overflow-hidden transition-all duration-300 ${
-                      partnersOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                    }`}
+                    className={`flex flex-col gap-1 pl-4 mt-1 overflow-hidden transition-all duration-300 ${partnersOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                      }`}
                   >
                     {partnersDropdown.map((item, idx) => (
                       <Link
@@ -300,15 +294,14 @@ const Navbar = () => {
                   key={link.href}
                   to={link.href}
                   onClick={closeMenu}
-                  className={`rounded-lg px-3 py-2 hover:bg-cyan-500/10 ${
-                    isActive(link.href) ? "bg-cyan-500/20 text-cyan-200" : ""
-                  }`}
+                  className={`rounded-lg px-3 py-2 hover:bg-cyan-500/10 ${isActive(link.href) ? "bg-cyan-500/20 text-cyan-200" : ""
+                    }`}
                 >
                   {link.label}
                 </Link>
               )
             )}
-            
+
             <Link
               to="/get-in-touch"
               onClick={closeMenu}

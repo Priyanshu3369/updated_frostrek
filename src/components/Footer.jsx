@@ -196,11 +196,34 @@ const legalLinks = [
             </p>
             
             {/* Social Links */}
-            <div className="flex gap-2.5 justify-center md:justify-start">
+            <div className="flex gap-2.5 justify-center md:justify-start mb-4 md:mb-5">
               {socialLinks.map(({ Icon, href }, index) => (
                 <SocialIcon key={index} Icon={Icon} href={href} delay={0.2 + index * 0.1} />
               ))}
             </div>
+            
+            {/* ISO Certifications */}
+            <motion.div 
+              className="flex gap-3 md:gap-4 justify-center md:justify-start items-end"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              <motion.img
+                src="/2.png"
+                alt="ISO 27001:2022 Certified"
+                className="h-20 md:h-24 w-auto brightness-150 contrast-125 hover:brightness-200 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              />
+              <motion.img
+                src="/3.png"
+                alt="ISO 9001:2015 Certified"
+                className="h-20 md:h-24 w-auto brightness-150 contrast-125 hover:brightness-200 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              />
+            </motion.div>
           </motion.div>
 
           {/* Links Container for Mobile */}
