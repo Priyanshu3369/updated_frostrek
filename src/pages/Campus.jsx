@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, GraduationCap, Users, Briefcase, X, MapPin, Calendar, Award } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
+import IndustryPartnersSection  from './industry.jsx';
 
 // Campus training images data
 const campusImages = [
@@ -394,7 +395,7 @@ const Campus = () => {
           />
         ))}
       </div>
-
+        <IndustryPartnersSection />
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
