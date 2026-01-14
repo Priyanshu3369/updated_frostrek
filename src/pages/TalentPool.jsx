@@ -26,7 +26,7 @@ import {
   CheckCircle,
   Sparkles,
 } from "lucide-react";
-
+import { Link } from "react-router-dom";
 // 3D Floating Grid Background
 const FloatingGrid = () => {
   const canvasRef = useRef(null);
@@ -558,7 +558,7 @@ const TalentPool = () => {
               },
               {
                 title: "Rapid Deployment",
-                description: "Get matched with the perfect talent within 48 hours and start your project within a week.",
+                description: "Get matched with the perfect talent within 48 hours and start your project within a week and get results.",
                 icon: Zap,
               },
             ].map((item, index) => (
@@ -618,6 +618,7 @@ const TalentPool = () => {
           </SlideIn>
 
           <SlideIn direction="up" delay={0.4}>
+            <Link to="/get-in-touch">
             <motion.button
               className="group relative flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-500 px-10 py-4 text-base font-semibold text-[#06111F] shadow-[0_12px_30px_rgba(13,148,136,0.25)] mx-auto"
               initial={{ opacity: 0, y: 20 }}
@@ -642,6 +643,7 @@ const TalentPool = () => {
               </span>
               <span className="absolute inset-0 bg-white/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
             </motion.button>
+            </Link>
           </SlideIn>
         </div>
       </section>
