@@ -3,12 +3,11 @@ import {
   motion,
   useScroll,
   useTransform,
-  useSpring,
   useInView,
+  AnimatePresence,
 } from "framer-motion";
 import {
   Search,
-  Filter,
   Users,
   Brain,
   Code,
@@ -25,8 +24,11 @@ import {
   ArrowRight,
   CheckCircle,
   Sparkles,
+  X,
+  Info,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+
 // 3D Floating Grid Background
 const FloatingGrid = () => {
   const canvasRef = useRef(null);
@@ -166,6 +168,7 @@ const SlideIn = ({ children, direction = "left", delay = 0 }) => {
 const TalentPool = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const categories = [
     "All",
@@ -230,8 +233,6 @@ const TalentPool = () => {
       description:
         "Experienced in developing scalable web applications using React, Python, and FastAPI. Works across both frontend and backend, handling authentication and core system functionality while delivering robust and reliable solutions.",
     },
-
-    // 🔥 YOUR COMPLETE TECH PROFILE
     {
       name: "AI Full-Stack Engineer",
       category: "AI Engineering",
@@ -251,8 +252,6 @@ const TalentPool = () => {
         "AI Full-Stack engineer skilled in building production-grade web applications and intelligent systems using React, MERN stack, FastAPI, Python, SQL, machine learning, and LLMs. Experienced in role-based access control, backend system design, AI integration, and real-world data-driven applications. Competitive programmer with strong problem-solving skills, focused on writing optimized, clean, and maintainable code while delivering scalable and reliable solutions.",
     }
   ];
-
-
 
   const filteredTalent = talentProfiles.filter(profile => {
     const matchesCategory = selectedCategory === "All" || profile.category === selectedCategory;
@@ -280,6 +279,69 @@ const TalentPool = () => {
   return (
     <div className="bg-[#0B0B0E] text-[#F8FAFC] min-h-screen overflow-hidden">
       <FloatingGrid />
+
+      {/* Modal */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowModal(false)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#0B0B0E] border border-cyan-400/30 rounded-3xl p-8 max-w-md w-full relative shadow-2xl shadow-cyan-500/20"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowModal(false)}
+                className="absolute top-4 right-4 text-slate-400 hover:text-slate-200 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              {/* Icon */}
+              <div className="flex justify-center mb-6">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-400/20 to-indigo-500/20 flex items-center justify-center">
+                  <Info className="w-8 h-8 text-cyan-400" />
+                </div>
+              </div>
+
+              {/* Content */}
+              <h3 className="text-2xl font-semibold text-center mb-4 bg-gradient-to-r from-cyan-300 to-indigo-400 bg-clip-text text-transparent">
+                Want to Know More?
+              </h3>
+              
+              <p className="text-slate-300 text-center mb-8 leading-relaxed">
+                To learn more about our talent pool and find the perfect match for your project, 
+                <Link 
+                  to="/get-in-touch"
+                  className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors ml-1"
+                >
+                  Please contact us
+                </Link>
+              </p>
+
+              {/* CTA Button */}
+              <Link to="/get-in-touch">
+                <motion.button
+                  className="w-full py-3 bg-gradient-to-r from-cyan-400 to-indigo-500 text-[#0B0B0E] rounded-xl font-semibold flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Contact Us
+                  <ArrowRight className="w-5 h-5" />
+                </motion.button>
+              </Link>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -521,6 +583,33 @@ const TalentPool = () => {
               </SlideIn>
             ))}
           </div>
+
+          {/* Know More Button */}
+          <SlideIn direction="up" delay={0.3}>
+            <div className="flex justify-center mt-12">
+              <motion.button
+                onClick={() => setShowModal(true)}
+                className="group relative flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-500 px-10 py-4 text-base font-semibold text-[#06111F] shadow-[0_12px_30px_rgba(13,148,136,0.25)]"
+                whileHover={{
+                  scale: 1.05,
+                  y: -5,
+                  boxShadow: "0 20px 40px rgba(13,148,136,0.4)",
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  Know More
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <Info className="w-5 h-5" />
+                  </motion.div>
+                </span>
+                <span className="absolute inset-0 bg-white/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+              </motion.button>
+            </div>
+          </SlideIn>
         </div>
       </section>
 
@@ -619,30 +708,30 @@ const TalentPool = () => {
 
           <SlideIn direction="up" delay={0.4}>
             <Link to="/get-in-touch">
-            <motion.button
-              className="group relative flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-500 px-10 py-4 text-base font-semibold text-[#06111F] shadow-[0_12px_30px_rgba(13,148,136,0.25)] mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              whileHover={{
-                scale: 1.05,
-                y: -5,
-                boxShadow: "0 20px 40px rgba(13,148,136,0.4)",
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Get in Touch
-                <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <ArrowRight className="w-5 h-5" />
-                </motion.div>
-              </span>
-              <span className="absolute inset-0 bg-white/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
-            </motion.button>
+              <motion.button
+                className="group relative flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-500 px-10 py-4 text-base font-semibold text-[#06111F] shadow-[0_12px_30px_rgba(13,148,136,0.25)] mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -5,
+                  boxShadow: "0 20px 40px rgba(13,148,136,0.4)",
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  Get in Touch
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <ArrowRight className="w-5 h-5" />
+                  </motion.div>
+                </span>
+                <span className="absolute inset-0 bg-white/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+              </motion.button>
             </Link>
           </SlideIn>
         </div>
