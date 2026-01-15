@@ -328,7 +328,7 @@ const Campus = () => {
   };
 
   return (
-    <section className="relative px-4 sm:px-6 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 bg-[#0B0B0E] text-slate-50 overflow-hidden">
+    <section className="relative px-4 sm:px-6 pt-6 pb-12 sm:pb-16 md:pb-20 bg-[#0B0B0E] text-slate-50 overflow-hidden">
       {/* Animated Background Layers */}
       <FloatingOrbs />
       <AnimatedMesh />
