@@ -169,6 +169,7 @@ const TalentPool = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [selectedProfile, setSelectedProfile] = useState(null);
 
   const categories = [
     "All",
@@ -259,7 +260,45 @@ const TalentPool = () => {
       profile.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedProfile) {
+      // Save current scroll position
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
 
+      // Store scroll position in a data attribute
+      document.body.dataset.scrollY = scrollY.toString();
+    } else {
+      // Restore scroll position
+      const scrollY = document.body.dataset.scrollY;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY));
+      }
+    }
+
+    return () => {
+      // Cleanup on unmount
+      const scrollY = document.body.dataset.scrollY;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY));
+        delete document.body.dataset.scrollY;
+      }
+    };
+  }, [selectedProfile]);
   const stats = [
     { label: "AI Professionals", value: "500+", icon: Users },
     { label: "Successful Projects", value: "1000+", icon: Briefcase },
@@ -316,10 +355,10 @@ const TalentPool = () => {
               <h3 className="text-2xl font-semibold text-center mb-4 bg-gradient-to-r from-cyan-300 to-indigo-400 bg-clip-text text-transparent">
                 Want to Know More?
               </h3>
-              
+
               <p className="text-slate-300 text-center mb-8 leading-relaxed">
-                To learn more about our talent pool and find the perfect match for your project, 
-                <Link 
+                To learn more about our talent pool and find the perfect match for your project,
+                <Link
                   to="/get-in-touch"
                   className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors ml-1"
                 >
@@ -343,6 +382,127 @@ const TalentPool = () => {
         )}
       </AnimatePresence>
 
+      {/* Profile Detail Modal */}
+      <AnimatePresence>
+        {selectedProfile && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProfile(null)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto overscroll-contain"
+          >
+            <div className="min-h-full w-full flex items-center justify-center py-4 sm:py-8">
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-[#0B0B0E] border border-cyan-400/30 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 w-full max-w-2xl relative shadow-2xl shadow-cyan-500/20 my-auto"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedProfile(null)}
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 text-slate-400 hover:text-slate-200 transition-colors z-10 bg-[#0B0B0E]/80 backdrop-blur-sm rounded-full p-1.5 sm:p-2"
+                >
+                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
+
+                {/* Header - Fixed Height */}
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 sm:mb-6 pr-10 sm:pr-0 min-h-[80px] sm:min-h-[70px]">
+                  <div className="mb-3 sm:mb-0">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-slate-50 mb-1 sm:mb-2 line-clamp-2">
+                      {selectedProfile.name}
+                    </h3>
+                    <p className="text-base sm:text-lg text-cyan-300">{selectedProfile.category}</p>
+                  </div>
+                  <div className="flex items-center gap-1 bg-cyan-400/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full self-start sm:self-auto flex-shrink-0">
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 fill-cyan-400" />
+                    <span className="text-base sm:text-lg font-semibold text-cyan-300">
+                      {selectedProfile.rating}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Description - Fixed Height */}
+                <div className="mb-4 sm:mb-6">
+                  <h4 className="text-xs sm:text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2 sm:mb-3">
+                    About
+                  </h4>
+                  <div className="h-20 sm:h-24 overflow-y-auto">
+                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                      {selectedProfile.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Skills - Fixed Height */}
+                <div className="mb-4 sm:mb-6">
+                  <h4 className="text-xs sm:text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2 sm:mb-3">
+                    Skills & Expertise
+                  </h4>
+                  <div className="h-24 sm:h-28 overflow-y-auto">
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProfile.skills.map((skill, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 sm:px-4 py-1.5 sm:py-2 bg-indigo-400/10 text-indigo-300 text-xs sm:text-sm rounded-full border border-indigo-400/20 whitespace-nowrap flex-shrink-0"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Details Grid - Fixed Height */}
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6 p-4 sm:p-6 bg-white/[0.04] rounded-xl sm:rounded-2xl border border-white/5">
+                  <div className="min-h-[60px] sm:min-h-[65px]">
+                    <div className="flex items-center gap-1.5 sm:gap-2 text-slate-400 mb-1">
+                      <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                      <span className="text-[10px] sm:text-xs uppercase tracking-wider">Experience</span>
+                    </div>
+                    <p className="text-sm sm:text-base text-slate-50 font-semibold truncate">{selectedProfile.experience}</p>
+                  </div>
+                  <div className="min-h-[60px] sm:min-h-[65px]">
+                    <div className="flex items-center gap-1.5 sm:gap-2 text-slate-400 mb-1">
+                      <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                      <span className="text-[10px] sm:text-xs uppercase tracking-wider">Projects</span>
+                    </div>
+                    <p className="text-sm sm:text-base text-slate-50 font-semibold truncate">{selectedProfile.projects} Completed</p>
+                  </div>
+                  <div className="min-h-[60px] sm:min-h-[65px]">
+                    <div className="flex items-center gap-1.5 sm:gap-2 text-slate-400 mb-1">
+                      <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                      <span className="text-[10px] sm:text-xs uppercase tracking-wider">Location</span>
+                    </div>
+                    <p className="text-sm sm:text-base text-slate-50 font-semibold truncate">{selectedProfile.location}</p>
+                  </div>
+                  <div className="min-h-[60px] sm:min-h-[65px]">
+                    <div className="flex items-center gap-1.5 sm:gap-2 text-slate-400 mb-1">
+                      <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                      <span className="text-[10px] sm:text-xs uppercase tracking-wider">Status</span>
+                    </div>
+                    <p className="text-sm sm:text-base text-green-400 font-semibold truncate">{selectedProfile.availability}</p>
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <Link to="/get-in-touch">
+                  <motion.button
+                    className="w-full py-3 sm:py-4 bg-gradient-to-r from-cyan-400 to-indigo-500 text-[#0B0B0E] rounded-xl font-semibold flex items-center justify-center gap-2 text-sm sm:text-base"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Contact to Hire
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </motion.button>
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,255,255,0.16),transparent_55%)]" />
@@ -571,6 +731,7 @@ const TalentPool = () => {
 
                     {/* CTA Button */}
                     <motion.button
+                      onClick={() => setSelectedProfile(profile)}
                       className="w-full py-3 bg-gradient-to-r from-cyan-400 to-indigo-500 text-[#0B0B0E] rounded-xl font-semibold flex items-center justify-center gap-2 group-hover:shadow-lg transition-all"
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
