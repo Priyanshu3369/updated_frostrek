@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar } from "lucide-react";
-
+import SEOHead from "../components/SEOHead";
 /**
  * Blog data with updated AI transformation post
  */
@@ -228,112 +228,126 @@ const BlogDetail = () => {
   }
 
   return (
-    <section className="relative px-6 py-24 bg-[#0B0B0E] text-slate-50 overflow-hidden">
-      {/* Background gradients */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,255,255,0.14),transparent_55%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(109,40,217,0.12),transparent_60%)]" />
-      </div>
+    <>
+      <SEOHead
+        title={`${blog.title} | Frostrek Blog`}
+        description={blog.metaDescription}
+        canonicalUrl={`https://www.frostrek.com/blog/${blog.slug}`}
+        ogType="article"
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Blog", url: "/blog" },
+          { name: blog.title, url: `/blog/${blog.slug}` }
+        ]}
+      />
 
-      <div className="max-w-4xl mx-auto">
-        {/* Back button */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-10"
-        >
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-2 text-cyan-300 hover:text-cyan-200 transition"
+      <section className="relative px-6 py-24 bg-[#0B0B0E] text-slate-50 overflow-hidden">
+        {/* Background gradients */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,255,255,0.14),transparent_55%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(109,40,217,0.12),transparent_60%)]" />
+        </div>
+
+        <div className="max-w-4xl mx-auto">
+          {/* Back button */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-10"
           >
-            <ArrowLeft size={16} />
-            Back to Blogs
-          </Link>
-        </motion.div>
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 text-cyan-300 hover:text-cyan-200 transition"
+            >
+              <ArrowLeft size={16} />
+              Back to Blogs
+            </Link>
+          </motion.div>
 
-        {/* Blog Card */}
-        <motion.article
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="rounded-[28px] bg-white/[0.04] backdrop-blur-xl
+          {/* Blog Card */}
+          <motion.article
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="rounded-[28px] bg-white/[0.04] backdrop-blur-xl
                      border border-white/5 p-8 md:p-12"
-        >
-          {/* Tag */}
-          <span className="inline-block mb-4 text-xs font-semibold uppercase tracking-wider
+          >
+            {/* Tag */}
+            <span className="inline-block mb-4 text-xs font-semibold uppercase tracking-wider
                            px-4 py-1.5 rounded-full bg-cyan-400/10 text-cyan-300">
-            {blog.tag}
-          </span>
+              {blog.tag}
+            </span>
 
-          {/* Title */}
-          <h1 className="text-3xl md:text-5xl font-semibold mb-6 leading-tight
+            {/* Title */}
+            <h1 className="text-3xl md:text-5xl font-semibold mb-6 leading-tight
                          bg-gradient-to-r from-cyan-300 via-indigo-400 to-teal-300
                          bg-clip-text text-transparent">
-            {blog.title}
-          </h1>
+              {blog.title}
+            </h1>
 
-          {/* Meta */}
-          <div className="flex items-center gap-3 text-sm text-slate-400 mb-10">
-            <Calendar size={14} />
-            {blog.date}
-            {blog.author && (
-              <>
-                <span className="text-slate-600">•</span>
-                <span>{blog.author}</span>
-                {blog.authorTitle && (
-                  <span className="text-slate-500">| {blog.authorTitle}</span>
-                )}
-              </>
+            {/* Meta */}
+            <div className="flex items-center gap-3 text-sm text-slate-400 mb-10">
+              <Calendar size={14} />
+              {blog.date}
+              {blog.author && (
+                <>
+                  <span className="text-slate-600">•</span>
+                  <span>{blog.author}</span>
+                  {blog.authorTitle && (
+                    <span className="text-slate-500">| {blog.authorTitle}</span>
+                  )}
+                </>
+              )}
+            </div>
+
+            {/* Featured Image */}
+            {blog.hasImage && blog.imageUrl && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="mb-10 rounded-2xl overflow-hidden border border-white/10"
+              >
+                <img
+                  src={blog.imageUrl}
+                  alt={blog.title}
+                  className="w-full h-auto object-cover"
+                />
+              </motion.div>
             )}
-          </div>
 
-          {/* Featured Image */}
-          {blog.hasImage && blog.imageUrl && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="mb-10 rounded-2xl overflow-hidden border border-white/10"
-            >
-              <img 
-                src={blog.imageUrl} 
-                alt={blog.title}
-                className="w-full h-auto object-cover"
-              />
-            </motion.div>
-          )}
-
-          {/* Content */}
-          <div className="prose prose-invert prose-lg max-w-none
+            {/* Content */}
+            <div className="prose prose-invert prose-lg max-w-none
                           prose-headings:font-semibold prose-headings:text-cyan-200
                           prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
                           prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
                           prose-p:text-slate-300/90 prose-p:leading-relaxed
                           prose-ul:text-slate-300/90 prose-ul:leading-relaxed
                           prose-strong:text-cyan-300 prose-strong:font-semibold">
-            {blog.content.split('\n').map((paragraph, index) => {
-              if (paragraph.trim().startsWith('## ')) {
-                return <h2 key={index}>{paragraph.replace('## ', '')}</h2>;
-              }
-              if (paragraph.trim().startsWith('### ')) {
-                return <h3 key={index}>{paragraph.replace('### ', '')}</h3>;
-              }
-              if (paragraph.trim().startsWith('**') && paragraph.trim().endsWith('**')) {
-                return <p key={index}><strong>{paragraph.replace(/\*\*/g, '')}</strong></p>;
-              }
-              if (paragraph.trim().startsWith('•')) {
-                return <li key={index} className="ml-6">{paragraph.replace('• ', '')}</li>;
-              }
-              if (paragraph.trim()) {
-                return <p key={index}>{paragraph}</p>;
-              }
-              return <br key={index} />;
-            })}
-          </div>
-        </motion.article>
-      </div>
-    </section>
+              {blog.content.split('\n').map((paragraph, index) => {
+                if (paragraph.trim().startsWith('## ')) {
+                  return <h2 key={index}>{paragraph.replace('## ', '')}</h2>;
+                }
+                if (paragraph.trim().startsWith('### ')) {
+                  return <h3 key={index}>{paragraph.replace('### ', '')}</h3>;
+                }
+                if (paragraph.trim().startsWith('**') && paragraph.trim().endsWith('**')) {
+                  return <p key={index}><strong>{paragraph.replace(/\*\*/g, '')}</strong></p>;
+                }
+                if (paragraph.trim().startsWith('•')) {
+                  return <li key={index} className="ml-6">{paragraph.replace('• ', '')}</li>;
+                }
+                if (paragraph.trim()) {
+                  return <p key={index}>{paragraph}</p>;
+                }
+                return <br key={index} />;
+              })}
+            </div>
+          </motion.article>
+        </div>
+      </section>
+    </>
   );
 };
 

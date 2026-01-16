@@ -20,6 +20,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEOHead from "../components/SEOHead";
 
 // 3D Floating Grid Background
 const FloatingGrid = () => {
@@ -232,6 +233,13 @@ const Services = () => {
   ];
 
   return (
+    <>
+    <SEOHead
+  title="AI Services | Frostrek"
+  description="Enterprise AI development, agentic workflows, LLM systems and automation services."
+  canonicalUrl="https://www.frostrek.com/services"
+/>
+
     <div className="bg-[#0B0B0E] text-[#F8FAFC] min-h-screen overflow-hidden">
       <FloatingGrid />
 
@@ -680,6 +688,7 @@ const Services = () => {
         }
       `}</style>
     </div>
+    </>
   );
 };
 

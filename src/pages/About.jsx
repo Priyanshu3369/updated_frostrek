@@ -11,6 +11,7 @@ import {
   PlugZap
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEOHead from "../components/SEOHead";
 
 const FloatingParticles = () => {
   const particles = Array.from({ length: 40 }, (_, i) => ({
@@ -265,6 +266,12 @@ const About = () => {
   ];
 
   return (
+    <>
+      <SEOHead
+        title="About Us | Frostrek"
+        description="Learn about Frostrek's mission, vision, leadership, and enterprise AI expertise."
+        canonicalUrl="https://www.frostrek.com/about"
+      />
     <div className="bg-[#0B0B0E] text-[#F8FAFC] min-h-screen overflow-hidden" ref={containerRef}>
       <FloatingParticles />
 
@@ -1075,6 +1082,7 @@ const About = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

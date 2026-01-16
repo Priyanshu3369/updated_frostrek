@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Campus from "./Campus";
-
+import SEOHead from "../components/SEOHead";
 const blogPosts = [
   {
     title: "From Classroom to Career: Why Industry–Academia Collaboration Is Critical in the AI Era",
@@ -41,6 +41,11 @@ const blogPosts = [
 const Blog = () => {
   return (
     <>
+      <SEOHead
+        title="AI Blog | Frostrek"
+        description="Latest insights on AI, GenAI, Agentic systems and enterprise automation."
+        canonicalUrl="https://www.frostrek.com/blog"
+      />
       <section className="relative px-6 py-24 bg-[#0B0B0E] text-slate-50 overflow-hidden">
         {/* Background Gradients */}
         <div className="absolute inset-0 -z-10">
