@@ -21,9 +21,17 @@ import BlogDetail from "./pages/BlogDetail";
 import LegalPage from "./pages/Legal";
 import Campus from "./pages/Campus";
 import TalentPool from "./pages/TalentPool";
+import SEOHead from "./components/SEOHead";
+import NotFound from "./pages/NotFound";
 
 const Home = () => {
   return (
+    <>
+      <SEOHead
+        title="Frostrek | Enterprise AI & Agentic Automation Solutions"
+        description="Frostrek is an ISO certified enterprise AI company delivering agentic AI systems, GenAI solutions, automation platforms, and scalable software for global businesses."
+        canonicalUrl="https://www.frostrek.com/"
+      />
     <div className="bg-[#0B0B0E] text-[#FFFFFF] min-h-screen scroll-smooth">
       <Hero />
       <Services />
@@ -32,6 +40,7 @@ const Home = () => {
       <FAQs />
       <Collaborate />
     </div>
+    </>
   );
 };
 
@@ -53,7 +62,7 @@ const App = () => {
         <Route path="/talent" element={<TalentPool />} />
         <Route path="/legal" element={<LegalPage />} />
         <Route path="/campus" element={<Campus />} />
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />

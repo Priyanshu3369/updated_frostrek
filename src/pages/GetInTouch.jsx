@@ -13,7 +13,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useLocation } from "react-router-dom";
-
+import SEOHead from "../components/SEOHead";
 const FloatingGrid = () => {
   const canvasRef = useRef(null);
 
@@ -386,6 +386,12 @@ const ContactForm = () => {
     }
   }, [location.state]);
   return (
+    <>
+      <SEOHead
+        title="Contact Frostrek | Get in Touch"
+        description="Contact Frostrek for AI, automation, and enterprise technology solutions."
+        canonicalUrl="https://www.frostrek.com/contact"
+      />
     <div className="bg-[#0B0B0E] text-[#F8FAFC] min-h-screen overflow-hidden">
       <FloatingGrid />
       <FloatingParticles />
@@ -807,6 +813,7 @@ const ContactForm = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

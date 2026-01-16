@@ -24,6 +24,8 @@ import {
   Sparkles
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import SEOHead from "../components/SEOHead";
+
 // 3D Floating Grid Background
 const FloatingGrid = () => {
   const canvasRef = useRef(null);
@@ -460,6 +462,12 @@ const NewPage = () => {
   const techStack = ["React", "Next.js", "Node.js", "Python", "TensorFlow", "PyTorch", "AWS", "MongoDB", "PostgreSQL", "Docker"];
 
   return (
+    <>
+      <SEOHead
+        title="Be Partner | Frostrek"
+        description="Explore Frostrek's latest offerings and updates."
+        canonicalUrl="https://www.frostrek.com/bepartner"
+      />
     <div className="w-full overflow-x-hidden bg-[#0B0B0E] text-[#F8FAFC]">
       <FloatingGrid />
 
@@ -872,6 +880,7 @@ const NewPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

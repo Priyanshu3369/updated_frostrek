@@ -28,6 +28,7 @@ import {
   Info,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEOHead from "../components/SEOHead";
 
 // 3D Floating Grid Background
 const FloatingGrid = () => {
@@ -343,6 +344,12 @@ const expertiseAreas = [
 ];
 
 return (
+  <>
+      <SEOHead
+        title="Careers at Frostrek | Talent Pool"
+        description="Join Frostrek's talent pool for AI, software, and technology careers."
+        canonicalUrl="https://www.frostrek.com/talent"
+      />
   <div className="bg-[#0B0B0E] text-[#F8FAFC] min-h-screen overflow-hidden">
     <FloatingGrid />
 
@@ -925,6 +932,7 @@ return (
       </div>
     </section>
   </div>
+  </>
 );
 };
 

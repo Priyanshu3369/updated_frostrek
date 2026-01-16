@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, FileText, Cookie, ChevronRight, Lock, Eye, UserCheck, Database, AlertCircle, ArrowLeft, Sparkles } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-
+import SEOHead from "../components/SEOHead";
 const ParticlesCanvas = () => {
   const canvasRef = useRef(null);
 
@@ -499,6 +499,12 @@ const LegalPage = () => {
   const CurrentIcon = sectionIcons[activeSection];
 
   return (
+    <>
+      <SEOHead
+        title="Legal Policies | Frostrek"
+        description="Privacy policy, terms of service, compliance and legal disclosures."
+        canonicalUrl="https://www.frostrek.com/legal"
+      />
     <div className="relative min-h-screen bg-[#06060C] text-white overflow-hidden">
       <ParticlesCanvas />
       <FloatingParticles />
@@ -750,6 +756,7 @@ const LegalPage = () => {
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />
     </div>
+    </>
   );
 };
 

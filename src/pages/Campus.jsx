@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, GraduationCap, Users, Briefcase, X, MapPin, Calendar, Award } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import IndustryPartnersSection  from './industry.jsx';
-
+import SEOHead from "../components/SEOHead";
 // Campus training images data
 const campusImages = [
   {
@@ -132,6 +132,7 @@ const FloatingOrbs = () => {
   }));
 
   return (
+    
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {orbs.map((orb) => (
         <motion.div
@@ -328,6 +329,12 @@ const Campus = () => {
   };
 
   return (
+    <>
+      <SEOHead
+        title="Campus Hiring | Frostrek"
+        description="Explore campus hiring programs, internships and fresher opportunities at Frostrek."
+        canonicalUrl="https://www.frostrek.com/campus"
+      />
     <section className="relative px-4 sm:px-6 pt-6 pb-12 sm:pb-16 md:pb-20 bg-[#0B0B0E] text-slate-50 overflow-hidden">
       {/* Animated Background Layers */}
       <FloatingOrbs />
@@ -878,6 +885,7 @@ const Campus = () => {
         )}
       </AnimatePresence>
     </section>
+    </>
   );
 };
 

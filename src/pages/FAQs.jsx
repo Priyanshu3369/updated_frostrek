@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion';
 import { ArrowRight, ChevronDown, Brain, Users, Sparkles, Zap, Target, Award, TrendingUp, Shield, CheckCircle } from 'lucide-react';
 import { Link } from "react-router-dom";
-
+import SEOHead from "../components/SEOHead";
 const FloatingGrid = () => {
   const canvasRef = useRef(null);
 
@@ -348,6 +348,12 @@ const FAQs = () => {
   };
 
   return (
+    <>
+      <SEOHead
+        title="FAQs | Frostrek"
+        description="Frequently asked questions about Frostrek services, hiring, and solutions."
+        canonicalUrl="https://www.frostrek.com/faqs"
+      />
     <div className="bg-[#0B0B0E] text-[#F8FAFC] min-h-screen overflow-hidden">
       <FloatingGrid />
 
@@ -897,6 +903,7 @@ const FAQs = () => {
         </motion.div>
       </div>
     </div>
+    </>
   );
 };
 

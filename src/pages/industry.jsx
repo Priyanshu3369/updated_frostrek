@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Building2, Users, Target, TrendingUp, Sparkles, ArrowUpRight } from 'lucide-react';
-
+import SEOHead from "../components/SEOHead";
 const industryPartners = [
   {
     id: 1,
@@ -59,6 +59,12 @@ const IndustryPartnersSection = () => {
   };
 
   return (
+    <>
+      <SEOHead
+        title="Industry Solutions | Frostrek"
+        description="AI solutions for healthcare, fintech, retail, manufacturing and more."
+        canonicalUrl="https://www.frostrek.com/industry"
+      />
     <div className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden">
       {/* Ambient Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(6,182,212,0.06),transparent_70%)] pointer-events-none" />
@@ -240,6 +246,7 @@ const IndustryPartnersSection = () => {
         </motion.div>
       </div>
     </div>
+    </>
   );
 };
 
