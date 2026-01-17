@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
+import FrostyChatbot from "./components/FrostyChatbot";
 
 import Hero from "./sections/Hero";
 import Services from "./sections/Services";
@@ -45,6 +48,8 @@ const Home = () => {
 };
 
 const App = () => {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+
   return (
     <div className="bg-[#0B0B0E] min-h-screen">
       <Navbar />
@@ -66,6 +71,48 @@ const App = () => {
       </Routes>
 
       <Footer />
+
+      {/* Sticky Chatbot Button */}
+      <AnimatePresence>
+        {!isChatbotOpen && (
+          <motion.button
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            onClick={() => setIsChatbotOpen(true)}
+            className="fixed bottom-6 right-6 z-[9997] group cursor-pointer"
+            aria-label="Open chatbot"
+          >
+            {/* Pulsing glow effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 opacity-60 blur-xl animate-pulse" />
+            
+            {/* Main button */}
+            <div className="relative w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 p-[2px] shadow-2xl hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-300 group-hover:scale-110">
+              <div className="w-full h-full rounded-full bg-gradient-to-br from-[#0B0B0E] to-[#1a1a2e] flex items-center justify-center">
+                <span className="text-3xl">🤖</span>
+              </div>
+            </div>
+
+            {/* Notification badge */}
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-[#0B0B0E] shadow-lg animate-bounce">
+              1
+            </span>
+
+            {/* Tooltip */}
+            <div className="absolute bottom-full right-0 mb-2 px-3 py-1.5 bg-white/10 backdrop-blur-md text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none border border-white/20">
+              Chat with Frosty
+              <div className="absolute -bottom-1 right-4 w-2 h-2 bg-white/10 border-r border-b border-white/20 transform rotate-45" />
+            </div>
+          </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* Chatbot Component */}
+      <FrostyChatbot 
+        isOpen={isChatbotOpen} 
+        onClose={() => setIsChatbotOpen(false)} 
+      />
     </div>
   );
 };
