@@ -866,7 +866,7 @@ const NewPage = () => {
               style={{ transformStyle: "preserve-3d" }}
             >
               <span className="relative z-10 flex items-center gap-2">
-                Get in Touch
+                Book a Demo
                 <motion.div
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}

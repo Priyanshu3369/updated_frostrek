@@ -204,7 +204,7 @@ const Navbar = () => {
               to="/get-in-touch"
               className="rounded-full bg-gradient-to-r from-teal-700 to-teal-600 px-5 py-2.5 font-semibold text-white hover:scale-105 transition"
             >
-              Get in Touch
+              Book a Demo
             </Link>
           </nav>
 
@@ -307,7 +307,7 @@ const Navbar = () => {
               onClick={closeMenu}
               className="mt-3 rounded-full bg-teal-700 px-5 py-2.5 text-center text-white font-semibold"
             >
-              Get in Touch
+              Book a Demo
             </Link>
           </nav>
         </div>

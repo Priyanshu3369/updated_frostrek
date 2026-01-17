@@ -1018,7 +1018,7 @@ const About = () => {
                 transition={{ duration: 2, repeat: Infinity }}
               />
               <Link to="/get-in-touch">
-                <span className="relative z-10">Get in touch</span>
+                <span className="relative z-10">Book a Demo</span>
               </Link>
               <motion.div
                 animate={{ x: [0, 5, 0] }}

@@ -388,7 +388,7 @@ const ContactForm = () => {
   return (
     <>
       <SEOHead
-        title="Contact Frostrek | Get in Touch"
+        title="Contact Frostrek | Book a Demo"
         description="Contact Frostrek for AI, automation, and enterprise technology solutions."
         canonicalUrl="https://www.frostrek.com/contact"
       />

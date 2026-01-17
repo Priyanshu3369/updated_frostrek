@@ -341,7 +341,7 @@ const Collaborate = () => {
               <Cpu size={16} className="text-cyan-300" />
             </motion.div>
             <span className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">
-              Get in Touch
+              Book a Demo
             </span>
           </motion.div>
 

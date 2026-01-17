@@ -209,7 +209,7 @@ export default function Hero3D() {
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mt-2">
                 <button onClick={handleEmailClick} className="w-full px-2.5 py-1.5 bg-gradient-to-r from-cyan-500/20 to-purple-600/20 hover:from-cyan-500/30 hover:to-purple-600/30 text-cyan-300 hover:text-cyan-200 text-[10px] font-semibold rounded-lg border border-cyan-400/30 hover:border-cyan-400/50 transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer">
                   <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                  <span>Get In Touch</span>
+                  <span>Book a Demo</span>
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
                 </button>
               </motion.div>
